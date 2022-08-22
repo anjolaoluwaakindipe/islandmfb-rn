@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { Controller } from "react-hook-form";
+import { Control, Controller, Field } from "react-hook-form";
 import {
     KeyboardTypeOptions,
     NativeSyntheticEvent,

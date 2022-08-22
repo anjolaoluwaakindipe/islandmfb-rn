@@ -15,23 +15,30 @@ import AppTextField from "../components/shared/AppTextField";
 import AppButton from "../components/shared/AppButton";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { SetProfileFormType, setProfileSchema } from '../services/validation/setProfileVal';
-import {zodResolver} from "@hookform/resolvers/zod"
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from './allroutes';
+import {
+    SetProfileFormType,
+    setProfileSchema,
+} from "../services/validation/setProfileVal";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./allroutes";
 
-type SetProfileProps = NativeStackScreenProps<RootStackParamList, "SetProfile">
+type SetProfileProps = NativeStackScreenProps<RootStackParamList, "SetProfile">;
 
-const SetProfileScreen = ({navigation}:SetProfileProps) => {
-    const [password, setPassword] = useState("");
+const SetProfileScreen = ({ navigation }: SetProfileProps) => {
+    // react hook form variables
+    const {
+        control,
+        formState: { errors },
+        handleSubmit,
+    } = useForm<SetProfileFormType>({
+        resolver: zodResolver(setProfileSchema),
+    });
 
-    const {control, formState:{errors}, handleSubmit} = useForm<SetProfileFormType>({resolver: zodResolver(setProfileSchema) })
-
-    const onSubmit = handleSubmit(data=>{
-        navigation.navigate("Verification")
-    })
-
-    console.log(errors)
+    // func: submit then navigate to Verification screen if successful
+    const onSubmit = handleSubmit((data) => {
+        navigation.navigate("Verification");
+    });
 
     return (
         <KeyboardAvoidingView
@@ -72,8 +79,6 @@ const SetProfileScreen = ({navigation}:SetProfileProps) => {
                                 validationName="password"
                                 containerStyle={tw`mt-3`}
                                 isPassword={true}
-                                onChange={(value) => setPassword(value)}
-                                value={password}
                                 control={control}
                                 errorMessage={errors.password?.message}
                             />
@@ -90,7 +95,11 @@ const SetProfileScreen = ({navigation}:SetProfileProps) => {
 
                     {/* Continue button */}
                     <View>
-                        <AppButton text="Continue" buttonStyle={tw`my-10`} onPress={onSubmit} />
+                        <AppButton
+                            text="Continue"
+                            buttonStyle={tw`my-10`}
+                            onPress={onSubmit}
+                        />
                     </View>
                 </ScrollView>
             </BasicBackButtonLayout>

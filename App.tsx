@@ -67,7 +67,7 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="Verification"
+                    initialRouteName="GettingStarted"
                 >
                     <Stack.Screen
                         name="GettingStarted"
@@ -84,6 +84,7 @@ export default function App() {
                     <Stack.Screen
                         name="Verification"
                         component={VerificationScreen}
+                        options={{ gestureEnabled: false }}
                     />
                     <Stack.Screen name="Success" component={SuccessScreen} />
                 </Stack.Navigator>

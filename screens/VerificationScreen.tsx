@@ -43,8 +43,9 @@ const VerificationScreen = ({ navigation }: VerificationScreenProps) => {
             successMessage:
                 "You have successfully signed up your account in our app and can start using",
             canGoBack: false,
-            nextPage: "GettingStarted",
+            nextPage: "LetsGetStarted",
             successButtonText: "Start Using",
+            nextPageParams: undefined,
         });
     });
 
