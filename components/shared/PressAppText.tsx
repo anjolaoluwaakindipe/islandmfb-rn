@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, GestureResponderEvent, Pressable } from "react-native";
 import React from "react";
 
 import { Style } from "twrnc/dist/esm/types";
@@ -28,23 +28,28 @@ type AppTextProp = {
     children: React.ReactNode;
     style?: Style;
     fontFamily?: PoppinFont | undefined;
-    
+    onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };
 
-const AppText = (props: AppTextProp) => {
+const PressAppText = (props: AppTextProp) => {
     return (
-        <Text
-            style={tw.style(
-                props.style,
-                {
-                    fontFamily: props.fontFamily || "poppins",
-                },
-                "text-lg"
-            )}
+        <Pressable
+        onPress={props.onPress}
         >
-            {props.children}
-        </Text>
+            <Text
+                style={tw.style(
+                    props.style,
+                    {
+                        fontFamily: props.fontFamily || "poppins",
+                    },
+                    "text-lg"
+                )}
+            >
+                {props.children}
+            </Text>
+        </Pressable>
+
     );
 };
 
-export default AppText;
+export default PressAppText;
