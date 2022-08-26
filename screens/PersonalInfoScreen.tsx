@@ -15,13 +15,7 @@ import { useForm } from "react-hook-form";
 import AppTextField from "../components/shared/AppTextField";
 import { personalInfoSchema, personalInfoFormType } from "../services/validation/personalInfoVal"
 
-import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
-
-import RNDateTimePicker from "@react-native-community/datetimepicker";
-
-import { event } from "react-native-reanimated";
 import DateInputFiled from "../components/shared/DateInputField"
-import apptw from "../utils/lib/tailwind";
 
 type PersonalInfoProps = NativeStackScreenProps<
     RootStackParamList,
@@ -43,29 +37,7 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
         navigation.navigate("Verification");
     });
 
-    const [date, setDate] = useState(new Date(1598051730000))
-    const [show, setShow] = useState(false);
-
-
-    const onChange = (event: any, selectedDate: any) => {
-        const currentDate = selectedDate;
-        setShow(false);
-        setDate(currentDate);
-    };
-
-    const showMode = (currentMode: any) => {
-        DateTimePickerAndroid.open({
-            value: date,
-            onChange,
-            mode: "date",
-            is24Hour: false,
-
-        });
-    };
-
-    const ShowDatepicker = () => {
-        showMode('date')
-    }
+   
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -134,14 +106,7 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
 
 
 
-                            {/* <Button
-                                onPress={ShowDatepicker}
-                                title="date picker"
-
-                            />
-                            <Text>selected: {date.toDateString()}</Text>
- */}
-
+                            
                            
                             <DateInputFiled
 

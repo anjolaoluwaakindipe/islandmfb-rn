@@ -48,7 +48,7 @@ const DateInputField = (props: DateInputFieldProps) => {
         <View>
 
             <AppText style={apptw`text-base`} fontFamily="poppins-semibd">
-               {props.title}
+                {props.title}
             </AppText>
             <Pressable
                 style={({ pressed }) =>
@@ -68,15 +68,12 @@ const DateInputField = (props: DateInputFieldProps) => {
                         `text-base px-5 text-black`,
                         props?.textStyle
 
-                    )
-
-
-                    }
+                    )}
                     fontFamily="poppins"
                 >
 
-                    {date.toDateString()}
-                   
+                    {/* {date.toDateString()} */}
+                    {date.getDate()}/{date.getMonth()}/{date.getFullYear()}
 
 
 
@@ -85,6 +82,7 @@ const DateInputField = (props: DateInputFieldProps) => {
 
 
             </Pressable>
+            <ErrorMessage>{props.errorMessage}</ErrorMessage>
 
         </View>
 
