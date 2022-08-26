@@ -1,5 +1,5 @@
-import { View, Text, Pressable, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
-import React from "react";
+import { View, Text, Pressable, ScrollView, KeyboardAvoidingView, Platform, Button } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import LetsGetStarted from "../assets/svg/letsgetstarted.svg";
 import tw from "twrnc";
@@ -13,7 +13,15 @@ import PressAppText from "../components/shared/PressAppText";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import AppTextField from "../components/shared/AppTextField";
-import { SetProfileFormType, setProfileSchema } from "../services/validation/setProfileVal";
+import { personalInfoSchema, personalInfoFormType } from "../services/validation/personalInfoVal"
+
+import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+
+import RNDateTimePicker from "@react-native-community/datetimepicker";
+
+import { event } from "react-native-reanimated";
+import DateInputFiled from "../components/shared/DateInputField"
+import apptw from "../utils/lib/tailwind";
 
 type PersonalInfoProps = NativeStackScreenProps<
     RootStackParamList,
@@ -26,8 +34,8 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
         control,
         formState: { errors },
         handleSubmit,
-    } = useForm<SetProfileFormType>({
-        resolver: zodResolver(setProfileSchema),
+    } = useForm<personalInfoFormType>({
+        resolver: zodResolver(personalInfoSchema),
     });
 
     // func: submit then navigate to Verification screen if successful
@@ -35,6 +43,29 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
         navigation.navigate("Verification");
     });
 
+    const [date, setDate] = useState(new Date(1598051730000))
+    const [show, setShow] = useState(false);
+
+
+    const onChange = (event: any, selectedDate: any) => {
+        const currentDate = selectedDate;
+        setShow(false);
+        setDate(currentDate);
+    };
+
+    const showMode = (currentMode: any) => {
+        DateTimePickerAndroid.open({
+            value: date,
+            onChange,
+            mode: "date",
+            is24Hour: false,
+
+        });
+    };
+
+    const ShowDatepicker = () => {
+        showMode('date')
+    }
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -51,40 +82,81 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                     <View>
                         {/* Header */}
                         <AppText style={tw`text-3xl mt-10`}>
-                            Set Profile
+                            Personal Information
                         </AppText>
 
                         {/* Sub-info */}
                         <AppText style={tw`mt-2`}>
-                            Set up your online profile with Island MFB account
-                            by providing the details show below
+                            Create an account by providing the details
+                            needed below.
                         </AppText>
 
                         {/* TexFields */}
                         <View style={tw`mt-10 `}>
+
+
                             <AppTextField
-                                title="Account Number"
-                                validationName="accountNumber"
-                                keyboardType="number-pad"
+                                title="First Name"
+                                validationName="firstName"
+                                keyboardType="default"
                                 control={control}
-                                errorMessage={errors.accountNumber?.message}
+                                errorMessage={errors.firstName?.message}
                             />
+
+
                             <AppTextField
-                                title="Password"
-                                validationName="password"
+                                title="Last Name"
+                                validationName="lastName"
+                                keyboardType="default"
+                                control={control}
+                                errorMessage={errors.lastName?.message}
+                            />
+
+
+                            <AppTextField
+                                title="Email"
+                                validationName="email"
+                                keyboardType="email-address"
+                                control={control}
+                                errorMessage={errors.email?.message}
+                            />
+
+
+
+                            <AppTextField
+                                title="Gender"
+                                validationName="gender"
                                 containerStyle={tw`mt-3`}
-                                isPassword={true}
+
                                 control={control}
-                                errorMessage={errors.password?.message}
+                                errorMessage={errors.gender?.message}
                             />
-                            <AppTextField
-                                title="Confirm Password"
-                                validationName="confirmPassword"
-                                containerStyle={tw`mt-3`}
-                                isPassword={true}
+
+
+
+                            {/* <Button
+                                onPress={ShowDatepicker}
+                                title="date picker"
+
+                            />
+                            <Text>selected: {date.toDateString()}</Text>
+ */}
+
+                           
+                            <DateInputFiled
+
+                                validationName="dob"
                                 control={control}
-                                errorMessage={errors.confirmPassword?.message}
+                                errorMessage={errors.dob?.message}
+                                title="Date of Birth"
+
                             />
+
+                          
+
+
+
+
                         </View>
                     </View>
 
@@ -93,7 +165,7 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                         <AppButton
                             text="Continue"
                             buttonStyle={tw`my-10`}
-                           
+
                         />
                     </View>
                 </ScrollView>
@@ -103,4 +175,4 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
 };
 
 
-export default  PersonalInfoScreen;
+export default PersonalInfoScreen;
