@@ -70,7 +70,7 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="PersonalInfo"
+                    initialRouteName="AccountTypeSetup"
                 >
                     <Stack.Screen
                         name="GettingStarted"
