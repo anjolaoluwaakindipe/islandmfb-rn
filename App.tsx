@@ -14,7 +14,7 @@ import VerificationScreen from "./screens/VerificationScreen";
 import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
-
+import AccountTypeSetup from "./screens/AccountTypeSetup";
 
 import {
     useFonts,
@@ -91,6 +91,10 @@ export default function App() {
                     <Stack.Screen
                         name="PersonalInfo"
                         component={PersonalInfoScreen}
+                    />
+                    <Stack.Screen
+                    name="AccountTypeSetup"
+                    component={AccountTypeSetup}
                     />
 
                     <Stack.Screen

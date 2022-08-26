@@ -16,21 +16,13 @@ import AppTextField from "../components/shared/AppTextField";
 import { personalInfoSchema, personalInfoFormType } from "../services/validation/personalInfoVal"
 
 import DateInputFiled from "../components/shared/DateInputField"
-import Dropdown from "../components/shared/Dropdown"
 
-
-const genderOptions = [
-    { value: "M", label: "Male" },
-    { value: "F", label: "Female" }
-]
-
-
-type PersonalInfoProps = NativeStackScreenProps<
+type AccountTypeSetupProps = NativeStackScreenProps<
     RootStackParamList,
-    "PersonalInfo"
+    "AccountTypeSetup"
 >;
 
-const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
+const AccountTypeSetup = ({ navigation }: AccountTypeSetupProps) => {
     // react hook form variables
     const {
         control,
@@ -45,7 +37,7 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
         navigation.navigate("Verification");
     });
 
-
+   
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -62,16 +54,15 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                     <View>
                         {/* Header */}
                         <AppText style={tw`text-3xl mt-10`}>
-                            Personal Information
+                          Account Type
                         </AppText>
 
                         {/* Sub-info */}
                         <AppText style={tw`mt-2`}>
-                            Create an account by providing the details
-                            needed below.
+                          Select an Account Type
                         </AppText>
 
-                        {/* TexFields */}
+                        {/* options */}
                         <View style={tw`mt-10 `}>
 
 
@@ -92,34 +83,22 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                                 errorMessage={errors.lastName?.message}
                             />
 
+<AppButton
+text=" Savings Account"
+buttonStyle={tw`bg-textField`}
+/>
 
-                            <AppTextField
-                                title="Email"
-                                validationName="email"
-                                keyboardType="email-address"
-                                control={control}
-                                errorMessage={errors.email?.message}
-                            />
-
-
-                            <Dropdown
-                                title="Gender"
-                                data={genderOptions}
-                                errorMessage={errors.gender?.message}
-                            />
+<AppButton
+text="Current Account"
+/>
 
 
+                         
 
-                            <DateInputFiled
+                            
+                          
 
-                                validationName="dob"
-                                control={control}
-                                errorMessage={errors.dob?.message}
-                                title="Date of Birth"
-
-                            />
-
-
+                          
 
 
 
@@ -127,14 +106,9 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                         </View>
                     </View>
 
-                    {/* Continue button */}
-                    <View>
-                        <AppButton
-                            text="Continue"
-                            buttonStyle={tw`my-10`}
+                   
 
-                        />
-                    </View>
+
                 </ScrollView>
             </BasicBackButtonLayout>
         </KeyboardAvoidingView>
@@ -142,4 +116,4 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
 };
 
 
-export default PersonalInfoScreen;
+export default AccountTypeSetup;
