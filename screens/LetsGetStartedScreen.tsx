@@ -9,6 +9,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./allroutes";
 import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout";
+import PressAppText from "../components/shared/PressAppText";
 
 type LetsGetStartedScreen = NativeStackScreenProps<
     RootStackParamList,
@@ -18,6 +19,9 @@ type LetsGetStartedScreen = NativeStackScreenProps<
 const LetsGetStartedScreen = ({ navigation }: LetsGetStartedScreen) => {
     const navigateToSetProfile = () =>{
         navigation.navigate("SetProfile");
+    }
+    const navigateToCreateYourAccount = () => {
+        navigation.navigate("CreateYourAccount")
     }
     return (
         <BasicBackButtonLayout>
@@ -36,7 +40,7 @@ const LetsGetStartedScreen = ({ navigation }: LetsGetStartedScreen) => {
                 </AppText>
 
                 <AppButton text="Set Up Profile" buttonStyle={tw`mt-10`} onPress={navigateToSetProfile} />
-                <AppText style={tw`text-base mt-2`}>Create an account</AppText>
+                <PressAppText style={tw`text-base mt-2`} onPress={navigateToCreateYourAccount}>Create an account </PressAppText>
             </View>
         </BasicBackButtonLayout>
     );

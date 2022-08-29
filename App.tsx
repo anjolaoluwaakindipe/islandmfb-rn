@@ -12,6 +12,11 @@ import tw from "twrnc";
 import SetProfileScreen from "./screens/SetProfileScreen";
 import VerificationScreen from "./screens/VerificationScreen";
 import SuccessScreen from "./screens/SuccessScreen";
+
+import CreateYourAccount from "./screens/CreateYourAccount";
+import PersonalInfoScreen from "./screens/PersonalInfoScreen";
+import AccountTypeSetup from "./screens/AccountTypeSetup";
+
 import SignInScreen from "./screens/SignInScreen";
 
 import {
@@ -68,7 +73,7 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="GettingStarted"
+                    initialRouteName="AccountTypeSetup"
                 >
                     <Stack.Screen
                         name="GettingStarted"
@@ -86,6 +91,19 @@ export default function App() {
                         name="SetProfile"
                         component={SetProfileScreen}
                     />
+                    <Stack.Screen
+                        name="CreateYourAccount"
+                        component={CreateYourAccount}
+                    />
+                    <Stack.Screen
+                        name="PersonalInfo"
+                        component={PersonalInfoScreen}
+                    />
+                    <Stack.Screen
+                    name="AccountTypeSetup"
+                    component={AccountTypeSetup}
+                    />
+
                     <Stack.Screen
                         name="Verification"
                         component={VerificationScreen}
