@@ -12,6 +12,7 @@ import tw from "twrnc";
 import SetProfileScreen from "./screens/SetProfileScreen";
 import VerificationScreen from "./screens/VerificationScreen";
 import SuccessScreen from "./screens/SuccessScreen";
+import SignInScreen from "./screens/SignInScreen";
 
 import {
     useFonts,
@@ -72,6 +73,10 @@ export default function App() {
                     <Stack.Screen
                         name="GettingStarted"
                         component={GettingStartedScreen}
+                    />
+                    <Stack.Screen
+                        name="SignIn"
+                        component={SignInScreen}
                     />
                     <Stack.Screen
                         name="LetsGetStarted"
