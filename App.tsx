@@ -1,5 +1,8 @@
+import 'react-native-gesture-handler';
+
+
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import GettingStartedScreen from "./screens/GettingStartedScreen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,6 +10,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./screens/allroutes";
 import LetsGetStartedScreen from "./screens/LetsGetStartedScreen";
 import AppLoading from "expo-app-loading";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
 
 import tw from "twrnc";
 import SetProfileScreen from "./screens/SetProfileScreen";
@@ -15,6 +20,16 @@ import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
+
+
+import CustomSidebarMenu from "./components/layouts/CustomSidebarMenu";
+
+import DrawerItems from "./constants/DrawerItems";
+
+//testpages
+import TestPage1 from "./screens/TestPage1";
+import TestPage2 from "./screens/TestPage2";
+
 
 import {
     useFonts,
@@ -37,9 +52,39 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
+import { Feather, FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function App() {
+
+
+const NavigationDrawerStructure = (props: { navigationProps: { toggleDrawer: () => void; }; }) => {
+    //Structure for the navigatin Drawer
+    const toggleDrawer = () => {
+        //Props to open/close the drawer
+        props.navigationProps.toggleDrawer();
+    };
+
+    return (
+        <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity onPress={toggleDrawer}>
+                {/*Donute Button Image */}
+                <Image
+                    source={{
+                        uri:
+                            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png',
+                    }}
+                    style={{ width: 25, height: 25, marginLeft: 5 }}
+                />
+            </TouchableOpacity>
+        </View>
+    );
+};
+
+
+const Drawer = createDrawerNavigator();
+
+function App() {
     const Stack = createNativeStackNavigator<RootStackParamList>();
+
     let [fontsLoaded] = useFonts({
         "poppins-thin": Poppins_100Thin,
         "poppins-thinI": Poppins_100Thin_Italic,
@@ -67,10 +112,10 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <StatusBar />
-            <NavigationContainer>
+            {/* <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="AccountTypeSetup"
+                    initialRouteName="TestPage1"
                 >
                     <Stack.Screen
                         name="GettingStarted"
@@ -93,8 +138,8 @@ export default function App() {
                         component={PersonalInfoScreen}
                     />
                     <Stack.Screen
-                    name="AccountTypeSetup"
-                    component={AccountTypeSetup}
+                        name="AccountTypeSetup"
+                        component={AccountTypeSetup}
                     />
 
                     <Stack.Screen
@@ -102,9 +147,66 @@ export default function App() {
                         component={VerificationScreen}
                         options={{ gestureEnabled: false }}
                     />
+                    <Stack.Screen
+                        name="TestPage1"
+                        component={TestPage1}
+                    />
+
+
                     <Stack.Screen name="Success" component={SuccessScreen} />
                 </Stack.Navigator>
+
+
+
+
+
+            </NavigationContainer> */}
+
+
+
+            <NavigationContainer>
+                <Drawer.Navigator initialRouteName="TestPage1" >
+
+
+                    {DrawerItems.map(drawer => <Drawer.Screen
+                        component={
+                            drawer.name === 'TestPage1' ? TestPage1
+                                : drawer.name === 'TestPage2' ? TestPage2
+                                    : VerificationScreen
+                        }
+                        key={drawer.name}
+                        name={drawer.name}
+
+                        options={{
+                            drawerIcon: ({ focused }) =>
+                                drawer.iconType === 'Material' ?
+                                    <MaterialCommunityIcons
+
+                                        // name={drawer.iconName}
+                                        size={24}
+                                        color={focused ? "#e91e63" : "black"}
+                                    />
+                                    :
+                                    drawer.iconType === 'Feather' ?
+                                        <Feather
+                                            // name={drawer.iconName}
+                                            size={24}
+                                            color={focused ? "#e91e63" : "black"}
+                                        />
+                                        :
+                                        <FontAwesome5
+                                            name={drawer.iconName}
+                                            size={24}
+                                            color={focused ? "#e91e63" : "black"}
+                                        />
+                        }}
+                    />)
+                    }
+
+                </Drawer.Navigator>
             </NavigationContainer>
+
+
         </SafeAreaProvider>
     );
 }
@@ -117,3 +219,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
 });
+
+
+
+
+export default App
