@@ -10,6 +10,7 @@ type AppButtonWIconProp = {
     text?: string;
     buttonStyle?: Style;
     textStyle?: Style;
+    icon?:any;
     onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };
 
@@ -29,6 +30,7 @@ const AppButtonWIcon = (props: AppButtonWIconProp) => {
         >
 
             {/* icon will go here */}
+            {props.icon}
             <AppText
                 style={tw.style(
                     `text-lg px-10 text-black`,

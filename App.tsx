@@ -20,7 +20,7 @@ import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
-
+import DashBoard from './screens/DashBoard';
 
 
 //testpages
@@ -49,8 +49,6 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
-import { Feather, FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
-
 
 
 
@@ -62,13 +60,31 @@ function Profile() {
         <SafeAreaProvider>
 
             <Drawer.Navigator
-                initialRouteName="TestPage1"
+                initialRouteName="DashBoard"
+                screenOptions={{
+                    drawerActiveTintColor: "#BC4B52"
+                }}
+
             >
+
+
+
+                <Drawer.Screen
+                    name='DashBoard'
+                    component={DashBoard}
+                    options={{
+                        drawerType: 'front',
+                        title: "dashboard",
+                        headerShown: false,
+                        // drawerIcon: 
+                    }}
+                />
                 <Drawer.Screen
                     name='TestPage1'
                     component={TestPage1}
                     options={{
                         drawerType: 'front',
+                        title: "this is a title",
                         headerShown: false
 
                     }}
@@ -77,10 +93,15 @@ function Profile() {
                     name='TestPage2'
                     component={TestPage2}
                     options={{
+
                         drawerType: 'front',
-                        headerShown: false
+                        headerShown: false,
+                        
                     }}
                 />
+
+
+
 
                 {/* {
                         DrawerItems.map(drawer => <Drawer.Screen
@@ -163,7 +184,7 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="TestPage1"
+                    initialRouteName="DashBoard"
                 >
 
                     <Stack.Screen
@@ -196,13 +217,11 @@ function App() {
                         component={VerificationScreen}
                         options={{ gestureEnabled: false }}
                     />
+
                     <Stack.Screen
-                        name="TestPage1"
+                        name="DashBoard"
                         component={Profile}
-                        options={{ headerShown: false }}
-
                     />
-
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
 

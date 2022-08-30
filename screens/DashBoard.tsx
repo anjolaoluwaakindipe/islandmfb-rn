@@ -18,11 +18,12 @@ import { RootStackParamList } from "./allroutes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LoggedInLayout from "../components/layouts/LoggedInLayout"
 import PressAppText from "../components/shared/PressAppText";
-
-
-
-
-
+import apptw from "../utils/lib/tailwind";
+import AppButtonWIcon from "../components/shared/AppButtonWIcon";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import TransHistory from "../components/dashboard/TransHistory";
 
 const DashBoard = () => {
 
@@ -33,15 +34,16 @@ const DashBoard = () => {
         >
             <LoggedInLayout>
                 <ScrollView
+                showsVerticalScrollIndicator={true}
                     style={tw`px-6`}
-                    contentContainerStyle={tw.style(` justify-between`, {
-                        flexGrow: 1,
+                    contentContainerStyle={tw.style(` `, {
+                        flexGrow: 1
                     })}>
 
 
 
                     <View
-                        style={tw`flex-row justify-between`}
+                        style={tw`flex-row justify-between mt-5`}
                     >
                         <AppText
                             style={tw``}
@@ -59,7 +61,176 @@ const DashBoard = () => {
 
 
 
+                    <View
+                        style={apptw`bg-textField px-5 py-5 pl-5 mt-10 `}
+                    >
+                        <AppText
+                            style={apptw`font-base `}
+                        >
+                            Savings Account: {"   "}
+                            <AppText
+                                style={apptw`font-bold`}>
+                                1099394
+                            </AppText>
+                        </AppText>
 
+
+                        <AppText
+                            style={apptw`text-primCol text-xl`}
+                        >
+                            N 234,45455
+                        </AppText>
+                        <AppText>
+                            Available Balance
+                        </AppText>
+
+                        <AppText>
+                            Book Balance: {"  "}
+                            <AppText>
+                                N239344455
+                            </AppText>
+                        </AppText>
+
+                    </View>
+
+
+
+                    <AppText
+                        style={tw`mt-5`}
+                    >
+                        Quick Actions
+                    </AppText>
+
+                    <ScrollView
+                      style={tw``}
+                      horizontal= {true}
+                      contentContainerStyle={tw.style(` justify-between`, {
+                          flexGrow: 1,
+                      })}
+                    >
+                        <View
+                            style={tw`flex-row  mt-2 justify-between mx-3`}
+                        >
+                            <AppButtonWIcon
+                                text="transfer"
+                                buttonStyle={apptw`w-[40] mr-4`}
+                                textStyle={apptw`text-[3] text-primCol  mx-auto`}
+                                icon={
+                                    <MaterialCommunityIcons
+                                        name="bank"
+                                        size={15}
+                                        style={tw`mx-auto`}
+                                        color="#BC4B52"
+                                    />
+                                }
+                            />
+
+                            <AppButtonWIcon
+                                text="airtime"
+                                buttonStyle={apptw`w-[40] mr-4`}
+                                textStyle={apptw`text-[3] text-primCol mx-auto`}
+                                icon={
+                                    <Ionicons
+                                        name="cash-outline"
+                                        size={15}
+                                        color="#BC4B52"
+                                        style={tw`mx-auto`}
+                                    />
+                                }
+
+                            />
+
+                            <AppButtonWIcon
+                                text="Bills"
+                                buttonStyle={apptw`w-[40] mr-4`}
+                                textStyle={apptw`text-[3] text-primCol mx-auto`}
+                                icon={
+                                    <Ionicons
+                                        name="md-newspaper-outline"
+                                        size={15}
+                                        style={tw`mx-auto`}
+                                        color="#BC4B52"
+                                    />
+                                }
+
+                            />
+
+
+                            <AppButtonWIcon
+                                text="Bills"
+                                buttonStyle={apptw`w-[40] mr-4`}
+                                textStyle={apptw`text-[3] text-primCol mx-auto`}
+                                icon={
+                                    <Ionicons
+                                        name="md-newspaper-outline"
+                                        size={15}
+                                        style={tw`mx-auto`}
+                                        color="#BC4B52"
+                                    />
+                                }
+
+                            />
+
+                        </View>
+
+
+
+                    </ScrollView>
+
+
+
+
+
+                    <View
+                        style={tw`flex-row justify-between mt-5`}
+                    >
+
+                        <AppText
+                            style={tw``}
+                        >
+                            Transaction History
+                        </AppText>
+
+                        <PressAppText
+                            style={tw`text-green-500`}
+                        >
+                            view all
+                        </PressAppText>
+                    </View>
+
+
+
+                    <TransHistory
+                        amount="N 500000002"
+                        date="Tuesday,12th july,2021 "
+                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
+                        name="Akinjoke Gboluga"
+                    />
+
+
+
+
+                    <TransHistory
+                        amount="N 500000002"
+                        date="Tuesday,12th july,2021 "
+                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
+                        name="Akinjoke Gboluga"
+                    />
+
+
+                    <TransHistory
+                        amount="N 500000002"
+                        date="Tuesday,12th july,2021 "
+                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
+                        name="Akinjoke Gboluga"
+                    />
+
+                    <TransHistory
+                        amount="N 500000002"
+                        date="Tuesday,12th july,2021 "
+                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
+                        name="Akinjoke Gboluga"
+                    />
 
 
 
@@ -68,3 +239,6 @@ const DashBoard = () => {
         </KeyboardAvoidingView>
     )
 }
+
+
+export default DashBoard;

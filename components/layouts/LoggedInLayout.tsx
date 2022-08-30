@@ -25,8 +25,9 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
             onPress={() => (Platform.OS != "web" ? Keyboard.dismiss() : null)}
         >
             <SafeAreaView
-                style={tw`bg-white  flex-1 shadow-md`}
-                edges={["top", "left", "right"]}
+                style={tw.style(`bg-white flex-1 shadow-md`, {flexGrow: 1})}
+                edges={["top", "left", "right", "bottom"]}
+                
             >
 
                 <View style= {tw`flex-row justify-between py-4 px-6`} >
@@ -34,7 +35,7 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
                 <Pressable onPress={() => navigation.toggleDrawer()} style={tw.style("", )}>
                     <SimpleLineIcons
                         name="menu"
-                        size={40}
+                        size={20}
                         style={tw`bg-white`}
                         color="black"
                     />
@@ -43,12 +44,12 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
                 <Pressable onPress={() => navigation.toggleDrawer()} style={tw.style("", )}>
                     <AntDesign
                         name="bells"
-                        size={40}
+                        size={20}
                         style={tw`bg-white`}
                         color="black"
                     />
                 </Pressable>
-                
+
                 </View>
                 
 

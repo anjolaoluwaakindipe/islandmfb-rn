@@ -18,7 +18,6 @@ import { RootStackParamList } from "./allroutes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LoggedInLayout from "../components/layouts/LoggedInLayout"
 
-type TestPage1Props = NativeStackScreenProps<RootStackParamList, "TestPage1">;
 
 const TestPage1 = () => {
 
