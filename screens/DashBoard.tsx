@@ -17,10 +17,14 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./allroutes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import LoggedInLayout from "../components/layouts/LoggedInLayout"
+import PressAppText from "../components/shared/PressAppText";
 
-type TestPage1Props = NativeStackScreenProps<RootStackParamList, "TestPage1">;
 
-const TestPage1 = () => {
+
+
+
+
+const DashBoard = () => {
 
     return (
         <KeyboardAvoidingView
@@ -32,38 +36,35 @@ const TestPage1 = () => {
                     style={tw`px-6`}
                     contentContainerStyle={tw.style(` justify-between`, {
                         flexGrow: 1,
-                    })}
-                >
-                    <View>
-                        <AppText
-                            style={tw`text-3xl mt-10`}
-                            fontFamily="poppins-bd"
-                        >
-                            TEST PAGE 1
-                        </AppText>
-                        <AppText
-                            style={tw`text-lg mt-1 text-center`}
-                            fontFamily="poppins-light"
-                        >
-                            Create an account by provideing the details needed
-                            below
-                        </AppText>
-                        
+                    })}>
 
 
+
+                    <View
+                        style={tw`flex-row justify-between`}
+                    >
+                        <AppText
+                            style={tw``}
+                        >
+                            HI USERR
+                        </AppText>
+
+
+                        <PressAppText
+                            style={tw`text-green-500`}
+                        >
+                            Change Account
+                        </PressAppText>
                     </View>
 
-                    <View>
-                        <AppButton
-                            text="Continue"
-                            buttonStyle={tw`mt-10`}
 
-                        />
-                    </View>
+
+
+
+
+
                 </ScrollView>
             </LoggedInLayout>
         </KeyboardAvoidingView>
-    );
-};
-
-export default TestPage1;
+    )
+}

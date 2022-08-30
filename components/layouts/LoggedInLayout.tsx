@@ -8,12 +8,11 @@ import {
     Pressable,
     ScrollView,
     TouchableWithoutFeedback,
+    View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "twrnc";
-import GettingStartedScreen from "../../screens/GettingStartedScreen"
-import AccountTypeSetup from "../../screens/AccountTypeSetup"
-
+import {AntDesign} from '@expo/vector-icons'
 type LoggedInLayoutProp = {
     children: React.ReactNode;
 };
@@ -29,7 +28,10 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
                 style={tw`bg-white  flex-1 shadow-md`}
                 edges={["top", "left", "right"]}
             >
-                <Pressable onPress={() => navigation.goBack()} style={tw.style("py-2 px-3", )}>
+
+                <View style= {tw`flex-row justify-between py-4 px-6`} >
+
+                <Pressable onPress={() => navigation.toggleDrawer()} style={tw.style("", )}>
                     <SimpleLineIcons
                         name="menu"
                         size={40}
@@ -37,6 +39,20 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
                         color="black"
                     />
                 </Pressable>
+
+                <Pressable onPress={() => navigation.toggleDrawer()} style={tw.style("", )}>
+                    <AntDesign
+                        name="bells"
+                        size={40}
+                        style={tw`bg-white`}
+                        color="black"
+                    />
+                </Pressable>
+                
+                </View>
+                
+
+
 
                 {children}
             </SafeAreaView>

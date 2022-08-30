@@ -22,9 +22,6 @@ import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
 
 
-import CustomSidebarMenu from "./components/layouts/CustomSidebarMenu";
-
-import DrawerItems from "./constants/DrawerItems";
 
 //testpages
 import TestPage1 from "./screens/TestPage1";
@@ -56,35 +53,86 @@ import { Feather, FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icon
 
 
 
-const NavigationDrawerStructure = (props: { navigationProps: { toggleDrawer: () => void; }; }) => {
-    //Structure for the navigatin Drawer
-    const toggleDrawer = () => {
-        //Props to open/close the drawer
-        props.navigationProps.toggleDrawer();
-    };
 
+
+function Profile() {
+    const Drawer = createDrawerNavigator()
     return (
-        <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity onPress={toggleDrawer}>
-                {/*Donute Button Image */}
-                <Image
-                    source={{
-                        uri:
-                            'https://raw.githubusercontent.com/AboutReact/sampleresource/master/drawerWhite.png',
+
+        <SafeAreaProvider>
+
+            <Drawer.Navigator
+                initialRouteName="TestPage1"
+            >
+                <Drawer.Screen
+                    name='TestPage1'
+                    component={TestPage1}
+                    options={{
+                        drawerType: 'front',
+                        headerShown: false
+
                     }}
-                    style={{ width: 25, height: 25, marginLeft: 5 }}
                 />
-            </TouchableOpacity>
-        </View>
-    );
-};
+                <Drawer.Screen
+                    name='TestPage2'
+                    component={TestPage2}
+                    options={{
+                        drawerType: 'front',
+                        headerShown: false
+                    }}
+                />
+
+                {/* {
+                        DrawerItems.map(drawer => <Drawer.Screen
+                            key={drawer.name}
+                            name={drawer.name}
+                            options={{
+                                drawerIcon: ({ focused }) =>
+                                    drawer.iconType === 'Material' ?
+                                        <MaterialCommunityIcons
+                                            // name={drawer.iconName}
+                                            size={24}
+                                            color={focused ? "#e91e63" : "black"}
+                                        />
+                                        :
+                                        drawer.iconType === 'Feather' ?
+                                            <Feather
+                                                // name={drawer.iconName}
+                                                size={24}
+                                                color={focused ? "#e91e63" : "black"}
+                                            />
+                                            :
+                                            <FontAwesome5
+                                                name={drawer.iconName}
+                                                size={24}
+                                                color={focused ? "#e91e63" : "black"}
+                                            />
+                                ,
+                                headerShown: true,
+                               
+
+                            }}
+                            component={
+                                drawer.name === 'TestPage1' ? TestPage1
+                                    : drawer.name === 'TestPage2' ? TestPage2
+
+                                        : VerificationScreen
+                            }
+                        />)
+                    } */}
+            </Drawer.Navigator>
 
 
-const Drawer = createDrawerNavigator();
+
+        </SafeAreaProvider>
+
+
+    )
+}
 
 function App() {
     const Stack = createNativeStackNavigator<RootStackParamList>();
-
+    const Drawer = createDrawerNavigator();
     let [fontsLoaded] = useFonts({
         "poppins-thin": Poppins_100Thin,
         "poppins-thinI": Poppins_100Thin_Italic,
@@ -112,11 +160,12 @@ function App() {
     return (
         <SafeAreaProvider>
             <StatusBar />
-            {/* <NavigationContainer>
+            <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
                     initialRouteName="TestPage1"
                 >
+
                     <Stack.Screen
                         name="GettingStarted"
                         component={GettingStartedScreen}
@@ -149,62 +198,26 @@ function App() {
                     />
                     <Stack.Screen
                         name="TestPage1"
-                        component={TestPage1}
+                        component={Profile}
+                        options={{ headerShown: false }}
+
                     />
 
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
+
+
                 </Stack.Navigator>
 
 
 
 
 
-            </NavigationContainer> */}
-
-
-
-            <NavigationContainer>
-                <Drawer.Navigator initialRouteName="TestPage1" >
-
-
-                    {DrawerItems.map(drawer => <Drawer.Screen
-                        component={
-                            drawer.name === 'TestPage1' ? TestPage1
-                                : drawer.name === 'TestPage2' ? TestPage2
-                                    : VerificationScreen
-                        }
-                        key={drawer.name}
-                        name={drawer.name}
-
-                        options={{
-                            drawerIcon: ({ focused }) =>
-                                drawer.iconType === 'Material' ?
-                                    <MaterialCommunityIcons
-
-                                        // name={drawer.iconName}
-                                        size={24}
-                                        color={focused ? "#e91e63" : "black"}
-                                    />
-                                    :
-                                    drawer.iconType === 'Feather' ?
-                                        <Feather
-                                            // name={drawer.iconName}
-                                            size={24}
-                                            color={focused ? "#e91e63" : "black"}
-                                        />
-                                        :
-                                        <FontAwesome5
-                                            name={drawer.iconName}
-                                            size={24}
-                                            color={focused ? "#e91e63" : "black"}
-                                        />
-                        }}
-                    />)
-                    }
-
-                </Drawer.Navigator>
             </NavigationContainer>
+
+
+
+
 
 
         </SafeAreaProvider>
