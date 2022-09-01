@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Linking } from "react-native";
+import { View, Text, StyleSheet, Image, Button, Linking } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -51,9 +51,7 @@ const GettingStartedScreen = ({
                         />
                         <AppText style={apptw`self-center mt-4 text-lg`}>
                             Have an account?{" "}
-                            <AppText style={apptw`text-succCol`}>
-                                Sign in
-                            </AppText>{" "}
+                            <Button color={"#BC4B52"} title="Sign In" onPress={()=>{navigation.navigate('SignIn')}}/>{" "}
                         </AppText>
                     </View>
                 </View>

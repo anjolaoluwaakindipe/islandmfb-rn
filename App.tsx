@@ -16,8 +16,12 @@ import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
-
 import SignInScreen from "./screens/SignInScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
+import EnterCodeScreen from "./screens/EnterCodeScreen";
+import ResetPasswordScreen from "./screens/ResetPasswordScreen";
+import AirtimeScreen from "./screens/AirtimeScreen";
+
 
 import {
     useFonts,
@@ -73,7 +77,7 @@ export default function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="AccountTypeSetup"
+                    initialRouteName="Airtime"
                 >
                     <Stack.Screen
                         name="GettingStarted"
@@ -103,6 +107,18 @@ export default function App() {
                     name="AccountTypeSetup"
                     component={AccountTypeSetup}
                     />
+                    <Stack.Screen
+                    name="ForgotPassword"
+                    component={ForgotPasswordScreen}
+                    />
+                    <Stack.Screen
+                    name="EnterCode"
+                    component={EnterCodeScreen}
+                    />
+                    <Stack.Screen
+                    name="ResetPassword"
+                    component={ResetPasswordScreen}
+                    />
 
                     <Stack.Screen
                         name="Verification"
@@ -110,6 +126,7 @@ export default function App() {
                         options={{ gestureEnabled: false }}
                     />
                     <Stack.Screen name="Success" component={SuccessScreen} />
+                    <Stack.Screen name="Airtime" component={AirtimeScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
