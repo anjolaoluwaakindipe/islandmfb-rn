@@ -7,12 +7,19 @@ export type RootStackParamList = {
     CreateYourAccount: undefined;
     PersonalInfo: undefined;
     AccountTypeSetup: undefined;
+
+    DashBoard: undefined;
+    TestPage1: undefined;
+    TestPage2: undefined
+    Success: {successMessage:string, nextPage:keyof RootStackParamList, canGoBack:boolean, successButtonText:string, nextPageParams?: any} | undefined;
+   
+
     ForgotPassword: undefined;
     EnterCode: undefined;
     ResetPassword: undefined;
     Airtime: undefined;
+
     
-    Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
     
 
 
