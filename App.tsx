@@ -20,12 +20,20 @@ import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
+
 import DashBoard from './screens/DashBoard';
 
 
 //testpages
 import TestPage1 from "./screens/TestPage1";
 import TestPage2 from "./screens/TestPage2";
+
+import SignInScreen from "./screens/SignInScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
+import EnterCodeScreen from "./screens/EnterCodeScreen";
+import ResetPasswordScreen from "./screens/ResetPasswordScreen";
+import AirtimeScreen from "./screens/AirtimeScreen";
+
 
 
 import {
@@ -184,7 +192,9 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="DashBoard"
+
+                    initialRouteName="Airtime"
+
                 >
 
                     <Stack.Screen
@@ -211,6 +221,18 @@ function App() {
                         name="AccountTypeSetup"
                         component={AccountTypeSetup}
                     />
+                    <Stack.Screen
+                    name="ForgotPassword"
+                    component={ForgotPasswordScreen}
+                    />
+                    <Stack.Screen
+                    name="EnterCode"
+                    component={EnterCodeScreen}
+                    />
+                    <Stack.Screen
+                    name="ResetPassword"
+                    component={ResetPasswordScreen}
+                    />
 
                     <Stack.Screen
                         name="Verification"
@@ -225,6 +247,9 @@ function App() {
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
+
+
+                    <Stack.Screen name="Airtime" component={AirtimeScreen} />
 
                 </Stack.Navigator>
 
