@@ -11,6 +11,7 @@ export type RootStackParamList = {
     DashBoard: undefined;
     Profile: undefined;
     EditPersonalInfo:undefined;
+    EditContactDetails: undefined;
     TestPage1: undefined;
     TestPage2: undefined
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
