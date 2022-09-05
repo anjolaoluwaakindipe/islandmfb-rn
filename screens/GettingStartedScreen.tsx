@@ -1,4 +1,6 @@
+
 import { View, Text, StyleSheet, Image, Button, Linking } from "react-native";
+
 import React from "react";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,10 +24,6 @@ const GettingStartedScreen = ({
     const navigateToLetsGetStartedScr = () => {
         navigation.navigate("LetsGetStarted");
     };
-
-    const Signin = () => {
-    navigation.navigate("SignIn")
-}
 
     return (
         <SafeAreaView style={styles.container}>
