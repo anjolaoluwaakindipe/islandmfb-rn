@@ -10,7 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./screens/allroutes";
 import LetsGetStartedScreen from "./screens/LetsGetStartedScreen";
 import AppLoading from "expo-app-loading";
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContent, DrawerItem } from '@react-navigation/drawer';
 
 
 import tw from "twrnc";
@@ -21,12 +21,12 @@ import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
 import DashBoard from './screens/DashBoard';
-
+import ProfileScreen from './screens/ProfileScreen';
 
 //testpages
 import TestPage1 from "./screens/TestPage1";
 import TestPage2 from "./screens/TestPage2";
-
+import CompanyLogo from "./assets/svg/companylogo1.svg"
 
 import {
     useFonts,
@@ -49,24 +49,50 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
+import AppText from './components/shared/Apptext';
+
+function TestHeader() {
+    return (
+        <CompanyLogo style={tw`pb-28`} />
+    )
+}
 
 
-
-
-function Profile() {
+function ProfileDrawer({navigation}:any) {
     const Drawer = createDrawerNavigator()
+    const navigateToDashBoard = () =>{
+        navigation.navigate("DashBoard");
+    }
     return (
 
         <SafeAreaProvider>
 
             <Drawer.Navigator
                 initialRouteName="DashBoard"
+                // drawerContent={{
+                    
+                // }}
                 screenOptions={{
-                    drawerActiveTintColor: "#BC4B52"
+                    drawerStyle: {
+                        width: '60%',
+
+                    },
+                    drawerActiveTintColor: "#BC4B52",
+                    
                 }}
 
             >
+               
+                <Drawer.Screen
+                    name='TestHeader'
+                    component={TestHeader}
 
+                    options={{
+                        
+                        //  drawerStyle:
+                    }}
+
+                />
 
 
                 <Drawer.Screen
@@ -93,10 +119,9 @@ function Profile() {
                     name='TestPage2'
                     component={TestPage2}
                     options={{
-
                         drawerType: 'front',
                         headerShown: false,
-                        
+
                     }}
                 />
 
@@ -184,7 +209,7 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="DashBoard"
+                    initialRouteName="Profile"
                 >
 
                     <Stack.Screen
@@ -220,7 +245,12 @@ function App() {
 
                     <Stack.Screen
                         name="DashBoard"
-                        component={Profile}
+                        component={ProfileDrawer}
+                    />
+
+                    <Stack.Screen
+                    name= "Profile"
+                    component={ProfileScreen}
                     />
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
