@@ -13,15 +13,12 @@ type DropdownFieldProps = {
     errorMessage?: string;
     title: string
     value?: any | undefined
-
-
+    onChange?:any|undefined
 }
 
 const DropdownField = (props: DropdownFieldProps) => {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
-
-
 
     return (
         <View style={styles.container}>

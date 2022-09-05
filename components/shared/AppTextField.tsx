@@ -37,8 +37,6 @@ const AppTextField = (props: AppTextFieldProps) => {
         props.isPassword === undefined ? false : props.isPassword
     );
 
-  
-
     if (props.control && props.validationName) {
         return (
             <View>

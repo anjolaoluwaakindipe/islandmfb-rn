@@ -20,13 +20,25 @@ import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
 import PersonalInfoScreen from "./screens/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
+
 import DashBoard from './screens/DashBoard';
 import ProfileScreen from './screens/ProfileScreen';
 
 //testpages
 import TestPage1 from "./screens/TestPage1";
 import TestPage2 from "./screens/TestPage2";
+
 import CompanyLogo from "./assets/svg/companylogo1.svg"
+
+
+import SignInScreen from "./screens/SignInScreen";
+import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
+import EnterCodeScreen from "./screens/EnterCodeScreen";
+import ResetPasswordScreen from "./screens/ResetPasswordScreen";
+import AirtimeScreen from "./screens/AirtimeScreen";
+
+
+
 
 import {
     useFonts,
@@ -50,6 +62,7 @@ import {
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
 import AppText from './components/shared/Apptext';
+
 
 function TestHeader() {
     return (
@@ -209,7 +222,13 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
+
                     initialRouteName="Profile"
+
+
+                  
+
+
                 >
 
                     <Stack.Screen
@@ -236,6 +255,18 @@ function App() {
                         name="AccountTypeSetup"
                         component={AccountTypeSetup}
                     />
+                    <Stack.Screen
+                    name="ForgotPassword"
+                    component={ForgotPasswordScreen}
+                    />
+                    <Stack.Screen
+                    name="EnterCode"
+                    component={EnterCodeScreen}
+                    />
+                    <Stack.Screen
+                    name="ResetPassword"
+                    component={ResetPasswordScreen}
+                    />
 
                     <Stack.Screen
                         name="Verification"
@@ -255,6 +286,9 @@ function App() {
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
+
+
+                    <Stack.Screen name="Airtime" component={AirtimeScreen} />
 
                 </Stack.Navigator>
 

@@ -4,10 +4,10 @@ export type RootStackParamList = {
     LetsGetStarted: undefined,
     SetProfile: undefined,
     Verification: undefined;
-
     CreateYourAccount: undefined;
     PersonalInfo: undefined;
     AccountTypeSetup: undefined;
+
     DashBoard: undefined;
     Profile: undefined
     TestPage1: undefined;
@@ -15,7 +15,13 @@ export type RootStackParamList = {
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
 
 
+    ForgotPassword: undefined;
+    EnterCode: undefined;
+    ResetPassword: undefined;
+    Airtime: undefined;
 
+    
+    
 
 
 
