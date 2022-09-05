@@ -62,6 +62,10 @@ const EditPersonalInfoScreen = () => {
                 <AppText style={apptw`font-bold absolute left-19  bottom-3 text-xl`}>
                     Personal Information
                 </AppText>
+
+                <AppText style={apptw`text-xl`}   >
+                    Save
+                </AppText>
             </View>
 
 
@@ -101,21 +105,21 @@ const EditPersonalInfoScreen = () => {
 
                 <DropdownField
                     title="Nationality"
-                    data={ nationalityOptions}
+                    data={nationalityOptions}
                 />
 
                 <DropdownField
-                title="State of Origin"
-                data={stateOriginOptions}
+                    title="State of Origin"
+                    data={stateOriginOptions}
                 />
 
                 <DropdownField
-                title="LGA"
-                data={lgaOptions}
+                    title="LGA"
+                    data={lgaOptions}
                 />
-<AppTextField
-title="Tax Identification Number"
-/>
+                <AppTextField
+                    title="Tax Identification Number"
+                />
 
             </ScrollView>
         </BasicBackButtonLayout>
