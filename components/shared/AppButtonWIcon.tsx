@@ -11,6 +11,8 @@ type AppButtonWIconProp = {
     buttonStyle?: Style;
     textStyle?: Style;
     icon?:any;
+    iconL?:any;
+    iconR?:any;
     onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };
 
@@ -38,7 +40,7 @@ const AppButtonWIcon = (props: AppButtonWIconProp) => {
                 )}
                 fontFamily="poppins-semibd"
             >
-                {props.text}
+               {props.iconL} {props.text} {props.iconR}
             </AppText>
         </Pressable>
     );

@@ -9,7 +9,8 @@ export type RootStackParamList = {
     AccountTypeSetup: undefined;
 
     DashBoard: undefined;
-    Profile: undefined
+    Profile: undefined;
+    EditPersonalInfo:undefined;
     TestPage1: undefined;
     TestPage2: undefined
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;

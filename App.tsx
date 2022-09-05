@@ -23,6 +23,8 @@ import AccountTypeSetup from "./screens/AccountTypeSetup";
 
 import DashBoard from './screens/DashBoard';
 import ProfileScreen from './screens/ProfileScreen';
+import EditPersonalInfoScreen from './screens/EditPersonalInfoScreen';
+
 
 //testpages
 import TestPage1 from "./screens/TestPage1";
@@ -71,9 +73,9 @@ function TestHeader() {
 }
 
 
-function ProfileDrawer({navigation}:any) {
+function ProfileDrawer({ navigation }: any) {
     const Drawer = createDrawerNavigator()
-    const navigateToDashBoard = () =>{
+    const navigateToDashBoard = () => {
         navigation.navigate("DashBoard");
     }
     return (
@@ -83,7 +85,7 @@ function ProfileDrawer({navigation}:any) {
             <Drawer.Navigator
                 initialRouteName="DashBoard"
                 // drawerContent={{
-                    
+
                 // }}
                 screenOptions={{
                     drawerStyle: {
@@ -91,17 +93,17 @@ function ProfileDrawer({navigation}:any) {
 
                     },
                     drawerActiveTintColor: "#BC4B52",
-                    
+
                 }}
 
             >
-               
+
                 <Drawer.Screen
                     name='TestHeader'
                     component={TestHeader}
 
                     options={{
-                        
+
                         //  drawerStyle:
                     }}
 
@@ -222,13 +224,7 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-
-                    initialRouteName="Profile"
-
-
-                  
-
-
+                    initialRouteName="EditPersonalInfo"
                 >
 
                     <Stack.Screen
@@ -256,16 +252,16 @@ function App() {
                         component={AccountTypeSetup}
                     />
                     <Stack.Screen
-                    name="ForgotPassword"
-                    component={ForgotPasswordScreen}
+                        name="ForgotPassword"
+                        component={ForgotPasswordScreen}
                     />
                     <Stack.Screen
-                    name="EnterCode"
-                    component={EnterCodeScreen}
+                        name="EnterCode"
+                        component={EnterCodeScreen}
                     />
                     <Stack.Screen
-                    name="ResetPassword"
-                    component={ResetPasswordScreen}
+                        name="ResetPassword"
+                        component={ResetPasswordScreen}
                     />
 
                     <Stack.Screen
@@ -280,10 +276,13 @@ function App() {
                     />
 
                     <Stack.Screen
-                    name= "Profile"
-                    component={ProfileScreen}
+                        name="Profile"
+                        component={ProfileScreen}
                     />
-
+                    <Stack.Screen
+                        name="EditPersonalInfo"
+                        component={EditPersonalInfoScreen}
+                    />
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
 
