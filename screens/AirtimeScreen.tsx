@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import  {  useState } from "react";
 import { View,ScrollView, Switch } from "react-native";
 import AppText from "../components/shared/Apptext";
 import tw from "twrnc";
@@ -21,16 +21,17 @@ const airtimeOptions = [
 const productOptions = [
  {value:"VTU", label:"VTU"}
 ]
-type AirtimeScreen = NativeStackScreenProps<RootStackParamList,
- "Airtime"
- >;
-const AirtimeScreen = ({ navigation }: AirtimeScreen) => {
- const navigateToAirtimeScreen = () => {
-  navigation.navigate("Airtime");
- }
+
+
+
+const AirtimeScreen = () => {
+//  const navigateToAirtimeScreen = () => {
+//   navigation.navigate("Airtime");
+//  }
+
  const [open, setOpen] = useState(airtimeOptions);
  return (
-  <>
+  
    <BasicBackButtonLayout >
     <View >
      <AppText style={apptw`font-bold absolute left-38 bottom-1 text-2xl`}> Airtime</AppText>
@@ -39,7 +40,7 @@ const AirtimeScreen = ({ navigation }: AirtimeScreen) => {
      <View style={apptw`mx-6 mt-7`}>
       <DropdownField title="Biller" data={open} onChange={Value} />
      </View>
-     <View style={apptw`mx-6`}  >
+
       <DropdownField title="Product" data={productOptions} />
       
       <AppTextField title="Amount"/>
@@ -47,10 +48,10 @@ const AirtimeScreen = ({ navigation }: AirtimeScreen) => {
       <AppTextField title="Narration" />
       <AppTextField title="Pin" isPassword={true} />
       <AppButton text="Verify" buttonStyle={apptw`my-5`}/>
-      </View>
+
     </ScrollView>
    </BasicBackButtonLayout>
-  </>
+  
  )
 }
 

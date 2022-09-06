@@ -74,6 +74,7 @@ const DateInputField = (props: DateInputFieldProps) => {
 
                     {/* {date.toDateString()} */}
                     {date.getDate()}/{date.getMonth()}/{date.getFullYear()}
+                    
 
 
 

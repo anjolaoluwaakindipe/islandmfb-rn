@@ -1,19 +1,28 @@
 export type RootStackParamList = {
     GettingStarted: undefined,
-    SignIn:undefined,
+    SignIn: undefined,
     LetsGetStarted: undefined,
-    SetProfile:undefined,
+    SetProfile: undefined,
     Verification: undefined;
     CreateYourAccount: undefined;
     PersonalInfo: undefined;
     AccountTypeSetup: undefined;
     Transfer: undefined;
     DashBoard: undefined;
+    Profile: undefined;
+    EditPersonalInfo:undefined;
+    EditContactDetails: undefined;
+    MeansOfId: undefined;
+    ProofOfAddress: undefined;
+    EditEmployment: undefined;
+    EditNextofKin: undefined;
     TestPage1: undefined;
     TestPage2: undefined
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
+
     BillPayment: undefined;
    
+
 
     ForgotPassword: undefined;
     EnterCode: undefined;
@@ -22,6 +31,7 @@ export type RootStackParamList = {
 
     
     
+
 
 
 }
