@@ -25,7 +25,7 @@ import DashBoard from './screens/DashBoard';
 import ProfileScreen from './screens/ProfileScreen';
 import EditPersonalInfoScreen from './screens/EditPersonalInfoScreen';
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import SignInScreen from "./screens/SignInScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
@@ -38,7 +38,7 @@ import MeansOfId from './screens/MeansOfIdScreen';
 import ProofOfAddress from './screens/ProofOfAddressScreen';
 import EditEmployment from './screens/EditEmploymentScreen';
 import EditNextofKin from './screens/EditNextofKinScreen';
-
+import LoanDash from './screens/Loan/LoanDash';
 import BillPaymentScreen from "./screens/BillPaymentScreen";
 
 
@@ -69,7 +69,7 @@ import TransferScreen from './screens/TransferScreen';
 
 function ProfileDrawer() {
     const Drawer = createDrawerNavigator()
-   
+
     return (
 
         <SafeAreaProvider>
@@ -82,7 +82,7 @@ function ProfileDrawer() {
                     },
                     drawerActiveTintColor: "#BC4B52",
                 }}
-               
+
 
             >
 
@@ -93,11 +93,11 @@ function ProfileDrawer() {
                         drawerType: 'front',
                         title: "dashboard",
                         headerShown: false,
-                        
+
                     }}
                 />
 
-                
+
                 <Drawer.Screen
                     name='Profile'
                     component={ProfileScreen}
@@ -117,16 +117,60 @@ function ProfileDrawer() {
                     component={AirtimeScreen}
 
                     options={{
-                        headerShown:false,
-                        drawerIcon:()=>
-                        <Ionicons
-                        name="cash-outline"
-                        size={30}
-                        color="black"
-                        
-                    />
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <Ionicons
+                                name="cash-outline"
+                                size={30}
+                                color="black"
+
+                            />
                     }}
                 />
+
+                <Drawer.Screen
+                    name="Transfer"
+                    component={TransferScreen}
+                    options={{
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <MaterialCommunityIcons
+                                name="bank"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+
+                <Drawer.Screen
+                    name="BillPayment"
+                    component={BillPaymentScreen}
+                    options={{
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <Ionicons
+                                name="md-newspaper-outline"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+
+
+                <Drawer.Screen
+                    name="Loan"
+                    component={LoanDash}
+                    options={{
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <Ionicons
+                                name="md-newspaper-outline"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+
 
             </Drawer.Navigator>
 
@@ -171,11 +215,7 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-
-                   
-
-
-                    initialRouteName="BillPayment"
+                    initialRouteName="DashBoard"
 
                 >
 
@@ -261,12 +301,15 @@ function App() {
                         name='EditNextofKin'
                         component={EditNextofKin}
                     />
-                   
 
+                    <Stack.Screen
                         name="Transfer"
                         component={TransferScreen}
                     />
-
+                    <Stack.Screen
+                        name="LoanDash"
+                        component={LoanDash}
+                    />
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
