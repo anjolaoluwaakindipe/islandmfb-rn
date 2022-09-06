@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Dropdown } from 'react-native-element-dropdown';
 import AppText from './Apptext';
+import { Dropdown } from 'react-native-element-dropdown';
 import tw from "twrnc";
 import apptw from '../../utils/lib/tailwind';
 
-
-
-type DropdownFieldProps = {
-
-    data: (string | { label: string; value: string })[];
-    errorMessage?: string;
-    title: string
-    value?: any | undefined
-    onChange?:any|undefined
+type RightIconFieldProps = {
+ // data: () => void;
+ data: (string | { label: string; value: string })[];
+ errorMessage?: string;
+ value?: any | undefined
+ onChange?:any|undefined
 }
+const RightIconField = (props: RightIconFieldProps) => {
+ const [value, setValue] = useState(null);
+  const [isFocus, setIsFocus] = useState(false);
 
-const DropdownField = (props: DropdownFieldProps) => {
-    const [value, setValue] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
-
-    return (
-        <View style={styles.container}>
-            <AppText style={apptw`text-base`} fontFamily="poppins-semibd">
+ return (
+  <View style={styles.container}>
+            {/* <AppText style={apptw`text-base`} fontFamily="poppins-semibd">
                 {props.title}
-            </AppText>
+            </AppText> */}
             <Dropdown
                 style={[styles.dropdown, isFocus && { borderColor: 'gray' }]}
                 placeholderStyle={styles.placeholderStyle}
@@ -32,7 +28,6 @@ const DropdownField = (props: DropdownFieldProps) => {
                 inputSearchStyle={styles.inputSearchStyle}
                 iconStyle={styles.iconStyle}
                 data={props.data}
-
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
@@ -45,42 +40,33 @@ const DropdownField = (props: DropdownFieldProps) => {
                     setValue(item.value);
                     setIsFocus(false);
                 }}
-                
             />
 
             <ErrorMessage>{props.errorMessage}</ErrorMessage>
 
         </View>
-    );
+ );
 };
-
-export default DropdownField;
-
-
+export default RightIconField;
 
 
 
 // error message
 const ErrorMessage = (props: { children: React.ReactNode }) => (
-    <AppText style={tw`text-xs text-red-700 mt-1`}>{props?.children}</AppText>
+ <AppText style={tw`text-xs text-red-700 mt-1`}>{props?.children}</AppText>
 );
-
-
-
-
-
 
 
 const styles = StyleSheet.create({
     container: {
         backgroundColor:'white',
-        padding: 1,
+        padding: 5,
     },
     dropdown: {
-        height: 50,
+        height: 70,
         borderColor: 'gray',
         borderWidth: 0.5,
-        borderRadius: 8,
+        backgroundColor:'#d3d3d3',
         paddingHorizontal: 8,
     },
     icon: {
@@ -106,7 +92,7 @@ const styles = StyleSheet.create({
         height: 20,
     },
     inputSearchStyle: {
-        height: 40,
+        height: 50,
         fontSize: 16,
     },
 });

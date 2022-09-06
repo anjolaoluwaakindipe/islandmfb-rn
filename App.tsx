@@ -32,11 +32,16 @@ import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import EnterCodeScreen from "./screens/EnterCodeScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import AirtimeScreen from "./screens/AirtimeScreen";
+
 import EditContactDetails from './screens/EditContactDetails';
 import MeansOfId from './screens/MeansOfIdScreen';
 import ProofOfAddress from './screens/ProofOfAddressScreen';
 import EditEmployment from './screens/EditEmploymentScreen';
 import EditNextofKin from './screens/EditNextofKinScreen';
+
+import BillPaymentScreen from "./screens/BillPaymentScreen";
+
+
 
 import {
     useFonts,
@@ -59,6 +64,7 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
+import TransferScreen from './screens/TransferScreen';
 
 
 function ProfileDrawer() {
@@ -165,7 +171,12 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="DashBoard"
+
+                   
+
+
+                    initialRouteName="BillPayment"
+
                 >
 
                     <Stack.Screen
@@ -233,6 +244,7 @@ function App() {
                         component={EditContactDetails}
                     />
                     <Stack.Screen
+
                         name='MeansOfId'
                         component={MeansOfId}
                     />
@@ -249,14 +261,20 @@ function App() {
                         name='EditNextofKin'
                         component={EditNextofKin}
                     />
-                    <Stack.Screen
-                        name="Airtime"
-                        component={AirtimeScreen}
-                         />
+                   
+
+                        name="Transfer"
+                        component={TransferScreen}
+                    />
+
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
 
+
+
+                    <Stack.Screen name="Airtime" component={AirtimeScreen} />
+                    <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
 
 
                 </Stack.Navigator>
