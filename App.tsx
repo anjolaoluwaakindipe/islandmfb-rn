@@ -40,7 +40,7 @@ import EditEmployment from './screens/EditEmploymentScreen';
 import EditNextofKin from './screens/EditNextofKinScreen';
 import LoanDash from './screens/Loan/LoanDash';
 import BillPaymentScreen from "./screens/BillPaymentScreen";
-
+import LoanTransaction from './screens/Loan/LoanTransaction';
 
 
 import {
@@ -310,7 +310,10 @@ function App() {
                         name="LoanDash"
                         component={LoanDash}
                     />
-
+                    <Stack.Screen
+                        name='LoanTransaction'
+                        component={LoanTransaction}
+                    />
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
 

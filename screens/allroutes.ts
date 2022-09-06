@@ -17,6 +17,7 @@ export type RootStackParamList = {
     EditEmployment: undefined;
     EditNextofKin: undefined;
     LoanDash:undefined;
+    LoanTransaction: undefined;
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
 
     BillPayment: undefined;
