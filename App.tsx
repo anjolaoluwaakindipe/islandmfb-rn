@@ -33,7 +33,7 @@ import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import EnterCodeScreen from "./screens/EnterCodeScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import AirtimeScreen from "./screens/AirtimeScreen";
-
+import BillPaymentScreen from "./screens/BillPaymentScreen";
 
 
 import {
@@ -57,6 +57,7 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
+import TransferScreen from './screens/TransferScreen';
 
 
 
@@ -138,7 +139,6 @@ function Profile() {
                                             />
                                 ,
                                 headerShown: true,
-                               
 
                             }}
                             component={
@@ -193,7 +193,7 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                    initialRouteName="Airtime"
+                    initialRouteName="BillPayment"
 
                 >
 
@@ -244,12 +244,17 @@ function App() {
                         name="DashBoard"
                         component={Profile}
                     />
+                    <Stack.Screen
+                        name="Transfer"
+                        component={TransferScreen}
+                    />
 
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
 
 
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
+                    <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
 
                 </Stack.Navigator>
 
