@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import  {  useState } from "react";
 import { View,ScrollView, Switch } from "react-native";
 import AppText from "../components/shared/Apptext";
 import tw from "twrnc";
@@ -21,13 +21,14 @@ const airtimeOptions = [
 const productOptions = [
  {value:"VTU", label:"VTU"}
 ]
-type AirtimeScreen = NativeStackScreenProps<RootStackParamList,
- "Airtime"
- >;
-const AirtimeScreen = ({ navigation }: AirtimeScreen) => {
- const navigateToAirtimeScreen = () => {
-  navigation.navigate("Airtime");
- }
+
+
+
+const AirtimeScreen = () => {
+//  const navigateToAirtimeScreen = () => {
+//   navigation.navigate("Airtime");
+//  }
+
  const [open, setOpen] = useState(airtimeOptions);
  const [isEnabled, setIsEnabled]= useState(false)
  const toggleSwitch = () => {
@@ -40,7 +41,7 @@ const AirtimeScreen = ({ navigation }: AirtimeScreen) => {
  }
  // const [isEnabled, setIsEnabled] = useState(true);
  return (
-  <>
+  
    <BasicBackButtonLayout >
     <View >
      <AppText style={apptw`font-bold absolute left-38 bottom-1 text-2xl`}> Airtime</AppText>
@@ -49,18 +50,19 @@ const AirtimeScreen = ({ navigation }: AirtimeScreen) => {
      <View style={apptw`mx-6 mt-7`}>
       <DropdownField title="Biller" data={open} />
      </View>
+
      {/* Display Switch values on receiving values from Biller */}
-     <Switch style={apptw`mx-6`} onValueChange={toggleSwitch} value={isEnabled}>
+     
       <DropdownField title="Product" data={productOptions} />
       <AppTextField title="Amount"/>
       <AppTextField title="Mobile Number" />
       <AppTextField title="Narration" />
       <AppTextField title="Pin" isPassword={true} />
       <AppButton text="Verify" buttonStyle={apptw`my-5`}/>
-      </Switch>
+    
     </ScrollView>
    </BasicBackButtonLayout>
-  </>
+  
  )
 }
 export default AirtimeScreen;

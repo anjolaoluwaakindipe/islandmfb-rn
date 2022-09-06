@@ -12,6 +12,10 @@ export type RootStackParamList = {
     Profile: undefined;
     EditPersonalInfo:undefined;
     EditContactDetails: undefined;
+    MeansOfId: undefined;
+    ProofOfAddress: undefined;
+    EditEmployment: undefined;
+    EditNextofKin: undefined;
     TestPage1: undefined;
     TestPage2: undefined
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;

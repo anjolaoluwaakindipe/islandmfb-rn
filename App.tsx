@@ -25,22 +25,18 @@ import DashBoard from './screens/DashBoard';
 import ProfileScreen from './screens/ProfileScreen';
 import EditPersonalInfoScreen from './screens/EditPersonalInfoScreen';
 
-
-//testpages
-import TestPage1 from "./screens/TestPage1";
-import TestPage2 from "./screens/TestPage2";
-
-import CompanyLogo from "./assets/svg/companylogo1.svg"
-
+import { Ionicons } from '@expo/vector-icons';
 
 import SignInScreen from "./screens/SignInScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
 import EnterCodeScreen from "./screens/EnterCodeScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import AirtimeScreen from "./screens/AirtimeScreen";
-
-
-
+import EditContactDetails from './screens/EditContactDetails';
+import MeansOfId from './screens/MeansOfIdScreen';
+import ProofOfAddress from './screens/ProofOfAddressScreen';
+import EditEmployment from './screens/EditEmploymentScreen';
+import EditNextofKin from './screens/EditNextofKinScreen';
 
 import {
     useFonts,
@@ -63,52 +59,26 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
-import AppText from './components/shared/Apptext';
 
 
-function TestHeader() {
-    return (
-        <CompanyLogo style={tw`pb-28`} />
-    )
-}
-
-
-function ProfileDrawer({ navigation }: any) {
+function ProfileDrawer() {
     const Drawer = createDrawerNavigator()
-    const navigateToDashBoard = () => {
-        navigation.navigate("DashBoard");
-    }
+   
     return (
 
         <SafeAreaProvider>
 
             <Drawer.Navigator
                 initialRouteName="DashBoard"
-                // drawerContent={{
-
-                // }}
                 screenOptions={{
                     drawerStyle: {
                         width: '60%',
-
                     },
                     drawerActiveTintColor: "#BC4B52",
-
                 }}
+               
 
             >
-
-                <Drawer.Screen
-                    name='TestHeader'
-                    component={TestHeader}
-
-                    options={{
-
-                        //  drawerStyle:
-                    }}
-
-                />
-
 
                 <Drawer.Screen
                     name='DashBoard'
@@ -117,70 +87,41 @@ function ProfileDrawer({ navigation }: any) {
                         drawerType: 'front',
                         title: "dashboard",
                         headerShown: false,
-                        // drawerIcon: 
+                        
                     }}
                 />
-                <Drawer.Screen
-                    name='TestPage1'
-                    component={TestPage1}
-                    options={{
-                        drawerType: 'front',
-                        title: "this is a title",
-                        headerShown: false
 
-                    }}
-                />
+                
                 <Drawer.Screen
-                    name='TestPage2'
-                    component={TestPage2}
+                    name='Profile'
+                    component={ProfileScreen}
                     options={{
-                        drawerType: 'front',
                         headerShown: false,
+                        drawerIcon: () =>
+                            <Ionicons name="md-person-outline"
+                                size={30}
+                                color="black" />
 
                     }}
                 />
 
+                <Drawer.Screen
+                    name='Airtime'
 
+                    component={AirtimeScreen}
 
+                    options={{
+                        headerShown:false,
+                        drawerIcon:()=>
+                        <Ionicons
+                        name="cash-outline"
+                        size={30}
+                        color="black"
+                        
+                    />
+                    }}
+                />
 
-                {/* {
-                        DrawerItems.map(drawer => <Drawer.Screen
-                            key={drawer.name}
-                            name={drawer.name}
-                            options={{
-                                drawerIcon: ({ focused }) =>
-                                    drawer.iconType === 'Material' ?
-                                        <MaterialCommunityIcons
-                                            // name={drawer.iconName}
-                                            size={24}
-                                            color={focused ? "#e91e63" : "black"}
-                                        />
-                                        :
-                                        drawer.iconType === 'Feather' ?
-                                            <Feather
-                                                // name={drawer.iconName}
-                                                size={24}
-                                                color={focused ? "#e91e63" : "black"}
-                                            />
-                                            :
-                                            <FontAwesome5
-                                                name={drawer.iconName}
-                                                size={24}
-                                                color={focused ? "#e91e63" : "black"}
-                                            />
-                                ,
-                                headerShown: true,
-                               
-
-                            }}
-                            component={
-                                drawer.name === 'TestPage1' ? TestPage1
-                                    : drawer.name === 'TestPage2' ? TestPage2
-
-                                        : VerificationScreen
-                            }
-                        />)
-                    } */}
             </Drawer.Navigator>
 
 
@@ -224,7 +165,7 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
-                    initialRouteName="EditPersonalInfo"
+                    initialRouteName="DashBoard"
                 >
 
                     <Stack.Screen
@@ -278,16 +219,45 @@ function App() {
                     <Stack.Screen
                         name="Profile"
                         component={ProfileScreen}
+                        options={{
+                            headerShown: false,
+
+                        }}
                     />
                     <Stack.Screen
                         name="EditPersonalInfo"
                         component={EditPersonalInfoScreen}
                     />
+                    <Stack.Screen
+                        name="EditContactDetails"
+                        component={EditContactDetails}
+                    />
+                    <Stack.Screen
+                        name='MeansOfId'
+                        component={MeansOfId}
+                    />
+
+                    <Stack.Screen
+                        name='ProofOfAddress'
+                        component={ProofOfAddress}
+                    />
+                    <Stack.Screen
+                        name='EditEmployment'
+                        component={EditEmployment}
+                    />
+                    <Stack.Screen
+                        name='EditNextofKin'
+                        component={EditNextofKin}
+                    />
+                    <Stack.Screen
+                        name="Airtime"
+                        component={AirtimeScreen}
+                         />
+
                     <Stack.Screen name="Success" component={SuccessScreen} />
 
 
 
-                    <Stack.Screen name="Airtime" component={AirtimeScreen} />
 
                 </Stack.Navigator>
 

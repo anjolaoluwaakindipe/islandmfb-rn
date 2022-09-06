@@ -16,7 +16,7 @@ const ResetPasswordScreen = ({ navigation }: ResetPasswordScreen) => {
   navigation.navigate("ResetPassword");
  }
  return (
-  <>
+  
    <BasicBackButtonLayout>
     <View style={apptw`mx-6`}>
      <AppText style={apptw`text-2xl mb-6`}>Reset Password</AppText>
@@ -27,7 +27,7 @@ const ResetPasswordScreen = ({ navigation }: ResetPasswordScreen) => {
       <AppButton text="Continue" buttonStyle={apptw`mt-46`}/>
     </View>
    </BasicBackButtonLayout>
-  </>
+  
  )
 }
 export default ResetPasswordScreen;

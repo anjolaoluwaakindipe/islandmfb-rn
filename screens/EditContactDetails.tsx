@@ -9,6 +9,7 @@ import tw from "twrnc";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./allroutes";
 import DateInputField from "../components/shared/DateInputField";
+import PressAppText from "../components/shared/PressAppText";
 
 
 
@@ -22,12 +23,12 @@ const EditContactDetails = () => {
         <BasicBackButtonLayout>
             <View >
                 <AppText style={apptw`font-bold absolute left-19  bottom-3 text-xl`}>
-                    Personal Information
+                    Contact Details
                 </AppText>
 
-                <AppText style={apptw`text-xl`}   >
+                <PressAppText style={apptw`text-xl absolute left-80 bottom-3`}   >
                     Save
-                </AppText>
+                </PressAppText>
             </View>
 
 
@@ -35,8 +36,28 @@ const EditContactDetails = () => {
                 style={tw`px-6`}
             >
                 <AppTextField
-                title="Street Number"
-                keyboardType="number-pad"
+                    title="Street Number"
+                   
+                />
+
+                <AppTextField
+                    title="Street Name"
+                />
+                <AppTextField
+                    title="City/Town"
+                />
+                <AppTextField
+                    title="Nearest Bus-Stop"
+                />
+
+                <AppTextField
+                    title="Phone Number"
+                    keyboardType="phone-pad"
+                />
+
+                <AppTextField
+                    title="Email"
+                    keyboardType="email-address"
                 />
 
             </ScrollView>

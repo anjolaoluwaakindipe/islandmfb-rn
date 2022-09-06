@@ -14,10 +14,31 @@ import { RootStackParamList } from "./allroutes";
 type ProfileProps = NativeStackScreenProps<RootStackParamList, "Profile">;
 
 const ProfileScreen = ({navigation}: ProfileProps) => {
-const navigatetoEditPersonalInfo =()=> {
+
+    const navigatetoEditPersonalInfo =()=> {
     navigation.navigate("EditPersonalInfo")
 }
 
+const navigatetoEditContactDetails =()=>{
+    navigation.navigate("EditContactDetails")
+}
+
+const navigatetoMeansOfId =()=>{
+    navigation.navigate("MeansOfId")
+}
+
+const navigatetoProofOfAddress=()=>{
+    navigation.navigate("ProofOfAddress")
+}
+
+const navigatetoEditEmployment =()=>{
+    navigation.navigate("EditEmployment")
+}
+
+
+const navigatetoEditNextofKin =()=>{
+    navigation.navigate("EditNextofKin")
+}
 
     return (
         <BasicBackButtonLayout>
@@ -46,12 +67,20 @@ const navigatetoEditPersonalInfo =()=> {
 
 
                 <View
-                    style={apptw`mx-auto pt-20`}
+                    style={apptw`mx-auto pt-10`}
                 >
+
+
+                    <View
+                    style={apptw`bg-transparent rounded-full p-20`}
+                    >
 
                     <Ionicons name="md-person-outline"
                         size={50}
                         color="black" />
+                    </View>
+
+                   
 
                 </View>
                 <View
@@ -95,6 +124,7 @@ const navigatetoEditPersonalInfo =()=> {
                         text="Contact Details           "
                         textStyle={apptw`text-[4]`}
                         buttonStyle={apptw`mb-5`}
+                        onPress={navigatetoEditContactDetails}
                         iconR={
                             <MaterialIcons
                                 name="keyboard-arrow-right"
@@ -110,6 +140,7 @@ const navigatetoEditPersonalInfo =()=> {
                         text="Means of Identification       "
                         textStyle={apptw`text-[4]`}
                         buttonStyle={apptw`mb-5`}
+                        onPress={navigatetoMeansOfId}
                         iconR={
                             <MaterialIcons
                                 name="keyboard-arrow-right"
@@ -127,6 +158,7 @@ const navigatetoEditPersonalInfo =()=> {
                         text="Proof of Address           "
                         textStyle={apptw`text-[4]`}
                         buttonStyle={apptw`mb-5`}
+                        onPress={navigatetoProofOfAddress}
                         iconR={
                             <MaterialIcons
                                 name="keyboard-arrow-right"
@@ -141,6 +173,7 @@ const navigatetoEditPersonalInfo =()=> {
                         text="Employment Details           "
                         textStyle={apptw`text-[4]`}
                         buttonStyle={apptw`mb-5`}
+                        onPress={navigatetoEditEmployment}
                         iconR={
                             <MaterialIcons
                                 name="keyboard-arrow-right"
@@ -155,6 +188,7 @@ const navigatetoEditPersonalInfo =()=> {
                         text="Next of kin Details           "
                         textStyle={apptw`text-[4]`}
                         buttonStyle={apptw`mb-5`}
+                        onPress={navigatetoEditNextofKin}
                         iconR={
                             <MaterialIcons
                                 name="keyboard-arrow-right"

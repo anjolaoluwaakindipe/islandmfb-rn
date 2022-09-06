@@ -9,7 +9,7 @@ import tw from "twrnc";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./allroutes";
 import DateInputField from "../components/shared/DateInputField";
-
+import PressAppText from "../components/shared/PressAppText";
 
 
 const titleOptions = [
@@ -63,9 +63,9 @@ const EditPersonalInfoScreen = () => {
                     Personal Information
                 </AppText>
 
-                <AppText style={apptw`text-xl`}   >
+                <PressAppText style={apptw`text-xl absolute left-80 bottom-3`}   >
                     Save
-                </AppText>
+                </PressAppText>
             </View>
 
 
