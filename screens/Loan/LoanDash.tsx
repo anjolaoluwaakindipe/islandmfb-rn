@@ -9,8 +9,8 @@ import NavButton from "../../components/loan/NavButton"
 import { Ionicons } from "@expo/vector-icons"
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../allroutes"
-
-
+import { Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type LoanDashProps =NativeStackScreenProps<RootStackParamList,"LoanDash">
 
@@ -112,12 +112,12 @@ const navigatetoLoanProducts=()=>{
                 <NavButton
                     subtext="                 repay your loans on time to access more "
                     text="Loan Repayment"
-                    buttonStyle={apptw`mt-5`}
+                    buttonStyle={apptw`mt-5 py-10`}
                     onPress={navigatetoLoanRepayment}
                     subtextStyle={tw`text-blue-500 px-10`}
                     iconL={
-                        <Ionicons
-                            name="cash-outline"
+                        <MaterialCommunityIcons
+                            name="cash-refund"
                             size={43}
                             style={tw`mx-auto`}
                             color="#BC4B52"
@@ -131,8 +131,8 @@ const navigatetoLoanProducts=()=>{
                     buttonStyle={apptw`mt-5`}
                     onPress={navigatetoLoanTransactions}
                     iconL={
-                        <Ionicons
-                            name="cash-outline"
+                        <Entypo
+                            name="back-in-time"
                             size={43}
                             style={tw`mx-auto`}
                             color="#BC4B52"

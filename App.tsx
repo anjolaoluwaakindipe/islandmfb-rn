@@ -44,8 +44,8 @@ import LoanTransaction from './screens/Loan/LoanTransaction';
 import LoanRepayment from './screens/Loan/LoanRepayment';
 import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
 import LoanProducts from './screens/Loan/LoanProducts';
-
-
+import LoanApplication from './screens/Loan/LoanApplicationScreen';
+import SelfService from './screens/SelfService/SelfServiceScreen';
 
 import {
     useFonts,
@@ -149,11 +149,27 @@ function ProfileDrawer() {
                 <Drawer.Screen
                     name="BillPayment"
                     component={BillPaymentScreen}
+
                     options={{
                         headerShown: false,
+                        title: "Bill Payment",
                         drawerIcon: () =>
-                            <Ionicons
-                                name="md-newspaper-outline"
+                            <MaterialCommunityIcons
+                                name="cash"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+                <Drawer.Screen
+                    name='SelfService'
+                    component={SelfService}
+                    options={{
+                        headerShown: false,
+                        title: "Self Service",
+                        drawerIcon: () =>
+                            <MaterialCommunityIcons
+                                name="cash"
                                 size={30}
                                 color="black"
                             />
@@ -333,7 +349,15 @@ function App() {
                         name='LoanProducts'
                         component={LoanProducts}
                     />
+                    <Stack.Screen
+                        name='LoanApplication'
+                        component={LoanApplication}
+                    />
+                    <Stack.Screen
 
+                        name='SelfService'
+                        component={SelfService}
+                    />
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
 

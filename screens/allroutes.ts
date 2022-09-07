@@ -21,6 +21,10 @@ export type RootStackParamList = {
     LoanRepayment:undefined;
     LoanRepaymentDet:undefined;
     LoanProducts:undefined;
+    LoanApplication: undefined;
+
+
+    SelfService:undefined;
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
 
     BillPayment: undefined;
