@@ -11,40 +11,40 @@ import DropdownField from "../components/shared/Dropdown";
 import apptw from "../utils/lib/tailwind";
 
 const bankOptions = [
- {value:"Access Bank", label:"Access Bank"},
- {value:"Zenith Bank", label:"Zenith Bank"},
- {value:"UBA", label:"UBA"}
+    { value: "Access Bank", label: "Access Bank" },
+    { value: "Zenith Bank", label: "Zenith Bank" },
+    { value: "UBA", label: "UBA" }
 ]
 
 type TransferScreen = NativeStackScreenProps<
     RootStackParamList,
- "Transfer"
- >;
+    "Transfer"
+>;
 const TransferScreen = ({ navigation }: TransferScreen) => {
- const navigateToTransfer = () => {
-  navigation.navigate("Transfer");
- }
- return (
-  <>
-   <BasicBackButtonLayout>
-    <View >
-            <AppText style={apptw`sticky font-bold text-2xl left-38 bottom-10 `}>
-                Transfer
-            </AppText>
-        </View>
-    <ScrollView>
-        <View style={apptw`mx-5`}>
-        <DropdownField title="Bank" data={bankOptions}/>
-        <AppTextField title="Account Number"/>
-        <AppTextField title="Account Name"/>
-        <AppTextField title="Amount"/>
-        <AppTextField title="Narrative"/>
-        <AppTextField title="Pin" isPassword={true} />
-        <AppButton text="Verify" buttonStyle={apptw`mt-5`}/>
-        </View>
-    </ScrollView>
-   </BasicBackButtonLayout>
-  </>
- )
+    const navigateToTransfer = () => {
+        navigation.navigate("Transfer");
+    }
+    return (
+        <>
+            <BasicBackButtonLayout>
+                <View >
+                    <AppText style={apptw`sticky font-bold text-2xl left-38 bottom-10 `}>
+                        Transfer
+                    </AppText>
+                </View>
+                <ScrollView>
+                    <View style={apptw`mx-5`}>
+                        <DropdownField title="Bank" data={bankOptions} />
+                        <AppTextField title="Account Number" keyboardType="number-pad" />
+                        <AppTextField title="Account Name" />
+                        <AppTextField title="Amount"  keyboardType="number-pad"/>
+                        <AppTextField title="Narrative" />
+                        <AppTextField title="Pin" keyboardType="number-pad" isPassword={true} />
+                        <AppButton text="Verify" buttonStyle={apptw`mt-5`} />
+                    </View>
+                </ScrollView>
+            </BasicBackButtonLayout>
+        </>
+    )
 }
 export default TransferScreen;

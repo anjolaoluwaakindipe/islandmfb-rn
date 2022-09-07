@@ -7,12 +7,29 @@ import tw from "twrnc";
 import AppButtonWIcon from "../../components/shared/AppButtonWIcon"
 import NavButton from "../../components/loan/NavButton"
 import { Ionicons } from "@expo/vector-icons"
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../allroutes"
 
 
 
+type LoanDashProps =NativeStackScreenProps<RootStackParamList,"LoanDash">
 
 
-const LoanDash = () => {
+const LoanDash = ({navigation}: LoanDashProps) => {
+
+
+const navigatetoLoanTransactions=()=>{
+    navigation.navigate("LoanTransaction")
+}
+
+const navigatetoLoanRepayment=()=>{
+    navigation.navigate("LoanRepayment")
+}
+
+const navigatetoLoanProducts=()=>{
+    navigation.navigate("LoanProducts")
+}
+
     return (
         <BasicBackButtonLayout>
             <View >
@@ -81,6 +98,7 @@ const LoanDash = () => {
                 <NavButton
                     subtext="                  see what loans you qualify for"
                     text="Apply for Loan"
+                    onPress={navigatetoLoanProducts}
                     iconL={
                         <Ionicons
                             name="cash-outline"
@@ -95,6 +113,7 @@ const LoanDash = () => {
                     subtext="                 repay your loans on time to access more "
                     text="Loan Repayment"
                     buttonStyle={apptw`mt-5`}
+                    onPress={navigatetoLoanRepayment}
                     subtextStyle={tw`text-blue-500 px-10`}
                     iconL={
                         <Ionicons
@@ -110,6 +129,7 @@ const LoanDash = () => {
                     subtext="                 checkout your loan(s) transaction"
                     text="Loan Transactions"
                     buttonStyle={apptw`mt-5`}
+                    onPress={navigatetoLoanTransactions}
                     iconL={
                         <Ionicons
                             name="cash-outline"

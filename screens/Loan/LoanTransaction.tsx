@@ -16,7 +16,7 @@ const LoanTransaction = () => {
     return (
         <BasicBackButtonLayout>
             <View >
-                <AppText style={apptw`font-bold absolute left-40  bottom-3 text-xl`}>
+                <AppText style={apptw`font-bold absolute left-25  bottom-3 text-xl`}>
                     Loan Transactions
                 </AppText>
             </View>
@@ -43,14 +43,19 @@ const LoanTransaction = () => {
 
 
                     <View
-                        style={tw`flex-row justify-between mx-auto`}
+                        style={tw`flex-row justify-between mb-5 `}
                     >
-                        <AppText>
+                        <AppText
+                        style={apptw`text-lg`}
+                        >
                             Loan Balance
                         </AppText>
 
-                        <AppText>
-                            Quick Loan
+                        <AppText
+                        style={apptw`rounded-lg bg-primCol px-3 text-white text-lg`}
+
+                        >
+                        Quick Loan
                         </AppText>
 
 

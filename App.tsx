@@ -41,6 +41,10 @@ import EditNextofKin from './screens/EditNextofKinScreen';
 import LoanDash from './screens/Loan/LoanDash';
 import BillPaymentScreen from "./screens/BillPaymentScreen";
 import LoanTransaction from './screens/Loan/LoanTransaction';
+import LoanRepayment from './screens/Loan/LoanRepayment';
+import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
+import LoanProducts from './screens/Loan/LoanProducts';
+
 
 
 import {
@@ -315,9 +319,20 @@ function App() {
                         component={LoanTransaction}
                     />
                     <Stack.Screen name="Success" component={SuccessScreen} />
+                    <Stack.Screen
+                        name='LoanRepayment'
+                        component={LoanRepayment}
 
+                    />
+                    <Stack.Screen
+                        name='LoanRepaymentDet'
+                        component={LoanRepaymentDet}
 
-
+                    />
+                    <Stack.Screen
+                        name='LoanProducts'
+                        component={LoanProducts}
+                    />
 
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
