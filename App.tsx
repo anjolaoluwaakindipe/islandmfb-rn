@@ -25,7 +25,7 @@ import DashBoard from './screens/DashBoard';
 import ProfileScreen from './screens/ProfileScreen';
 import EditPersonalInfoScreen from './screens/EditPersonalInfoScreen';
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import SignInScreen from "./screens/SignInScreen";
 import ForgotPasswordScreen from "./screens/ForgotPasswordScreen";
@@ -39,9 +39,17 @@ import ProofOfAddress from './screens/ProofOfAddressScreen';
 import EditEmployment from './screens/EditEmploymentScreen';
 import EditNextofKin from './screens/EditNextofKinScreen';
 
+import LoanDash from './screens/Loan/LoanDash';
+import LoanTransaction from './screens/Loan/LoanTransaction';
+import LoanRepayment from './screens/Loan/LoanRepayment';
+import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
+import LoanProducts from './screens/Loan/LoanProducts';
+import LoanApplication from './screens/Loan/LoanApplicationScreen';
+import SelfService from './screens/SelfService/SelfServiceScreen';
+
+
 import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
 import CableTv from "./screens/BillPaymentFolder/CableTv";
-
 
 
 import {
@@ -70,6 +78,7 @@ import TransferScreen from './screens/TransferScreen';
 
 function ProfileDrawer() {
     const Drawer = createDrawerNavigator()
+
     return (
 
         <SafeAreaProvider>
@@ -82,6 +91,7 @@ function ProfileDrawer() {
                     },
                     drawerActiveTintColor: "#BC4B52",
                 }}
+
             >
 
                 <Drawer.Screen
@@ -91,11 +101,11 @@ function ProfileDrawer() {
                         drawerType: 'front',
                         title: "dashboard",
                         headerShown: false,
-                        
+
                     }}
                 />
 
-                
+
                 <Drawer.Screen
                     name='Profile'
                     component={ProfileScreen}
@@ -115,16 +125,76 @@ function ProfileDrawer() {
                     component={AirtimeScreen}
 
                     options={{
-                        headerShown:false,
-                        drawerIcon:()=>
-                        <Ionicons
-                        name="cash-outline"
-                        size={30}
-                        color="black"
-                        
-                    />
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <Ionicons
+                                name="cash-outline"
+                                size={30}
+                                color="black"
+
+                            />
                     }}
                 />
+
+                <Drawer.Screen
+                    name="Transfer"
+                    component={TransferScreen}
+                    options={{
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <MaterialCommunityIcons
+                                name="bank"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+
+                <Drawer.Screen
+                    name="BillPayment"
+                    component={BillPaymentScreen}
+
+                    options={{
+                        headerShown: false,
+                        title: "Bill Payment",
+                        drawerIcon: () =>
+                            <MaterialCommunityIcons
+                                name="cash"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+                <Drawer.Screen
+                    name='SelfService'
+                    component={SelfService}
+                    options={{
+                        headerShown: false,
+                        title: "Self Service",
+                        drawerIcon: () =>
+                            <MaterialCommunityIcons
+                                name="cash"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+
+
+                <Drawer.Screen
+                    name="Loan"
+                    component={LoanDash}
+                    options={{
+                        headerShown: false,
+                        drawerIcon: () =>
+                            <Ionicons
+                                name="md-newspaper-outline"
+                                size={30}
+                                color="black"
+                            />
+                    }}
+                />
+
 
             </Drawer.Navigator>
 
@@ -170,9 +240,13 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
+                    initialRouteName="DashBoard"
 
 
-                    initialRouteName="BillPayment"
+
+
+                    
+
 
                 >
 
@@ -258,17 +332,44 @@ function App() {
                         name='EditNextofKin'
                         component={EditNextofKin}
                     />
+
+
                     <Stack.Screen
                         name="Transfer"
                         component={TransferScreen}
                     />
-
-
+                    <Stack.Screen
+                        name="LoanDash"
+                        component={LoanDash}
+                    />
+                    <Stack.Screen
+                        name='LoanTransaction'
+                        component={LoanTransaction}
+                    />
                     <Stack.Screen name="Success" component={SuccessScreen} />
+                    <Stack.Screen
+                        name='LoanRepayment'
+                        component={LoanRepayment}
 
+                    />
+                    <Stack.Screen
+                        name='LoanRepaymentDet'
+                        component={LoanRepaymentDet}
 
+                    />
+                    <Stack.Screen
+                        name='LoanProducts'
+                        component={LoanProducts}
+                    />
+                    <Stack.Screen
+                        name='LoanApplication'
+                        component={LoanApplication}
+                    />
+                    <Stack.Screen
 
-
+                        name='SelfService'
+                        component={SelfService}
+                    />
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
                     <Stack.Screen name="CableTv" component={CableTv} />

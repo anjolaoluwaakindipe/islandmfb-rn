@@ -36,7 +36,7 @@ const DropdownField = (props: DropdownFieldProps) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={!isFocus ? 'Select item' : '...'}
+                placeholder={!isFocus ? 'Select item' : ' '}
 
                 value={value}
                 onFocus={() => setIsFocus(true)}
@@ -78,9 +78,10 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         height: 50,
-        borderColor: 'gray',
+        borderColor: '#F1F1F1',
         borderWidth: 0.5,
         borderRadius: 8,
+        backgroundColor:'#F1F1F1',
         paddingHorizontal: 8,
     },
     icon: {
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     },
     label: {
         position: 'absolute',
-        backgroundColor: 'white',
+        backgroundColor:'#F1F1F1',
         left: 22,
         top: 8,
         zIndex: 999,
