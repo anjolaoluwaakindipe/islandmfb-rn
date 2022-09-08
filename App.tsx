@@ -38,14 +38,19 @@ import MeansOfId from './screens/MeansOfIdScreen';
 import ProofOfAddress from './screens/ProofOfAddressScreen';
 import EditEmployment from './screens/EditEmploymentScreen';
 import EditNextofKin from './screens/EditNextofKinScreen';
+
 import LoanDash from './screens/Loan/LoanDash';
-import BillPaymentScreen from "./screens/BillPaymentScreen";
 import LoanTransaction from './screens/Loan/LoanTransaction';
 import LoanRepayment from './screens/Loan/LoanRepayment';
 import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
 import LoanProducts from './screens/Loan/LoanProducts';
 import LoanApplication from './screens/Loan/LoanApplicationScreen';
 import SelfService from './screens/SelfService/SelfServiceScreen';
+
+
+import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
+import CableTv from "./screens/BillPaymentFolder/CableTv";
+
 
 import {
     useFonts,
@@ -86,7 +91,6 @@ function ProfileDrawer() {
                     },
                     drawerActiveTintColor: "#BC4B52",
                 }}
-
 
             >
 
@@ -235,7 +239,14 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
+
                     initialRouteName="DashBoard"
+
+
+
+
+                    
+
 
                 >
 
@@ -322,6 +333,7 @@ function App() {
                         component={EditNextofKin}
                     />
 
+
                     <Stack.Screen
                         name="Transfer"
                         component={TransferScreen}
@@ -360,6 +372,7 @@ function App() {
                     />
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
+                    <Stack.Screen name="CableTv" component={CableTv} />
 
 
                 </Stack.Navigator>
