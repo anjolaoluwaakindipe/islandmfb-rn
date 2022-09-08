@@ -1,18 +1,19 @@
 import React from "react";
-import { GestureResponderEvent, Pressable } from "react-native";
+import { GestureResponderEvent, Pressable, View } from "react-native";
 import tw from "twrnc";
 import { Style } from "twrnc/dist/esm/types";
 import apptw from "../../utils/lib/tailwind";
 import AppText from './Apptext';
+import { MaterialIcons } from '@expo/vector-icons'
 
 
 type AppButtonWIconProp = {
     text?: string;
     buttonStyle?: Style;
-    textStyle?: Style;
+    textStyle?:Style;
     icon?:any;
     iconL?:any;
-    iconR?:any;
+    iconR?: any;
     onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };
 
@@ -33,15 +34,23 @@ const AppButtonWIcon = (props: AppButtonWIconProp) => {
 
             {/* icon will go here */}
             {props.icon}
+
+            <View style={apptw`absolute left-[7] bottom-[5] `}>
+                  {props.iconL}
+                </View>
             <AppText
                 style={tw.style(
-                    `text-lg px-10 text-black`,
-                    props?.textStyle
+                    `text-lg  ml-8 text-black `,
                 )}
                 fontFamily="poppins-semibd"
             >
-               {props.iconL} {props.text} {props.iconR}
+                 {props.text} 
+                
             </AppText>
+
+              <View style={apptw`absolute left-[75] bottom-[5] `}>
+                  {props.iconR}
+                </View>
         </Pressable>
     );
 };

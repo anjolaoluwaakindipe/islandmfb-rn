@@ -39,16 +39,13 @@ const AirtimeScreen = () => {
     <ScrollView>
      <View style={apptw`mx-6 mt-7`}>
       <DropdownField title="Biller" data={open} onChange={Value} />
-     </View>
-
       <DropdownField title="Product" data={productOptions} />
-      
       <AppTextField title="Amount"/>
       <AppTextField title="Mobile Number" />
       <AppTextField title="Narration" />
       <AppTextField title="Pin" isPassword={true} />
       <AppButton text="Verify" buttonStyle={apptw`my-5`}/>
-
+    </View >
     </ScrollView>
    </BasicBackButtonLayout>
   

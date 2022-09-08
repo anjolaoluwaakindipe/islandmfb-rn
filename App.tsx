@@ -39,7 +39,8 @@ import ProofOfAddress from './screens/ProofOfAddressScreen';
 import EditEmployment from './screens/EditEmploymentScreen';
 import EditNextofKin from './screens/EditNextofKinScreen';
 
-import BillPaymentScreen from "./screens/BillPaymentScreen";
+import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
+import CableTv from "./screens/BillPaymentFolder/CableTv";
 
 
 
@@ -69,7 +70,6 @@ import TransferScreen from './screens/TransferScreen';
 
 function ProfileDrawer() {
     const Drawer = createDrawerNavigator()
-   
     return (
 
         <SafeAreaProvider>
@@ -82,8 +82,6 @@ function ProfileDrawer() {
                     },
                     drawerActiveTintColor: "#BC4B52",
                 }}
-               
-
             >
 
                 <Drawer.Screen
@@ -172,7 +170,6 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                   
 
 
                     initialRouteName="BillPayment"
@@ -261,8 +258,7 @@ function App() {
                         name='EditNextofKin'
                         component={EditNextofKin}
                     />
-                   
-
+                    <Stack.Screen
                         name="Transfer"
                         component={TransferScreen}
                     />
@@ -275,6 +271,7 @@ function App() {
 
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
+                    <Stack.Screen name="CableTv" component={CableTv} />
 
 
                 </Stack.Navigator>

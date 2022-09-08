@@ -19,11 +19,8 @@ export type RootStackParamList = {
     TestPage1: undefined;
     TestPage2: undefined
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
-
     BillPayment: undefined;
-   
-
-
+    CableTv: undefined;
     ForgotPassword: undefined;
     EnterCode: undefined;
     ResetPassword: undefined;
