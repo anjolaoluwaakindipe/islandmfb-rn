@@ -21,10 +21,14 @@ export type RootStackParamList = {
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
     BillPayment: undefined;
     CableTv: undefined;
+    InternetServices: undefined;
     ForgotPassword: undefined;
     EnterCode: undefined;
     ResetPassword: undefined;
     Airtime: undefined;
+    Utility: undefined;
+    Insurance: undefined;
+    PaymentPage: undefined;
 
     
     

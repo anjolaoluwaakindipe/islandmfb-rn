@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View } from "react-native";
 import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout";
 import AppText from "../../components/shared/Apptext";
@@ -12,48 +11,47 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../allroutes";
 import PaymentPage from "./PaymentPage";
 
-type CableTvProps = NativeStackScreenProps<RootStackParamList, "CableTv">;
 
-const cableBiller = [
- {label:"GOtv", value:"GOtv"},
- {label:"Iroko Tv", value:"Iroko Tv"},
- {label:"DStv Subscription", value:"DStv Subscription"},
- {label:"Cable Africa Network TV(CanTV)", value:"Cable Africa Network TV(CanTV)"},
+type InsuranceProps = NativeStackScreenProps<RootStackParamList, "Insurance">;
+
+const insuranceBiller = [
+  {label:"4Sure Payments", value:"4Sure Payments"},
+  {label:"ARM Investments", value:"ARM Investments"},
+  {label:"ARM Life Plc", value:"ARM Life Plc"},
+  {label:"ARM Pensions", value:"ARM Pensions"},
 ]
-const cableProduct = [
- {label:"GOtv Smallie(Monthly)(800NGN)", value:"GOtv Smallie(Monthly)(800NGN)"},
- {label:"GOtv Smallie(Yearly)(2000NGN)", value:"GOtv Smallie(Yearly)(2000NGN)"},
- {label:"Jolli(2,490NGN)", value:"Jolli(2,490NGN)"},
- {label:"Max(3,600NGN)", value:"Max(3,600NGN)"},
+const insuranceProduct = [
+  {label:"Educational Plan", value:"Educational Plan"},
+  {label:"Marriage Plans", value:"Marriage Plans"},
+  {label:"Mortgage Plan", value:"Mortgage Plan"},
+  {label:"Protection Plan", value:"Protection Plan"},
 ]
 
-
-const CableTv = ({navigation}:CableTvProps) => {
- const navigateToPaymentPage = () => {
+const Insurance = ({ navigation }: InsuranceProps) => {
+  const navigateToPaymentPage = () => {
   navigation.navigate("PaymentPage")
     }
- 
  return (
   <BasicBackButtonLayout>
    <View>
-    <AppText style={apptw`text-2xl font-bold left-36 bottom-9`}>
-     Cable Tv
+    <AppText style={apptw`text-2xl font-bold left-38 bottom-9`}>
+     Insurance
     </AppText>
    </View>
    <ScrollView>
     <View style={apptw`mx-5`}>
-     <DropdownField title="Biller" data={cableBiller}  />
-     <DropdownField title="Product" data={cableProduct}/>
+     <DropdownField title="Biller" data={insuranceBiller} />
+     <DropdownField title="Product" data={insuranceProduct} />
      <AppText style={apptw`text-base`} fontFamily="poppins-semibd">Amount</AppText>
      <AppTextField/>
      <AppText style={apptw`text-base`} fontFamily="poppins-semibd">Customer's Unique Number</AppText>
      <AppTextField/>
      <AppText style={apptw`text-base`} fontFamily="poppins-semibd">Phone Number</AppText>
      <AppTextField/>
-     <AppButton text="CONTINUE" buttonStyle={apptw`my-5`} onPress={navigateToPaymentPage }  />
-     </View>
-    </ScrollView>
+     <AppButton text="CONTINUE" buttonStyle={apptw`my-5`} />
+    </View>
+   </ScrollView>
   </BasicBackButtonLayout>
  )
 };
-export default CableTv;
+export default Insurance;

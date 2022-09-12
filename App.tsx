@@ -41,6 +41,10 @@ import EditNextofKin from './screens/EditNextofKinScreen';
 
 import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
 import CableTv from "./screens/BillPaymentFolder/CableTv";
+import InternetServices from './screens/BillPaymentFolder/InternetServices';
+import Utility from './screens/BillPaymentFolder/Utility';
+import Insurance from './screens/BillPaymentFolder/Insurance';
+import PaymentPage from './screens/BillPaymentFolder/PaymentPage';
 
 
 
@@ -66,6 +70,7 @@ import {
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
 import TransferScreen from './screens/TransferScreen';
+
 
 
 function ProfileDrawer() {
@@ -272,6 +277,10 @@ function App() {
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
                     <Stack.Screen name="CableTv" component={CableTv} />
+                    <Stack.Screen name="InternetServices" component={InternetServices} />
+                    <Stack.Screen name="Utility" component={Utility} />
+                    <Stack.Screen name="Insurance" component={Insurance} />
+                    <Stack.Screen name="PaymentPage" component={PaymentPage} />
 
 
                 </Stack.Navigator>

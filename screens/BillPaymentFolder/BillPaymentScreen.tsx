@@ -20,6 +20,15 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
  const navigateToCableTv = () => {
   navigation.navigate("CableTv")
     }
+ const navigateToInternetServices = () => {
+  navigation.navigate("InternetServices")
+    }
+ const navigateToUtility = () => {
+  navigation.navigate("Utility")
+    }
+ const navigateToInsurance = () => {
+  navigation.navigate("Insurance")
+    }
    
  return (
   <>
@@ -41,7 +50,7 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
              />
             } />
      {/* Internet Services */}
-     <AppButtonWIcon text="          Internet Services" buttonStyle={apptw`my-5`} iconL={
+     <AppButtonWIcon text="          Internet Services" buttonStyle={apptw`my-5`}  onPress={navigateToInternetServices} iconL={
       <MaterialIcons name="wifi" color="#BC4B52" size={26}/>
      } iconR={
        <MaterialIcons
@@ -51,7 +60,7 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
        />
       } />
      {/* Utility */}
-     <AppButtonWIcon text="          Utility" buttonStyle={apptw`my-5`} iconL={
+     <AppButtonWIcon text="          Utility" buttonStyle={apptw`my-5`}  onPress={navigateToUtility} iconL={
       <MaterialIcons name="business-center" color="#BC4B52" size={26}/>
      }iconR={
       <MaterialIcons
@@ -61,7 +70,7 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
       />
   } />
      {/* Insurance */}
-     <AppButtonWIcon text="         Insurance" buttonStyle={apptw`my-5`}iconL={
+     <AppButtonWIcon text="         Insurance" buttonStyle={apptw`my-5`} onPress={navigateToInsurance} iconL={
       <MaterialIcons name="house" color="#BC4B52" size={26}/>
      }  iconR={
         <MaterialIcons
