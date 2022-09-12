@@ -16,8 +16,15 @@ export type RootStackParamList = {
     ProofOfAddress: undefined;
     EditEmployment: undefined;
     EditNextofKin: undefined;
-    TestPage1: undefined;
-    TestPage2: undefined
+    LoanDash:undefined;
+    LoanTransaction: undefined;
+    LoanRepayment:undefined;
+    LoanRepaymentDet:undefined;
+    LoanProducts:undefined;
+    LoanApplication: undefined;
+
+
+    SelfService:undefined;
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
     BillPayment: undefined;
     CableTv: undefined;
