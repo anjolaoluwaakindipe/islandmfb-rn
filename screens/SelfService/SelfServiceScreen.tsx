@@ -38,7 +38,7 @@ const SelfService = () => {
                 />
 
 
-<AppButtonWIcon
+                <AppButtonWIcon
                     text="Link BVN    "
                     textStyle={apptw`text-[3]`}
                     iconR={
