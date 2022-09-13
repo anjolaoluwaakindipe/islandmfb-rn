@@ -46,42 +46,22 @@ const navigatetoEditNextofKin =()=>{
             <View >
                 <AppText style={apptw`font-bold absolute left-38 bottom-1 text-2xl`}> Profile</AppText>
             </View>
-
-
-
-
-
-
-
-
             <ScrollView
                 style={apptw`px-4`}
                 contentContainerStyle={tw.style(`justify-between`, {
                     flexGrow: 1
                 })}
-
-
-
             >
-
-
-
                 <View
                     style={apptw`mx-auto pt-10`}
                 >
-
-
                     <View
                     style={apptw`bg-transparent rounded-full p-20`}
                     >
-
                     <Ionicons name="md-person-outline"
                         size={50}
                         color="black" />
                     </View>
-
-                   
-
                 </View>
                 <View
                     style={tw`mx-auto`}
@@ -111,7 +91,6 @@ const navigatetoEditNextofKin =()=>{
                             <MaterialIcons
                                 name="keyboard-arrow-right"
                                 color="black"
-                                // style={apptw`px-20 bg-red-500`}
                                 size={24}
                             />
                         }
@@ -129,10 +108,9 @@ const navigatetoEditNextofKin =()=>{
                             <MaterialIcons
                                 name="keyboard-arrow-right"
                                 color="black"
-                                // style={apptw`px-20 bg-red-500`}
                                 size={24}
                             />
-                        }
+                    }
                     />
 
 
@@ -145,10 +123,9 @@ const navigatetoEditNextofKin =()=>{
                             <MaterialIcons
                                 name="keyboard-arrow-right"
                                 color="black"
-                                // style={apptw`px-20 bg-red-500`}
                                 size={24}
                             />
-                        }
+                    }
                     />
 
 
@@ -163,10 +140,9 @@ const navigatetoEditNextofKin =()=>{
                             <MaterialIcons
                                 name="keyboard-arrow-right"
                                 color="black"
-                                // style={apptw`px-20 bg-red-500`}
                                 size={24}
                             />
-                        }
+                    }
                     />
 
                     <AppButtonWIcon
@@ -178,10 +154,9 @@ const navigatetoEditNextofKin =()=>{
                             <MaterialIcons
                                 name="keyboard-arrow-right"
                                 color="black"
-                                // style={apptw`px-20 bg-red-500`}
                                 size={24}
                             />
-                        }
+                    }
                     />
 
                     <AppButtonWIcon
@@ -193,10 +168,9 @@ const navigatetoEditNextofKin =()=>{
                             <MaterialIcons
                                 name="keyboard-arrow-right"
                                 color="black"
-                                // style={apptw`px-20 bg-red-500`}
                                 size={24}
                             />
-                        }
+                    }
                     />
 
                 </View>

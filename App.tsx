@@ -39,7 +39,6 @@ import ProofOfAddress from './screens/Profile/ProofOfAddressScreen';
 import EditEmployment from './screens/Profile/EditEmploymentScreen';
 import EditNextofKin from './screens/Profile/EditNextofKinScreen';
 import LoanDash from './screens/Loan/LoanDash';
-import BillPaymentScreen from "./screens/BillPaymentScreen";
 import LoanTransaction from './screens/Loan/LoanTransaction';
 import LoanRepayment from './screens/Loan/LoanRepayment';
 import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
@@ -48,6 +47,11 @@ import LoanApplication from './screens/Loan/LoanApplicationScreen';
 import SelfService from './screens/SelfService/SelfServiceScreen';
 import LinkBvn from './screens/SelfService/LinkBvn';
 import StatementofAccount from './screens/SelfService/StatementofAccount';
+
+
+
+import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
+import CableTv from "./screens/BillPaymentFolder/CableTv";
 
 
 import {
@@ -89,7 +93,6 @@ function ProfileDrawer() {
                     },
                     drawerActiveTintColor: "#BC4B52",
                 }}
-
 
             >
 
@@ -238,7 +241,14 @@ function App() {
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
+
                     initialRouteName="DashBoard"
+
+
+
+
+                    
+
 
                 >
 
@@ -325,6 +335,7 @@ function App() {
                         component={EditNextofKin}
                     />
 
+
                     <Stack.Screen
                         name="Transfer"
                         component={TransferScreen}
@@ -372,6 +383,7 @@ function App() {
 
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
+                    <Stack.Screen name="CableTv" component={CableTv} />
 
 
                 </Stack.Navigator>

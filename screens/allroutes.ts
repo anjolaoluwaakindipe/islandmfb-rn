@@ -29,11 +29,8 @@ export type RootStackParamList = {
     LinkBvn: undefined;
     StatementofAccount: undefined;
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
-
     BillPayment: undefined;
-
-
-
+    CableTv: undefined;
     ForgotPassword: undefined;
     EnterCode: undefined;
     ResetPassword: undefined;
