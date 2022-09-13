@@ -10,7 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./screens/allroutes";
 import LetsGetStartedScreen from "./screens/LetsGetStartedScreen";
 import AppLoading from "expo-app-loading";
-import { createDrawerNavigator, DrawerContent, DrawerItem } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContent, DrawerItem, DrawerItemList, DrawerContentScrollView } from '@react-navigation/drawer';
 
 
 import tw from "twrnc";
@@ -54,6 +54,9 @@ import BillPaymentScreen from "./screens/BillPayment/BillPayment";
 import CableTv from './screens/BillPayment/CableTv';
 
 
+
+import CustomDrawer from './CustomDrawer';
+
 import {
     useFonts,
     Poppins_100Thin,
@@ -78,6 +81,10 @@ import {
 import TransferScreen from './screens/TransferScreen';
 
 
+
+
+
+
 function ProfileDrawer() {
     const Drawer = createDrawerNavigator()
 
@@ -91,9 +98,9 @@ function ProfileDrawer() {
                     drawerStyle: {
                         width: '60%',
                     },
-                    drawerActiveTintColor: "#BC4B52",
+                    drawerActiveTintColor: "white",
                 }}
-
+                drawerContent={props => <CustomDrawer{...props} />}
             >
 
                 <Drawer.Screen
@@ -101,9 +108,10 @@ function ProfileDrawer() {
                     component={DashBoard}
                     options={{
                         drawerType: 'front',
+                        drawerLabelStyle: {fontSize:10, color: "white"},
                         title: "dashboard",
                         headerShown: false,
-
+                       
                     }}
                 />
 
@@ -113,6 +121,7 @@ function ProfileDrawer() {
                     component={ProfileScreen}
                     options={{
                         headerShown: false,
+                       
                         drawerIcon: () =>
                             <Ionicons name="md-person-outline"
                                 size={30}
@@ -184,9 +193,10 @@ function ProfileDrawer() {
 
 
                 <Drawer.Screen
-                    name="Loan"
+                    name="LoanDash"
                     component={LoanDash}
                     options={{
+                        title:"Loan",
                         headerShown: false,
                         drawerIcon: () =>
                             <Ionicons
@@ -242,7 +252,7 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                    initialRouteName="DashBoard"                 
+                    initialRouteName="DashBoard"
                 >
 
                     <Stack.Screen
@@ -374,12 +384,12 @@ function App() {
                         component={StatementofAccount}
                     />
 
-                    <Stack.Screen name="Airtime" 
-                    component={AirtimeScreen} />
-                    <Stack.Screen name="BillPayment" 
-                    component={BillPaymentScreen} />
+                    <Stack.Screen name="Airtime"
+                        component={AirtimeScreen} />
+                    <Stack.Screen name="BillPayment"
+                        component={BillPaymentScreen} />
                     <Stack.Screen name="CableTv"
-                     component={CableTv} />
+                        component={CableTv} />
 
 
                 </Stack.Navigator>

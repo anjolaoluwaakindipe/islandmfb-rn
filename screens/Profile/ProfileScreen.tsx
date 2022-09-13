@@ -53,16 +53,18 @@ const navigatetoEditNextofKin =()=>{
                 })}
             >
                 <View
-                    style={apptw`mx-auto pt-10`}
+                    style={apptw`mx-auto pt-5`}
                 >
                     <View
-                    style={apptw`bg-transparent rounded-full p-20`}
+                    style={apptw`bg-transparent rounded-full p-10`}
                     >
                     <Ionicons name="md-person-outline"
                         size={50}
                         color="black" />
                     </View>
                 </View>
+
+
                 <View
                     style={tw`mx-auto`}
                 >
