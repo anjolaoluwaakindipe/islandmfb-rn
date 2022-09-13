@@ -50,8 +50,8 @@ import StatementofAccount from './screens/SelfService/StatementofAccount';
 
 
 
-import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
-import CableTv from "./screens/BillPaymentFolder/CableTv";
+import BillPaymentScreen from "./screens/BillPayment/BillPayment";
+import CableTv from './screens/BillPayment/CableTv';
 
 
 import {
@@ -242,14 +242,7 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                    initialRouteName="DashBoard"
-
-
-
-
-                    
-
-
+                    initialRouteName="DashBoard"                 
                 >
 
                     <Stack.Screen
@@ -381,9 +374,12 @@ function App() {
                         component={StatementofAccount}
                     />
 
-                    <Stack.Screen name="Airtime" component={AirtimeScreen} />
-                    <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
-                    <Stack.Screen name="CableTv" component={CableTv} />
+                    <Stack.Screen name="Airtime" 
+                    component={AirtimeScreen} />
+                    <Stack.Screen name="BillPayment" 
+                    component={BillPaymentScreen} />
+                    <Stack.Screen name="CableTv"
+                     component={CableTv} />
 
 
                 </Stack.Navigator>

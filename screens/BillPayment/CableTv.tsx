@@ -38,7 +38,8 @@ const CableTv = () => {
     </AppText>
    </View>
    <ScrollView>
-    <View style={apptw`mx-5`}>
+    <View 
+    style={apptw`mx-5`}>
      <DropdownField title="Biller" data={billerOptions}   />
  
      

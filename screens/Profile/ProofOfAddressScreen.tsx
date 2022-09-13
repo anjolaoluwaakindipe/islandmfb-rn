@@ -21,7 +21,7 @@ const ProofOfAddress = () => {
     return (
         <BasicBackButtonLayout>
             <View>
-                <AppText style={apptw`font-bold absolute left-19  bottom-3 text-xl`}>
+                <AppText style={apptw`font-bold absolute left-25  bottom-3 text-xl`}>
                     Proof Of Address
                 </AppText>
 
@@ -41,11 +41,13 @@ const ProofOfAddress = () => {
                 />
 
                 <AppButtonWIcon
-                    text="  Upload"
+                    text="Upload"
                     buttonStyle={apptw`bg-primCol`}
                     textStyle={apptw`text-center text-white`}
+
                     iconL={
                         <Feather name="upload"
+                            style={apptw`absolute left-[20] bottom-1 `}
                             size={24}
                             color="white" />
                     }
