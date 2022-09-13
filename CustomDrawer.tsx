@@ -13,14 +13,21 @@ function CustomDrawer(props: any) {
     return (
 
         <DrawerContentScrollView
-            contentContainerStyle={{ backgroundColor: "white" }}
+            contentContainerStyle={{
+                paddingBottom:40 ,
+                paddingTop: 90,
+                backgroundColor: "white",
+                flex: 1,
+                justifyContent: "space-between"
+            }}
             {...props}>
 
 
             <View
                 style={{
-                    flexDirection: "row",
-                    padding: 50,
+                    flexDirection: "column",
+                    // padding: 
+                
                     backgroundColor: "white",
                     alignItems: "center",
                 }}>
@@ -33,10 +40,10 @@ function CustomDrawer(props: any) {
                         color="black" />
                 </View>
 
-              
+
 
                 <View
-                    style={apptw`mx-auto absolute top-[30] ml-5  `}
+                    style={apptw`mx-auto   ml-5  `}
                 >
                     <AppText
                         style={apptw`font-bold text-[4] text-left`}
@@ -50,10 +57,17 @@ function CustomDrawer(props: any) {
 
                 </View>
             </View>
-            <DrawerItemList {...props} />
+
 
             <View
-                style={apptw`mt-50`}
+            
+            >
+                <DrawerItemList {...props} />
+            </View>
+
+
+            <View
+                style={apptw``}
             >
                 <AppButtonWIcon
                     buttonStyle={apptw`bg-white`}

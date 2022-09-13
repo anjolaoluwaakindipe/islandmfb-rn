@@ -97,6 +97,7 @@ function ProfileDrawer() {
                 screenOptions={{
                     drawerStyle: {
                         width: '60%',
+                        
                     },
                     drawerActiveTintColor: "white",
                 }}
