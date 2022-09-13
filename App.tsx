@@ -18,12 +18,12 @@ import SetProfileScreen from "./screens/SetProfileScreen";
 import VerificationScreen from "./screens/VerificationScreen";
 import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
-import PersonalInfoScreen from "./screens/PersonalInfoScreen";
+import PersonalInfoScreen from "./screens/Profile/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
 
 import DashBoard from './screens/DashBoard';
-import ProfileScreen from './screens/ProfileScreen';
-import EditPersonalInfoScreen from './screens/EditPersonalInfoScreen';
+import ProfileScreen from './screens/Profile/ProfileScreen';
+import EditPersonalInfoScreen from './screens/Profile/EditPersonalInfoScreen';
 
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -33,11 +33,11 @@ import EnterCodeScreen from "./screens/EnterCodeScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import AirtimeScreen from "./screens/AirtimeScreen";
 
-import EditContactDetails from './screens/EditContactDetails';
-import MeansOfId from './screens/MeansOfIdScreen';
-import ProofOfAddress from './screens/ProofOfAddressScreen';
-import EditEmployment from './screens/EditEmploymentScreen';
-import EditNextofKin from './screens/EditNextofKinScreen';
+import EditContactDetails from './screens/Profile/EditContactDetails';
+import MeansOfId from './screens/Profile/MeansOfIdScreen';
+import ProofOfAddress from './screens/Profile/ProofOfAddressScreen';
+import EditEmployment from './screens/Profile/EditEmploymentScreen';
+import EditNextofKin from './screens/Profile/EditNextofKinScreen';
 import LoanDash from './screens/Loan/LoanDash';
 import BillPaymentScreen from "./screens/BillPaymentScreen";
 import LoanTransaction from './screens/Loan/LoanTransaction';
@@ -46,6 +46,9 @@ import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
 import LoanProducts from './screens/Loan/LoanProducts';
 import LoanApplication from './screens/Loan/LoanApplicationScreen';
 import SelfService from './screens/SelfService/SelfServiceScreen';
+import LinkBvn from './screens/SelfService/LinkBvn';
+import StatementofAccount from './screens/SelfService/StatementofAccount';
+
 
 import {
     useFonts,
@@ -169,7 +172,7 @@ function ProfileDrawer() {
                         title: "Self Service",
                         drawerIcon: () =>
                             <MaterialCommunityIcons
-                                name="cash"
+                                name="room-service-outline"
                                 size={30}
                                 color="black"
                             />
@@ -358,6 +361,15 @@ function App() {
                         name='SelfService'
                         component={SelfService}
                     />
+                    <Stack.Screen
+                        name='LinkBvn'
+                        component={LinkBvn}
+                    />
+                    <Stack.Screen
+                        name='StatementofAccount'
+                        component={StatementofAccount}
+                    />
+
                     <Stack.Screen name="Airtime" component={AirtimeScreen} />
                     <Stack.Screen name="BillPayment" component={BillPaymentScreen} />
 

@@ -10,25 +10,28 @@ export type RootStackParamList = {
     Transfer: undefined;
     DashBoard: undefined;
     Profile: undefined;
-    EditPersonalInfo:undefined;
+    EditPersonalInfo: undefined;
     EditContactDetails: undefined;
     MeansOfId: undefined;
     ProofOfAddress: undefined;
     EditEmployment: undefined;
     EditNextofKin: undefined;
-    LoanDash:undefined;
+    LoanDash: undefined;
     LoanTransaction: undefined;
-    LoanRepayment:undefined;
-    LoanRepaymentDet:undefined;
-    LoanProducts:undefined;
+    LoanRepayment: undefined;
+    LoanRepaymentDet: undefined;
+    LoanProducts: undefined;
     LoanApplication: undefined;
 
 
-    SelfService:undefined;
+
+    SelfService: undefined;
+    LinkBvn: undefined;
+    StatementofAccount: undefined;
     Success: { successMessage: string, nextPage: keyof RootStackParamList, canGoBack: boolean, successButtonText: string, nextPageParams?: any } | undefined;
 
     BillPayment: undefined;
-   
+
 
 
     ForgotPassword: undefined;
@@ -36,8 +39,8 @@ export type RootStackParamList = {
     ResetPassword: undefined;
     Airtime: undefined;
 
-    
-    
+
+
 
 
 

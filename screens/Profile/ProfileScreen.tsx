@@ -1,14 +1,14 @@
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout"
-import AppText from "../components/shared/Apptext"
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import AppText from "../../components/shared/Apptext"
 import tw from "twrnc";
 import { View } from "react-native";
-import apptw from "../utils/lib/tailwind";
+import apptw from "../../utils/lib/tailwind";
 import { ScrollView } from "react-native-gesture-handler";
-import AppButtonWIcon from "../components/shared/AppButtonWIcon";
+import AppButtonWIcon from "../../components/shared/AppButtonWIcon";
 import { MaterialIcons } from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "./allroutes";
+import { RootStackParamList } from "../allroutes";
 
 
 type ProfileProps = NativeStackScreenProps<RootStackParamList, "Profile">;

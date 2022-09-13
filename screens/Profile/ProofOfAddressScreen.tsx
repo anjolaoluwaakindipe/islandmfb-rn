@@ -1,11 +1,11 @@
 import { View } from "react-native"
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout"
-import AppButton from "../components/shared/AppButton"
-import AppButtonWIcon from "../components/shared/AppButtonWIcon"
-import AppText from "../components/shared/Apptext"
-import DropdownField from "../components/shared/Dropdown"
-import PressAppText from "../components/shared/PressAppText"
-import apptw from "../utils/lib/tailwind"
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import AppButton from "../../components/shared/AppButton"
+import AppButtonWIcon from "../../components/shared/AppButtonWIcon"
+import AppText from "../../components/shared/Apptext"
+import DropdownField from "../../components/shared/Dropdown"
+import PressAppText from "../../components/shared/PressAppText"
+import apptw from "../../utils/lib/tailwind"
 import { Feather } from '@expo/vector-icons';
 
 const ProofOptions = [
