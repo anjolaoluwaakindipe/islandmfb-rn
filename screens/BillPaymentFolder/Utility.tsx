@@ -23,7 +23,8 @@ const utilityProduct = [
  {label:"Payment (New Customer)", value:"Payment (New Customer)"},
 ]
 
-const Utility = ({ navigation }: UtilityServices)) => {
+const Utility = ({ navigation }: UtilityServices) => {
+
  const navigateToPaymentPage = () => {
   navigation.navigate("PaymentPage")
     }
