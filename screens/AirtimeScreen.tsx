@@ -29,6 +29,7 @@ const AirtimeScreen = () => {
   //   navigation.navigate("Airtime");
   //  }
 
+
   const [open, setOpen] = useState(airtimeOptions);
   return (
 
@@ -39,20 +40,29 @@ const AirtimeScreen = () => {
       <ScrollView>
         <View style={apptw`mx-6 mt-7`}>
           <DropdownField title="Biller" data={open} onChange={Value} />
-
-
           <DropdownField title="Product" data={productOptions} />
+          <AppTextField
+            title="Amount"
+            keyboardType="number-pad"
+          />
 
-          <AppTextField title="Amount" />
-          <AppTextField title="Mobile Number" />
+
+          <AppTextField
+            title="Mobile Number"
+            keyboardType="phone-pad"
+          />
           <AppTextField title="Narration" />
-          <AppTextField title="Pin" isPassword={true} />
+          <AppTextField title="Pin"
+            keyboardType="number-pad"
+            isPassword={true}
+          />
           <AppButton text="Verify" buttonStyle={apptw`my-5`} />
-        </View>
+        </View >
       </ScrollView>
     </BasicBackButtonLayout>
 
   )
+
 }
 
 export default AirtimeScreen;

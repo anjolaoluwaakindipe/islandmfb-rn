@@ -1,11 +1,11 @@
 import { View } from "react-native"
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout"
-import AppButton from "../components/shared/AppButton"
-import AppButtonWIcon from "../components/shared/AppButtonWIcon"
-import AppText from "../components/shared/Apptext"
-import DropdownField from "../components/shared/Dropdown"
-import PressAppText from "../components/shared/PressAppText"
-import apptw from "../utils/lib/tailwind"
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import AppButton from "../../components/shared/AppButton"
+import AppButtonWIcon from "../../components/shared/AppButtonWIcon"
+import AppText from "../../components/shared/Apptext"
+import DropdownField from "../../components/shared/Dropdown"
+import PressAppText from "../../components/shared/PressAppText"
+import apptw from "../../utils/lib/tailwind"
 import { Feather } from '@expo/vector-icons';
 
 const ProofOptions = [
@@ -21,7 +21,7 @@ const ProofOfAddress = () => {
     return (
         <BasicBackButtonLayout>
             <View>
-                <AppText style={apptw`font-bold absolute left-19  bottom-3 text-xl`}>
+                <AppText style={apptw`font-bold absolute left-25  bottom-3 text-xl`}>
                     Proof Of Address
                 </AppText>
 
@@ -41,11 +41,13 @@ const ProofOfAddress = () => {
                 />
 
                 <AppButtonWIcon
-                    text="  Upload"
+                    text="Upload"
                     buttonStyle={apptw`bg-primCol`}
                     textStyle={apptw`text-center text-white`}
+
                     iconL={
                         <Feather name="upload"
+                            style={apptw`absolute left-[20] bottom-1 `}
                             size={24}
                             color="white" />
                     }

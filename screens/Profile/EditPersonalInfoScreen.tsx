@@ -1,15 +1,15 @@
 import { View } from "react-native";
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout";
-import AppText from "../components/shared/Apptext";
-import apptw from "../utils/lib/tailwind";
-import DropdownField from "../components/shared/Dropdown";
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout";
+import AppText from "../../components/shared/Apptext";
+import apptw from "../../utils/lib/tailwind";
+import DropdownField from "../../components/shared/Dropdown";
 import { ScrollView } from "react-native-gesture-handler";
-import AppTextField from "../components/shared/AppTextField";
+import AppTextField from "../../components/shared/AppTextField";
 import tw from "twrnc";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "./allroutes";
-import DateInputField from "../components/shared/DateInputField";
-import PressAppText from "../components/shared/PressAppText";
+import { RootStackParamList } from "../allroutes";
+import DateInputField from "../../components/shared/DateInputField";
+import PressAppText from "../../components/shared/PressAppText";
 
 
 const titleOptions = [

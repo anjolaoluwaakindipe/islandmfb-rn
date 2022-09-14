@@ -11,8 +11,10 @@ type AppButtonWIconProp = {
     text?: string;
     buttonStyle?: Style;
     textStyle?:Style;
+
     icon?:any;
     iconL?:any;
+   
     iconR?: any;
     onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };
@@ -40,7 +42,7 @@ const AppButtonWIcon = (props: AppButtonWIconProp) => {
                 </View>
             <AppText
                 style={tw.style(
-                    `text-lg  ml-8 text-black `,
+                    `text-lg  ml-8 text-black `,props.textStyle
                 )}
                 fontFamily="poppins-semibd"
             >

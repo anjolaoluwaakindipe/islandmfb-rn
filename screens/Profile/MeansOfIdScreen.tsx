@@ -1,12 +1,12 @@
 import { ScrollView, View } from "react-native"
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout"
-import AppText from "../components/shared/Apptext"
-import PressAppText from "../components/shared/PressAppText"
-import apptw from "../utils/lib/tailwind"
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import AppText from "../../components/shared/Apptext"
+import PressAppText from "../../components/shared/PressAppText"
+import apptw from "../../utils/lib/tailwind"
 
-import DropdownField from "../components/shared/Dropdown"
-import AppTextField from "../components/shared/AppTextField"
-import DateInputField from "../components/shared/DateInputField"
+import DropdownField from "../../components/shared/Dropdown"
+import AppTextField from "../../components/shared/AppTextField"
+import DateInputField from "../../components/shared/DateInputField"
 
 const IdOPtions =[
     { value:"jjjf", label:"Driver's license"  },

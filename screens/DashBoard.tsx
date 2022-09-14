@@ -25,7 +25,26 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
 
-const DashBoard = () => {
+
+
+
+
+type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
+
+
+const DashBoard = ({ navigation }: DashBoardProps) => {
+
+    const navigatetoTransferPage = () => {
+        navigation.navigate("Transfer")
+    }
+
+
+    const navigatetoAirtimePage = () => {
+        navigation.navigate("Airtime")
+    }
+    const navigatetoBillsPage = () => {
+        navigation.navigate("BillPayment")
+    }
 
     return (
         <KeyboardAvoidingView
@@ -34,7 +53,7 @@ const DashBoard = () => {
         >
             <LoggedInLayout>
                 <ScrollView
-                showsVerticalScrollIndicator={true}
+                    showsVerticalScrollIndicator={true}
                     style={tw`px-6`}
                     contentContainerStyle={tw.style(` `, {
                         flexGrow: 1
@@ -102,18 +121,19 @@ const DashBoard = () => {
                     </AppText>
 
                     <ScrollView
-                      style={tw``}
-                      horizontal= {true}
-                      contentContainerStyle={tw.style(` justify-between`, {
-                          flexGrow: 1,
-                      })}
+                        style={tw``}
+                        horizontal={true}
+                        contentContainerStyle={tw.style(` justify-between`, {
+                            flexGrow: 1,
+                        })}
                     >
                         <View
                             style={tw`flex-row  mt-2 justify-between mx-3`}
                         >
                             <AppButtonWIcon
-                                text="transfer"
+                                text="Transfer"
                                 buttonStyle={apptw`w-[40] mr-4`}
+                                onPress={navigatetoTransferPage}
                                 textStyle={apptw`text-[3] text-primCol  mx-auto`}
                                 icon={
                                     <MaterialCommunityIcons
@@ -126,8 +146,9 @@ const DashBoard = () => {
                             />
 
                             <AppButtonWIcon
-                                text="airtime"
+                                text="Airtime"
                                 buttonStyle={apptw`w-[40] mr-4`}
+                                onPress={navigatetoAirtimePage}
                                 textStyle={apptw`text-[3] text-primCol mx-auto`}
                                 icon={
                                     <Ionicons
@@ -143,6 +164,7 @@ const DashBoard = () => {
                             <AppButtonWIcon
                                 text="Bills"
                                 buttonStyle={apptw`w-[40] mr-4`}
+                                onPress={navigatetoBillsPage}
                                 textStyle={apptw`text-[3] text-primCol mx-auto`}
                                 icon={
                                     <Ionicons
@@ -159,6 +181,7 @@ const DashBoard = () => {
                             <AppButtonWIcon
                                 text="Bills"
                                 buttonStyle={apptw`w-[40] mr-4`}
+                                onPress={navigatetoBillsPage}
                                 textStyle={apptw`text-[3] text-primCol mx-auto`}
                                 icon={
                                     <Ionicons

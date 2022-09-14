@@ -1,10 +1,10 @@
 import { ScrollView, View } from "react-native"
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout"
-import AppText from "../components/shared/Apptext"
-import AppTextField from "../components/shared/AppTextField"
-import DropdownField from "../components/shared/Dropdown"
-import PressAppText from "../components/shared/PressAppText"
-import apptw from "../utils/lib/tailwind"
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import AppText from "../../components/shared/Apptext"
+import AppTextField from "../../components/shared/AppTextField"
+import DropdownField from "../../components/shared/Dropdown"
+import PressAppText from "../../components/shared/PressAppText"
+import apptw from "../../utils/lib/tailwind"
 
 
 

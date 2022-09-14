@@ -1,17 +1,26 @@
 import { MaterialIcons } from "@expo/vector-icons"
+import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { ScrollView, View } from "react-native"
 import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
 import AppButtonWIcon from "../../components/shared/AppButtonWIcon"
 import AppText from "../../components/shared/Apptext"
 import apptw from "../../utils/lib/tailwind"
+import { RootStackParamList } from "../allroutes"
 
 
 
+type SelfServiceProps = NativeStackScreenProps<RootStackParamList, "SelfService">
 
 
+const SelfService = ({ navigation }: SelfServiceProps) => {
 
-const SelfService = () => {
 
+    const navigatetoLinkBvn = () => {
+        navigation.navigate("LinkBvn")
+    }
+    const navigatetoStatementofAccount = () => {
+        navigation.navigate("StatementofAccount")
+    }
     return (
         <BasicBackButtonLayout>
             <View >
@@ -27,6 +36,7 @@ const SelfService = () => {
                     text="Generate Statement of Account   "
                     textStyle={apptw`text-[3]`}
                     buttonStyle={apptw`mb-5`}
+                    onPress={navigatetoStatementofAccount}
                     iconR={
                         <MaterialIcons
                             name="keyboard-arrow-right"
@@ -38,9 +48,10 @@ const SelfService = () => {
                 />
 
 
-<AppButtonWIcon
+                <AppButtonWIcon
                     text="Link BVN    "
                     textStyle={apptw`text-[3]`}
+                    onPress={navigatetoLinkBvn}
                     iconR={
                         <MaterialIcons
                             name="keyboard-arrow-right"

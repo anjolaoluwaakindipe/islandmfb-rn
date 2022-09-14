@@ -10,7 +10,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./screens/allroutes";
 import LetsGetStartedScreen from "./screens/LetsGetStartedScreen";
 import AppLoading from "expo-app-loading";
-import { createDrawerNavigator, DrawerContent, DrawerItem } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContent, DrawerItem, DrawerItemList, DrawerContentScrollView } from '@react-navigation/drawer';
 
 
 import tw from "twrnc";
@@ -18,12 +18,12 @@ import SetProfileScreen from "./screens/SetProfileScreen";
 import VerificationScreen from "./screens/VerificationScreen";
 import SuccessScreen from "./screens/SuccessScreen";
 import CreateYourAccount from "./screens/CreateYourAccount";
-import PersonalInfoScreen from "./screens/PersonalInfoScreen";
+import PersonalInfoScreen from "./screens/Profile/PersonalInfoScreen";
 import AccountTypeSetup from "./screens/AccountTypeSetup";
 
 import DashBoard from './screens/DashBoard';
-import ProfileScreen from './screens/ProfileScreen';
-import EditPersonalInfoScreen from './screens/EditPersonalInfoScreen';
+import ProfileScreen from './screens/Profile/ProfileScreen';
+import EditPersonalInfoScreen from './screens/Profile/EditPersonalInfoScreen';
 
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -33,12 +33,11 @@ import EnterCodeScreen from "./screens/EnterCodeScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import AirtimeScreen from "./screens/AirtimeScreen";
 
-import EditContactDetails from './screens/EditContactDetails';
-import MeansOfId from './screens/MeansOfIdScreen';
-import ProofOfAddress from './screens/ProofOfAddressScreen';
-import EditEmployment from './screens/EditEmploymentScreen';
-import EditNextofKin from './screens/EditNextofKinScreen';
-
+import EditContactDetails from './screens/Profile/EditContactDetails';
+import MeansOfId from './screens/Profile/MeansOfIdScreen';
+import ProofOfAddress from './screens/Profile/ProofOfAddressScreen';
+import EditEmployment from './screens/Profile/EditEmploymentScreen';
+import EditNextofKin from './screens/Profile/EditNextofKinScreen';
 import LoanDash from './screens/Loan/LoanDash';
 import LoanTransaction from './screens/Loan/LoanTransaction';
 import LoanRepayment from './screens/Loan/LoanRepayment';
@@ -46,15 +45,21 @@ import LoanRepaymentDet from './screens/Loan/LoanRepaymentDet';
 import LoanProducts from './screens/Loan/LoanProducts';
 import LoanApplication from './screens/Loan/LoanApplicationScreen';
 import SelfService from './screens/SelfService/SelfServiceScreen';
+import LinkBvn from './screens/SelfService/LinkBvn';
+import StatementofAccount from './screens/SelfService/StatementofAccount';
 
 
 import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
-import CableTv from "./screens/BillPaymentFolder/CableTv";
-import InternetServices from './screens/BillPaymentFolder/InternetServices';
-import Utility from './screens/BillPaymentFolder/Utility';
-import Insurance from './screens/BillPaymentFolder/Insurance';
-import PaymentPage from './screens/BillPaymentFolder/PaymentPage';
+import CableTv from "./screens/BillPayment/CableTv";
+import InternetServices from './screens/BillPayment/InternetServices';
+import Utility from './screens/BillPayment/Utility';
+import Insurance from './screens/BillPayment/Insurance';
+import PaymentPage from './screens/BillPayment/PaymentPage';
 
+
+
+
+import CustomDrawer from './CustomDrawer';
 
 import {
     useFonts,
@@ -81,6 +86,9 @@ import TransferScreen from './screens/TransferScreen';
 
 
 
+
+
+
 function ProfileDrawer() {
     const Drawer = createDrawerNavigator()
 
@@ -93,10 +101,11 @@ function ProfileDrawer() {
                 screenOptions={{
                     drawerStyle: {
                         width: '60%',
+                        
                     },
-                    drawerActiveTintColor: "#BC4B52",
+                    drawerActiveTintColor: "white",
                 }}
-
+                drawerContent={props => <CustomDrawer{...props} />}
             >
 
                 <Drawer.Screen
@@ -104,9 +113,10 @@ function ProfileDrawer() {
                     component={DashBoard}
                     options={{
                         drawerType: 'front',
+                        drawerLabelStyle: {fontSize:10, color: "white"},
                         title: "dashboard",
                         headerShown: false,
-
+                       
                     }}
                 />
 
@@ -116,6 +126,7 @@ function ProfileDrawer() {
                     component={ProfileScreen}
                     options={{
                         headerShown: false,
+                       
                         drawerIcon: () =>
                             <Ionicons name="md-person-outline"
                                 size={30}
@@ -178,7 +189,7 @@ function ProfileDrawer() {
                         title: "Self Service",
                         drawerIcon: () =>
                             <MaterialCommunityIcons
-                                name="cash"
+                                name="room-service-outline"
                                 size={30}
                                 color="black"
                             />
@@ -187,9 +198,10 @@ function ProfileDrawer() {
 
 
                 <Drawer.Screen
-                    name="Loan"
+                    name="LoanDash"
                     component={LoanDash}
                     options={{
+                        title:"Loan",
                         headerShown: false,
                         drawerIcon: () =>
                             <Ionicons
@@ -246,13 +258,6 @@ function App() {
                     screenOptions={{ headerShown: false }}
 
                     initialRouteName="DashBoard"
-
-
-
-
-                    
-
-
                 >
 
                     <Stack.Screen

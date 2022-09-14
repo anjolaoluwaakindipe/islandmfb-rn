@@ -53,7 +53,7 @@ const navigatetoLoanRepaymentDet =()=>{
                 <AppButton
                     text="Next"
                     onPress={navigatetoLoanRepaymentDet}
-                    buttonStyle={apptw`mt- mx-auto`}
+                    buttonStyle={apptw` mx-auto`}
                 />
 
             </ScrollView>

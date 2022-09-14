@@ -9,18 +9,14 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../allroutes";
 import { Style } from "twrnc/dist/esm/types";
 
-type PaymentPageProp = {
- pageTitle: string;
- textStyle?:Style;
-}
 
 
-const PaymentPage = (props: PaymentPageProp) => {
+const PaymentPage = () => {
  return (
   <BasicBackButtonLayout>
    <View>
     <AppText style={apptw`text-2xl font-bold left-38 bottom-9`}>
-     {props.pageTitle}
+   PAYMENT
     </AppText>
    </View>
    <View style={apptw`mx-5 mt-5`}>

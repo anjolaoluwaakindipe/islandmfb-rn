@@ -28,7 +28,7 @@ const TransferScreen = ({ navigation }: TransferScreen) => {
         <>
             <BasicBackButtonLayout>
                 <View >
-                    <AppText style={apptw`sticky font-bold text-2xl left-38 bottom-10 `}>
+                    <AppText style={apptw` font-bold text-2xl left-38 bottom-10 `}>
                         Transfer
                     </AppText>
                 </View>

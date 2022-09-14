@@ -1,14 +1,14 @@
-import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout"
-import AppText from "../components/shared/Apptext"
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import AppText from "../../components/shared/Apptext"
 import tw from "twrnc";
 import { View } from "react-native";
-import apptw from "../utils/lib/tailwind";
+import apptw from "../../utils/lib/tailwind";
 import { ScrollView } from "react-native-gesture-handler";
-import AppButtonWIcon from "../components/shared/AppButtonWIcon";
+import AppButtonWIcon from "../../components/shared/AppButtonWIcon";
 import { MaterialIcons } from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "./allroutes";
+import { RootStackParamList } from "../allroutes";
 
 
 type ProfileProps = NativeStackScreenProps<RootStackParamList, "Profile">;
@@ -53,16 +53,18 @@ const navigatetoEditNextofKin =()=>{
                 })}
             >
                 <View
-                    style={apptw`mx-auto pt-10`}
+                    style={apptw`mx-auto pt-5`}
                 >
                     <View
-                    style={apptw`bg-transparent rounded-full p-20`}
+                    style={apptw`bg-transparent rounded-full p-10`}
                     >
                     <Ionicons name="md-person-outline"
                         size={50}
                         color="black" />
                     </View>
                 </View>
+
+
                 <View
                     style={tw`mx-auto`}
                 >
