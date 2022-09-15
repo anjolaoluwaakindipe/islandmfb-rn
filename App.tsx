@@ -57,8 +57,8 @@ import Insurance from './screens/BillPayment/Insurance';
 import PaymentPage from './screens/BillPayment/PaymentPage';
 
 
-
-
+import { store } from './state/store';
+import {Provider} from "react-redux"
 import CustomDrawer from './CustomDrawer';
 
 import {
@@ -251,13 +251,21 @@ function App() {
         return <AppLoading />;
     }
     return (
+        <Provider
+        store={store}
+        >
+
+       
+
+
         <SafeAreaProvider>
             <StatusBar />
+
             <NavigationContainer>
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                    initialRouteName="DashBoard"
+                    initialRouteName="SignIn"
                 >
 
                     <Stack.Screen
@@ -267,6 +275,11 @@ function App() {
                     <Stack.Screen
                         name="LetsGetStarted"
                         component={LetsGetStartedScreen}
+                    />
+
+                    <Stack.Screen
+                    name="SignIn"
+                    component={SignInScreen}
                     />
                     <Stack.Screen
                         name="SetProfile"
@@ -403,6 +416,7 @@ function App() {
 
 
         </SafeAreaProvider>
+        </Provider>
     );
 }
 
