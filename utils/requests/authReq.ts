@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 
 import {
@@ -79,6 +79,86 @@ const authRequest = {
 
     },
 
+    createUser: async (
+        email: string,
+        _emailVerfied: boolean,
+        firstName: string,
+        lastName: string,
+        username: string,
+        _enabled: boolean,
+       password: string,
+        type: string,
+        
+       temporary: boolean,
+            customer_no: number,
+        
+
+    ) => {
+
+
+        let createInfo = {
+            email: email,
+            emailVerfied: true,
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            enabled: true,
+            credentials: [{
+                type: "password",
+                value: password,
+                temporary: false,  }
+            ],
+            attributes: {
+               customer_no:customer_no,
+           },      
+
+
+        }
+        // convert login information to urlencoded form
+        const body = xformurlencoder(createInfo);
+
+        let res: {
+            status: number;
+            data: any;
+            code: string
+        } = {
+            status: 0,
+            data: {},
+            code: ""
+        }
+        return await axios
+            .post(
+                BASE_URL +
+                "/auth/admin/realms/" +
+                REALM +
+                "/users",
+                body, //define later
+                {
+                    headers: {
+
+                    },
+                    method: "POST"
+                }
+            )
+
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+
+    },
+
+
+
+
 
     loginwithEmail: async (
         username: string,
@@ -101,7 +181,7 @@ const authRequest = {
         const body = xformurlencoder(loginInfo);
 
         // response data format
-        let res: { status: number; data: {access_token: string, refresh_token:string} | Record<string, any>, code: string } = {
+        let res: { status: number; data: { access_token: string, refresh_token: string } | Record<string, any>, code: string } = {
             status: 0,
             data: {},
             code: ""
@@ -125,7 +205,7 @@ const authRequest = {
             .then((response) => {
                 res.status = response.status;
                 res.data = response.data;
-       
+
                 return res;
             })
             .catch((err) => {
@@ -143,14 +223,16 @@ const authRequest = {
 
 export default authRequest
 
+async function prLude(){
+    console.log(await authRequest.getAdminToken())
+}
 
+async function myfunc() {
+    await prLude();
+    console.log(await authRequest.createUser("akinlabi@gmail.com",true, "simiii","akin","akinsimi",true,"password","iiiii",false,7843 ));
+}
 
-// async function myfunc() {
-//     console.log(await authRequest.loginwithEmail("apptest", "test123"));
+myfunc()
 
-// }
-
-// myfunc()
-
-// to test run 
+// to test run
 // ts-node ./authReq.ts
