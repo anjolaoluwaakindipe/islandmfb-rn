@@ -20,6 +20,15 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
     const navigateToCableTv = () => {
         navigation.navigate("CableTv")
     }
+    const navigateToInsurance = () => {
+        navigation.navigate("Insurance")
+    }
+    const navigateToInternetServices = () => {
+        navigation.navigate("InternetServices")
+    }
+    const navigateToUtility = () => {
+        navigation.navigate("Utility")
+    }
 
     return (
         <>
@@ -49,6 +58,7 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
                     {/* Internet Services */}
                     <AppButtonWIcon text="          Internet Services"
                         buttonStyle={apptw`my-5`}
+                        onPress={navigateToInternetServices}
                         iconL={
                             <MaterialIcons
                                 name="wifi"
@@ -65,6 +75,7 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
                     {/* Utility */}
                     <AppButtonWIcon text="          Utility"
                         buttonStyle={apptw`my-5`}
+                        onPress={navigateToUtility}
                         iconL={
                             <MaterialIcons
                                 name="business-center"
@@ -84,6 +95,7 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
                     {/* Insurance */}
                     <AppButtonWIcon text="         Insurance"
                         buttonStyle={apptw`my-5`}
+                        onPress={navigateToInsurance}
                         iconL={
                             <MaterialIcons
                                 name="house"

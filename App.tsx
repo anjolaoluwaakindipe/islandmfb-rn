@@ -49,7 +49,7 @@ import LinkBvn from './screens/SelfService/LinkBvn';
 import StatementofAccount from './screens/SelfService/StatementofAccount';
 
 
-import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
+import BillPaymentScreen from './screens/BillPayment/BillPayment';
 import CableTv from "./screens/BillPayment/CableTv";
 import InternetServices from './screens/BillPayment/InternetServices';
 import Utility from './screens/BillPayment/Utility';
