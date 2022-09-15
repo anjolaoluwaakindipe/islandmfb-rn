@@ -14,3 +14,7 @@ yarn.lock
 
 # macOS
 .DS_Store
+
+
+#environment variables
+envvar.ts
