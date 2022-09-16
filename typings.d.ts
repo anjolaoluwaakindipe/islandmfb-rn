@@ -7,6 +7,7 @@
 
 
 interface AuthState {
+   
     accessToken: string | null;
     refreshToken: string | null;
 
@@ -18,4 +19,5 @@ interface AuthState {
     isLoading: boolean;
     errorMessage: string;
     requestStatus: number;
+    loginErrorMessage: string;
 }

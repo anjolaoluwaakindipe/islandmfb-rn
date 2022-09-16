@@ -1,6 +1,6 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import SVG from "react-native-svg";
-import React, { Children, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import AppText from "../components/shared/Apptext";
 import AppButton from "../components/shared/AppButton";
 import tw from "twrnc";
@@ -18,12 +18,13 @@ import {
 } from "../services/validation/loginVal"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginUser,   } from "../state/authSlice"
-import { useDispatch } from "react-redux"
+import { loginUser, authSelector } from "../state/authSlice"
+import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch } from "../state/store"
 import * as SecureStore from 'expo-secure-store';
 
-import {SecureStorage} from "../services/Singleton/secureStorage"
+import { SecureStorage } from "../services/Singleton/secureStorage"
+import PressAppText from "../components/shared/PressAppText";
 
 
 type SignInScreen = NativeStackScreenProps<
@@ -37,11 +38,15 @@ type SignInScreen = NativeStackScreenProps<
 
 
 const SignInScreen = ({ navigation }: SignInScreen) => {
-
+  const { isError, isLoading, isSuccess, loginErrorMessage } = useSelector(authSelector);
 
   const navigatetoDashBoard = () => {
     navigation.navigate("DashBoard")
   }
+
+  const navigateToLetsGetStartedScr = () => {
+    navigation.navigate("LetsGetStarted");
+};
 
   const [isButtonLoading, setButtonLoading] = useState(false)
   const dispatch = useDispatch<AppDispatch>();
@@ -51,10 +56,23 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
     formState: { errors },
     handleSubmit
   } = useForm<loginwithEmailFormType>({
+
+    defaultValues: {
+      password: "",
+      userName: "",
+    },
     resolver: zodResolver(loginwithEmailSchema),
   })
 
+  useEffect(() => {
+    if (isSuccess && !isLoading) {
+      navigatetoDashBoard()
+    }
+    if (isError && !isLoading) {
+      alert(loginErrorMessage);
+    }
 
+  }, [isError, isLoading, isSuccess,])
 
 
   const onSubmit = handleSubmit(async (data) => {
@@ -63,8 +81,6 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
       loginUser({ userName: data.userName, password: data.password })
     );
 
-    
-    navigatetoDashBoard();
 
     setButtonLoading(false)
   })
@@ -73,80 +89,82 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
     <>
       <BasicBackButtonLayout>
 
-<>
+        <>
 
-        {/* Logo section */}
+          {/* Logo section */}
 
-        <View>
-          <Companylogo1
-
-          />
-
-        </View>
-        <ScrollView
-          style={tw`px-5 mt-5`}
-          contentContainerStyle={tw.style(` justify-between`, {
-            flexGrow: 1,
-          })}
-        >
-
-
-          <View >
-
-
-
-            {/* signin page */}
-
-
-            <AppText
-              style={apptw`text-sm self-start text-zinc-400`}>
-              Your username could be your email address, phone number or account number
-            </AppText>
-
-
-            <AppTextField
-              title="Username"
-              control={control}
-              errorMessage={errors.userName?.message}
-              validationName="userName"
-              placeholder="username"
+          <View>
+            <Companylogo1
+              style={tw`ml-10 mt-10`}
             />
-
-            <AppTextField
-              title="Password"
-              control={control}
-              validationName="password"
-              errorMessage={errors.password?.message}
-              placeholder="***********"
-              isPassword={true}
-            />
-
-
-
 
           </View>
+          <ScrollView
+            style={tw`px-5 mt-5`}
+            contentContainerStyle={tw.style(` justify-between`, {
+              flexGrow: 1,
+            })}
+          >
 
 
-          <View style={apptw`mb-5`}>
-            <AppButton
-              buttonStyle={apptw`  my-6`}
-              text={isButtonLoading ? "Loading..." : "Sign In"}
-              onPress={onSubmit}
+            <View >
 
-            />
 
-            <AppText style={apptw`self-center text-zinc-400`}>
-              Don't have an account?
 
-              <AppText style={apptw`text-green-500 `}>
-                Sign Up
+              {/* signin page */}
+
+
+              <AppText
+                style={apptw`text-sm self-start text-zinc-400`}>
+                Your username could be your email address, phone number or account number
               </AppText>
 
-            </AppText>
+
+              <AppTextField
+                title="Username"
+                control={control}
+                errorMessage={errors.userName?.message}
+                validationName="userName"
+                placeholder="username"
+              />
+
+              <AppTextField
+                title="Password"
+                control={control}
+                validationName="password"
+                errorMessage={errors.password?.message}
+                placeholder="***********"
+                isPassword={true}
+              />
 
 
-          </View>
-        </ScrollView>
+
+
+            </View>
+
+
+            <View style={apptw`mb-5`}>
+              <AppButton
+                buttonStyle={apptw`  my-6`}
+                text={isButtonLoading ? "Loading..." : "Sign In"}
+                onPress={onSubmit}
+
+              />
+
+              <AppText style={apptw`self-center text-zinc-400 text-[4]`}>
+                Don't have an account?{' '}
+
+                <PressAppText 
+                onPress={navigateToLetsGetStartedScr}
+                style={apptw`text-green-500 top-[2]  `}>
+                  Get Started
+                </PressAppText>
+
+              </AppText>
+
+
+            </View>
+          </ScrollView>
         </>
       </BasicBackButtonLayout>
 

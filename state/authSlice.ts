@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { string } from "zod"
 import authRequest from "../utils/requests/authReq"
 import { SecureStorage } from "../services/Singleton/secureStorage"
+import { RootState } from "./store"
 // import { RootState } from "./store"
 
 const initialState: AuthState = {
@@ -12,7 +13,7 @@ const initialState: AuthState = {
     isLoading: false,
     isSuccess: false,
     requestStatus: 0,
-
+    loginErrorMessage: "",
 }
 
 
@@ -97,15 +98,16 @@ const authSlice = createSlice({
                 state.isLoading = true;
                 state.isSuccess = false;
                 state.isError = false;
+                state.loginErrorMessage = ""
                 return state;
             })
 
-            .addCase(loginUser.rejected, (state, action) => {
+            .addCase(loginUser.rejected, (state: AuthState, action) => {
                 // when login is unsuccessful
                 state.isLoading = false;
                 state.isError = true;
                 state.isSuccess = false;
-                state.errorMessage = action.payload as string;
+                state.loginErrorMessage = action.payload as string;
                 return state;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
@@ -113,6 +115,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isError = false;
                 state.isSuccess = true;
+                state.loginErrorMessage = ""
                 console.log(action.payload);
                 return state;
             });
@@ -124,6 +127,7 @@ const authSlice = createSlice({
 export const { setAuthStateTokens, clearAuthState } =
     authSlice.actions;
 
+    export const authSelector = (state: RootState) => state.auth;
 
 
 

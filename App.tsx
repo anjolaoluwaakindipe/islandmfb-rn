@@ -49,7 +49,7 @@ import LinkBvn from './screens/SelfService/LinkBvn';
 import StatementofAccount from './screens/SelfService/StatementofAccount';
 
 
-import BillPaymentScreen from "./screens/BillPaymentFolder/BillPaymentScreen";
+import BillPaymentScreen from './screens/BillPayment/BillPayment';
 import CableTv from "./screens/BillPayment/CableTv";
 import InternetServices from './screens/BillPayment/InternetServices';
 import Utility from './screens/BillPayment/Utility';
@@ -265,7 +265,7 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                    initialRouteName="SignIn"
+                    initialRouteName="GettingStarted"
                 >
 
                     <Stack.Screen
@@ -369,7 +369,8 @@ function App() {
                         name='LoanTransaction'
                         component={LoanTransaction}
                     />
-                    <Stack.Screen name="Success" component={SuccessScreen} />
+                    <Stack.Screen name="Success" 
+                    component={SuccessScreen} />
                     <Stack.Screen
                         name='LoanRepayment'
                         component={LoanRepayment}
