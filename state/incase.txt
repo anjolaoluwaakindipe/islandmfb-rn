@@ -1,74 +1,23 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { string } from "zod"
-import authRequest from "../utils/requests/authReq"
-import { SecureStorage } from "../services/Singleton/secureStorage"
-import { RootState } from "./store"
-// import { RootState } from "./store"
-
-const initialState: AuthState = {
-    accessToken: "",
-    refreshToken: "",
-
-    user: {
-
-
-        name: "",
-
-        customerNo: "",
-
-    },
-    errorMessage: "",
-    isError: false,
-    isLoading: false,
-    isSuccess: false,
-    requestStatus: 0,
-    loginErrorMessage: "",
-}
-
-
-
-
-//logging in a user 
-
-export const loginUser = createAsyncThunk(
-    "auth/loginUser",
-    async (
-        { userName, password }: { userName: string; password: string },
-        thunkApi
-    ) => {
-        try {
-
-            const tokenResponse = await authRequest.loginwithEmail(userName, password)
-
-            if (tokenResponse.status === 200) {
-                await Promise.all(
-                    [SecureStorage.getInst().save("access_token", tokenResponse.data.access_token),
-                    SecureStorage.getInst().save("refresh_token", tokenResponse.data.refresh_token)]
-                )
-                console.log("connect successful ")
-
-                //use access token to get user info 
-                // const token = await SecureStorage.getInst().getValueFor("access_token")
-                const userResponse = await authRequest.getUserKeyCloak(tokenResponse.data.access_token)
-                console.log(userResponse.status)
-
-                console.log("response success")
+ console.log("response success")
                 if (userResponse.status === 200) {
-                    const userInfoFullAppResponse = await authRequest.getUserFull(userResponse.data["customer_no"])
+                    const userInfoFullAppResponse = await authRequest.getUserApp(userResponse.data["customer_no"])
+                    // console.log(userInfoFullAppResponse)
 
                     if (userInfoFullAppResponse.status === 200) {
 
-                        let userInfo: UserFull =
-                            userInfoFullAppResponse.data as UserFull;
-                        console.log(userInfoFullAppResponse.data["0"].customerName)
-
+                        let userInfo: UserInfoAppResponse =
+                            userInfoFullAppResponse.data as UserInfoAppResponse;
+                            console.log("user"+userInfo.name )
                         return {
                             allUserInformation: userInfo,
-
-                            name: userInfoFullAppResponse.data["0"].customerName,
-                            customerNo: userInfoFullAppResponse.data["0"].customerNo,
+                           loog: ("foo"),
+                            name: userResponse.data.name,
+                            firstName: userResponse.data.given_name,
+                            lastName: userResponse.data.family_name,
                             accesToken: tokenResponse.data.access_token,
-
+                            // refreshToken: tokenResponse.data.refresh_token,
+                            email: userResponse.data.email,
+                            userName: userResponse.data.preferred_username
                         }
 
                     }
@@ -119,17 +68,19 @@ export const loginUser = createAsyncThunk(
 );
 
 
-const UserInformation = (
+const UserInformation =(
 
-    state: AuthState,
-    allUserInformation: UserFull
-) => {
+    state:AuthState,
+    allUserInformation: UserInfoAppResponse
+)=>{
+state.user!.email= allUserInformation.email
+state.user!.name = allUserInformation.name;
+state.user!.customerNo= allUserInformation.customerNo
+state.user!.firstName= allUserInformation.firstName
+state.user!.lastName = allUserInformation.lastName
+state.user!.gender =allUserInformation.gender
 
-    state.user!.name = allUserInformation.user["0"].customerName;
-    state.user!.customerNo = allUserInformation.user["0"].customerNo;
-
-
-    return state;
+return state;
 };
 
 
@@ -179,7 +130,7 @@ const authSlice = createSlice({
                 state.loginErrorMessage = ""
                 console.log(action.payload);
                 const allUserInformation = action.payload
-                    ?.allUserInformation as UserFull;
+                    ?.allUserInformation as UserInfoAppResponse;
                 return UserInformation(state, allUserInformation);
             });
 
@@ -195,15 +146,4 @@ export const authSelector = (state: RootState) => state.auth;
 
 
 export default authSlice.reducer;
-
-
-
-
-
-
-
-
-
-
-
 

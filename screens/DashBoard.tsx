@@ -35,10 +35,9 @@ type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
 
 
 const DashBoard = ({ navigation }: DashBoardProps) => {
-const {user } = useSelector(authSelector)
+const {user} = useSelector(authSelector)
 
-
-console.log(user)
+console.log("tis line " + user)
     const navigatetoTransferPage = () => {
         navigation.navigate("Transfer")
     }
@@ -74,7 +73,7 @@ console.log(user)
                         <AppText
                             style={tw``}
                         >
-                            HI {user?.name} 
+                            HI {user?.name}
                         </AppText>
 
 
@@ -96,7 +95,7 @@ console.log(user)
                             Savings Account: {"   "}
                             <AppText
                                 style={apptw`font-bold`}>
-                                {user?.customerNo}
+                                {user!.customerNo}
                             </AppText>
                         </AppText>
 

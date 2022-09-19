@@ -26,7 +26,66 @@ interface UserInfoAppResponse {
     address: string | null;
 }
 
+interface UserFull {
+    user:
+    [
+        {
+        primaryAccountNo: [Object]| null;
+        accountNos: [Array]|null;
+        customerNo: string | null;
+        customerName: string | null;
+        accountName: string | null;
+        productCode: string | null;
+        product: string | null;
+        ledgerCode: string | null;
+        ledger: string | null;
+        ccy: string | null;
+        ccyCode: null;
+        ccyName: string | null;
+        lastMovementDate: string | null;
+        availableBalance: number | null;
+        clearedBalance: number | null;
+        bookBalance: number | null
+    },
+        {
+            primaryAccountNo: [Object]|null;
+            accountNos: [Array]|null;
+            customerNo: string | null;
+            customerName: string | null;
+            accountName: string | null;
+            productCode: string | null;
+            product: string | null;
+            ledgerCode: string | null;
+            ledger: string | null;
+            ccy: string | null;
+            ccyCode: null;
+            ccyName: string | null;
+            lastMovementDate: string | null;
+            availableBalance: number | null;
+            clearedBalance: number | null;
+            bookBalance: number | null
+        },
 
+        {
+            primaryAccountNo: [Object]|null;
+            accountNos: [Array]|null;
+            customerNo: string | null;
+            customerName: string | null;
+            accountName: string | null;
+            productCode: string | null;
+            product: string | null;
+            ledgerCode: string | null;
+            ledger: string | null;
+            ccy: string | null;
+            ccyCode: null;
+            ccyName: string | null;
+            lastMovementDate: string | null;
+            availableBalance:number | null;
+            clearedBalance: number | null;
+            bookBalance: number | null
+        },
+    ]
+}
 
 
 
@@ -35,14 +94,9 @@ interface AuthState {
     accessToken: string | null;
     refreshToken: string | null;
     user: {
-        title: string | null,
-        firstName: string | null,
-        lastName: string | null,
-        gender: string | null,
-        name: string|null,
+        name: string | null;
         customerNo: string | null;
-        email: string | null;
-    } | null;
+    } ;
 
 
 

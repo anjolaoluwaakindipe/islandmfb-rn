@@ -85,12 +85,12 @@ const authRequest = {
         lastName: string,
         username: string,
         _enabled: boolean,
-       password: string,
+        password: string,
         type: string,
-        
-       temporary: boolean,
-            customer_no: number,
-        
+
+        temporary: boolean,
+        customer_no: number,
+
 
     ) => {
 
@@ -105,11 +105,12 @@ const authRequest = {
             credentials: [{
                 type: "password",
                 value: password,
-                temporary: false,  }
+                temporary: false,
+            }
             ],
             attributes: {
-               customer_no:customer_no,
-           },      
+                customer_no: customer_no,
+            },
 
 
         }
@@ -219,22 +220,24 @@ const authRequest = {
 
     // get user details from keycloak 
 
-    getUserKeyCloak: async (token: string ) => {
+    getUserKeyCloak: async (token: string) => {
 
 
 
 
         // response data format
-        let res: { status: null|number; data: {
-            sub: string,
-            customer_no: string,
-            email_verified: boolean,
-            name: string,
-            preferred_username: string,
-            given_name:string,
-            family_name: string,
-            email:any
-        } | Record<string, any>, code: string } = {
+        let res: {
+            status: null | number; data: {
+                sub: string,
+                customer_no: string,
+                email_verified: boolean,
+                name: string,
+                preferred_username: string,
+                given_name: string,
+                family_name: string,
+                email: any
+            } | Record<string, any>, code: string
+        } = {
             status: null,
             data: {},
             code: ""
@@ -263,7 +266,7 @@ const authRequest = {
                     name: response.data.name,
                     email: response.data.email,
                     preferred_username: response.data.preferred_username,
-                    given_name:response.data.given_name,
+                    given_name: response.data.given_name,
                     family_name: response.data.family_name,
                     sub: response.data.sub,
                     email_verified: response.data.email_verified
@@ -280,7 +283,180 @@ const authRequest = {
             });
     },
 
+    //get user details and account details 
+    getUserFull: async (
+        CustomerNo: string
+    ) => {
 
+        // response data format
+        let res: { status: number; data:{
+           "0":
+                {
+                primaryAccountNo: [Object]|null;
+                accountNos: [
+                    {
+                        "_type": "Internal",
+                        "_number": "3067581"
+                    },
+                    {
+                        "_type": "Internal",
+                        "_number": "3067581"
+                    },
+                ]|null;
+
+                customerNo: string | null;
+                customerName: string | null;
+                accountName: string | null;
+                productCode: string | null;
+                product: string | null;
+                ledgerCode: string | null;
+                ledger: string | null;
+                ccy: string | null;
+                ccyCode: null;
+                ccyName: string | null;
+                lastMovementDate: string | null;
+                availableBalance: number | null;
+                clearedBalance: number | null;
+                bookBalance: number | null
+            },
+               '1': {
+                    primaryAccountNo: [Object]|null;
+                    accountNos: [
+                        {
+                            "_type": "Internal",
+                            "_number": "3067581"
+                        },
+                        {
+                            "_type": "Internal",
+                            "_number": "3067581"
+                        },
+                    ]|null;
+                    customerNo: string | null;
+                    customerName: string | null;
+                    accountName: string | null;
+                    productCode: string | null;
+                    product: string | null;
+                    ledgerCode: string | null;
+                    ledger: string | null;
+                    ccy: string | null;
+                    ccyCode: null;
+                    ccyName: string | null;
+                    lastMovementDate: string | null;
+                    availableBalance: number | null;
+                    clearedBalance: number | null;
+                    bookBalance: number | null
+                },
+        
+               '2': {
+                    primaryAccountNo: [Object]|null;
+                    accountNos: [
+                        {
+                            "_type": "Internal",
+                            "_number": "3067581"
+                        },
+                        {
+                            "_type": "Internal",
+                            "_number": "3067581"
+                        },
+                    ]|null;
+                    customerNo: string | null;
+                    customerName: string | null;
+                    accountName: string | null;
+                    productCode: string | null;
+                    product: string | null;
+                    ledgerCode: string | null;
+                    ledger: string | null;
+                    ccy: string | null;
+                    ccyCode: null;
+                    ccyName: string | null;
+                    lastMovementDate: string | null;
+                    availableBalance:number | null;
+                    clearedBalance: number | null;
+                    bookBalance: number | null
+                },
+            
+
+        }| Record<string, any>, 
+        code: string } = {
+            status: 0,
+            data: {},
+            code: ""
+        };
+
+        return await axios
+            .get(
+                "http://api.issl.ng:7777/ibank/api/v1/getCustomerAccounts?",
+                {
+                    params: {
+                        CustomerNo: CustomerNo
+                    },
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = {
+                    
+                  "0":{
+                    accountName: response.data[0].accountName,
+                    availableBalance: response.data[0].availableBalance,
+                    bookBalance: response.data[0].bookBalance,
+                    ccy: response.data[0].ccy,
+                    ccyName: response.data[0].ccyName,
+                    ledger: response.data[0].ledger,
+                    ccyCode: response.data[0].ccyCode,
+                    customerName: response.data[0].customerName,
+                    customerNo: response.data[0].customerNo,
+                    ledgerCode: response.data[0].ledgerCode,
+                    clearedBalance: response.data[0].clearedBalance,
+                    lastMovementDate: response.data[0].lastMovementDate,
+                    product: response.data[0].product,
+                    productCode: response.data[0].productCode
+
+                  },
+                  "1":{
+                    accountName: response.data[1].accountName,
+                    availableBalance: response.data[1].availableBalance,
+                    bookBalance: response.data[1].bookBalance,
+                    ccy: response.data[1].ccy,
+                    ccyName: response.data[1].ccyName,
+                    ledger: response.data[1].ledger,
+                    ccyCode: response.data[1].ccyCode,
+                    customerName: response.data[1].customerName,
+                    customerNo: response.data[1].customerNo,
+                    ledgerCode: response.data[1].ledgerCode,
+                    clearedBalance: response.data[1].clearedBalance,
+                    lastMovementDate: response.data[1].lastMovementDate,
+                    product: response.data[1].product,
+                    productCode: response.data[1].productCode
+                  },
+"2":{
+    accountName: response.data[2].accountName,
+    availableBalance: response.data[2].availableBalance,
+    bookBalance: response.data[2].bookBalance,
+    ccy: response.data[2].ccy,
+    ccyName: response.data[2].ccyName,
+    ledger: response.data[2].ledger,
+    ccyCode: response.data[2].ccyCode,
+    customerName: response.data[2].customerName,
+    customerNo: response.data[2].customerNo,
+    ledgerCode: response.data[2].ledgerCode,
+    clearedBalance: response.data[2].clearedBalance,
+    lastMovementDate: response.data[2].lastMovementDate,
+    product: response.data[2].product,
+    productCode: response.data[2].productCode
+
+}
+                };
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+
+    },
 
     //get user details 
     getUserApp: async (
@@ -323,18 +499,11 @@ const authRequest = {
 
 export default authRequest
 
-async function prLude(){
-    console.log(await authRequest.getAdminToken())
-}
 
-async function myfunc() {
-    await prLude();
-    console.log(await authRequest.createUser("akinlabi@gmail.com",true, "simiii","akin","akinsimi",true,"password","iiiii",false,7843 ));
-}
 
 // async function myfunc() {
-//     console.log(await authRequest.getUserApp("6758"));
-
+//     console.log(await authRequest.getUserFull("6758"));
+   
 // }
 
 // myfunc()
