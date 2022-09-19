@@ -8,6 +8,17 @@ import { RootState } from "./store"
 const initialState: AuthState = {
     accessToken: "",
     refreshToken: "",
+
+    user: {
+        title: "",
+        firstName: "",
+        gender: "",
+        name: "",
+        lastName: "",
+        email: "",
+        customerNo: "",
+
+    },
     errorMessage: "",
     isError: false,
     isLoading: false,
@@ -19,7 +30,7 @@ const initialState: AuthState = {
 
 
 
-
+//logging in a user 
 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
@@ -36,9 +47,49 @@ export const loginUser = createAsyncThunk(
                     [SecureStorage.getInst().save("access_token", tokenResponse.data.access_token),
                     SecureStorage.getInst().save("refresh_token", tokenResponse.data.refresh_token)]
                 )
+                console.log("connect successful ")
 
+                //use access token to get user info 
+                // const token = await SecureStorage.getInst().getValueFor("access_token")
+                const userResponse = await authRequest.getUserKeyCloak(tokenResponse.data.access_token)
+                console.log(userResponse.status)
 
-                console.log("success ")
+                console.log("response success")
+                if (userResponse.status === 200) {
+                    const userInfoFullAppResponse = await authRequest.getUserApp(userResponse.data["customer_no"])
+                    // console.log(userInfoFullAppResponse)
+
+                    if (userInfoFullAppResponse.status === 200) {
+
+                        let userInfo: UserInfoAppResponse =
+                            userInfoFullAppResponse.data as UserInfoAppResponse;
+                            console.log("user"+userInfo.name )
+                        return {
+                            allUserInformation: userInfo,
+                           loog: ("foo"),
+                            name: userResponse.data.name,
+                            firstName: userResponse.data.given_name,
+                            lastName: userResponse.data.family_name,
+                            accesToken: tokenResponse.data.access_token,
+                            // refreshToken: tokenResponse.data.refresh_token,
+                            email: userResponse.data.email,
+                            userName: userResponse.data.preferred_username
+                        }
+
+                    }
+                    else {
+                        return thunkApi.rejectWithValue(
+                            "Something went wrong while getting your account"
+                        );
+                    }
+
+                }
+                else {
+                    return thunkApi.rejectWithValue(
+                        "Something went wrong while getting your account with token"
+                    );
+                }
+
             } else {
                 switch (tokenResponse.status) {
                     case 0:
@@ -71,6 +122,23 @@ export const loginUser = createAsyncThunk(
         }
     }
 );
+
+
+const UserInformation =(
+
+    state:AuthState,
+    allUserInformation: UserInfoAppResponse
+)=>{
+state.user!.email= allUserInformation.email
+state.user!.name = allUserInformation.name;
+state.user!.customerNo= allUserInformation.customerNo
+state.user!.firstName= allUserInformation.firstName
+state.user!.lastName = allUserInformation.lastName
+state.user!.gender =allUserInformation.gender
+
+return state;
+};
+
 
 
 
@@ -117,7 +185,9 @@ const authSlice = createSlice({
                 state.isSuccess = true;
                 state.loginErrorMessage = ""
                 console.log(action.payload);
-                return state;
+                const allUserInformation = action.payload
+                    ?.allUserInformation as UserInfoAppResponse;
+                return UserInformation(state, allUserInformation);
             });
 
     },
@@ -127,7 +197,7 @@ const authSlice = createSlice({
 export const { setAuthStateTokens, clearAuthState } =
     authSlice.actions;
 
-    export const authSelector = (state: RootState) => state.auth;
+export const authSelector = (state: RootState) => state.auth;
 
 
 

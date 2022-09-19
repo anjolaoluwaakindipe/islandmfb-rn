@@ -24,6 +24,8 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
+import { useSelector } from "react-redux";
+import { authSelector } from "../state/authSlice";
 
 
 
@@ -33,7 +35,10 @@ type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
 
 
 const DashBoard = ({ navigation }: DashBoardProps) => {
+const {user } = useSelector(authSelector)
 
+
+console.log(user)
     const navigatetoTransferPage = () => {
         navigation.navigate("Transfer")
     }
@@ -45,6 +50,8 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
     const navigatetoBillsPage = () => {
         navigation.navigate("BillPayment")
     }
+
+
 
     return (
         <KeyboardAvoidingView
@@ -62,12 +69,12 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
 
                     <View
-                        style={tw`flex-row justify-between mt-5`}
+                        style={tw`flex-row justify-between mt-5 text-[3]`}
                     >
                         <AppText
                             style={tw``}
                         >
-                            HI USERR
+                            HI {user?.name} 
                         </AppText>
 
 
@@ -89,7 +96,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                             Savings Account: {"   "}
                             <AppText
                                 style={apptw`font-bold`}>
-                                1099394
+                                {user?.customerNo}
                             </AppText>
                         </AppText>
 

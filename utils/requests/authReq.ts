@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 import {
     BASE_URL,
     REALM,
@@ -40,7 +39,7 @@ const authRequest = {
         const body = xformurlencoder(adminTokenInfo);
 
         // response data format
-        let res: { status: number; data: any, code: string } = {
+        let res: { status: number; data: { access_token: string } | Record<string, any>, code: string } = {
             status: 0,
             data: {},
             code: ""
@@ -101,7 +100,7 @@ const authRequest = {
         const body = xformurlencoder(loginInfo);
 
         // response data format
-        let res: { status: number; data: {access_token: string, refresh_token:string} | Record<string, any>, code: string } = {
+        let res: { status: number; data: { access_token: string, refresh_token: string } | Record<string, any>, code: string } = {
             status: 0,
             data: {},
             code: ""
@@ -125,7 +124,7 @@ const authRequest = {
             .then((response) => {
                 res.status = response.status;
                 res.data = response.data;
-       
+
                 return res;
             })
             .catch((err) => {
@@ -134,8 +133,109 @@ const authRequest = {
                 res.code = err.code
                 return res
             });
-    }
+    },
 
+
+
+    // get user details from keycloak 
+
+    getUserKeyCloak: async (token: string ) => {
+
+
+
+
+        // response data format
+        let res: { status: null|number; data: {
+            sub: string,
+            customer_no: string,
+            email_verified: boolean,
+            name: string,
+            preferred_username: string,
+            given_name:string,
+            family_name: string,
+            email:any
+        } | Record<string, any>, code: string } = {
+            status: null,
+            data: {},
+            code: ""
+        };
+
+        return await axios
+            .get(
+                BASE_URL +
+                "/auth/realms/" +
+                REALM +
+                "/protocol/openid-connect/userinfo",
+                {
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    },
+                    method: "GET",
+                }
+
+            )
+
+
+            .then((response) => {
+                res.status = response.status;
+                res.data = {
+                    customer_no: response.data.customer_no,
+                    name: response.data.name,
+                    email: response.data.email,
+                    preferred_username: response.data.preferred_username,
+                    given_name:response.data.given_name,
+                    family_name: response.data.family_name,
+                    sub: response.data.sub,
+                    email_verified: response.data.email_verified
+                };
+                console.log(res);
+
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+    },
+
+
+
+    //get user details 
+    getUserApp: async (
+        CustomerNo: string
+    ) => {
+
+        // response data format
+        let res: { status: number; data: Record<string, any>, code: string } = {
+            status: 0,
+            data: {},
+            code: ""
+        };
+
+        return await axios
+            .get(
+                "http://api.issl.ng:7777/ibank/api/v1/getCustomerDetails?",
+                {
+                    params: {
+                        CustomerNo: CustomerNo
+                    },
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+
+    },
 
 
 }
@@ -146,11 +246,11 @@ export default authRequest
 
 
 // async function myfunc() {
-//     console.log(await authRequest.loginwithEmail("apptest", "test123"));
+//     console.log(await authRequest.getUserApp("6758"));
 
 // }
 
 // myfunc()
 
-// to test run 
+// to test run
 // ts-node ./authReq.ts
