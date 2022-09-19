@@ -37,7 +37,7 @@ type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
 const DashBoard = ({ navigation }: DashBoardProps) => {
 const {user} = useSelector(authSelector)
 
-console.log("tis line " + user)
+
     const navigatetoTransferPage = () => {
         navigation.navigate("Transfer")
     }

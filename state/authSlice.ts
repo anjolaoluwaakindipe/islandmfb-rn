@@ -56,7 +56,7 @@ export const loginUser = createAsyncThunk(
                 if (userResponse.status === 200) {
                     const userInfoFullAppResponse = await authRequest.getUserFull(userResponse.data["customer_no"])
 
-                    if (userInfoFullAppResponse.status === 200) {
+                    if (userInfoFullAppResponse.status === 200 && userInfoFullAppResponse.data[0] !== 'undefined') {
 
                         let userInfo: UserFull =
                             userInfoFullAppResponse.data as UserFull;
@@ -125,8 +125,8 @@ const UserInformation = (
     allUserInformation: UserFull
 ) => {
 
-    state.user!.name = allUserInformation.user["0"].customerName;
-    state.user!.customerNo = allUserInformation.user["0"].customerNo;
+    state.user.name =  allUserInformation[0].customerName;
+    state.user.customerNo = allUserInformation["0"].customerNo;
 
 
     return state;

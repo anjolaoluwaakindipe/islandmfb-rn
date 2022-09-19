@@ -27,9 +27,8 @@ interface UserInfoAppResponse {
 }
 
 interface UserFull {
-    user:
-    [
-        {
+   
+       0: {
         primaryAccountNo: [Object]| null;
         accountNos: [Array]|null;
         customerNo: string | null;
@@ -47,7 +46,7 @@ interface UserFull {
         clearedBalance: number | null;
         bookBalance: number | null
     },
-        {
+       1: {
             primaryAccountNo: [Object]|null;
             accountNos: [Array]|null;
             customerNo: string | null;
@@ -66,7 +65,7 @@ interface UserFull {
             bookBalance: number | null
         },
 
-        {
+       2: {
             primaryAccountNo: [Object]|null;
             accountNos: [Array]|null;
             customerNo: string | null;
@@ -83,8 +82,8 @@ interface UserFull {
             availableBalance:number | null;
             clearedBalance: number | null;
             bookBalance: number | null
-        },
-    ]
+        }
+    
 }
 
 
