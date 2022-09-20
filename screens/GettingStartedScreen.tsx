@@ -11,6 +11,7 @@ import CompanyLogo from "../assets/svg/companylogo1.svg";
 import AppText from "../components/shared/Apptext";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./allroutes";
+import PressAppText from "../components/shared/PressAppText";
 
 type GettingStartedScreenProps = NativeStackScreenProps<
     RootStackParamList,
@@ -25,6 +26,9 @@ const GettingStartedScreen = ({
         navigation.navigate("LetsGetStarted");
     };
 
+    const navigatetoLogin = () => {
+        navigation.navigate("SignIn")
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.logoArea}>
@@ -47,10 +51,16 @@ const GettingStartedScreen = ({
                             buttonStyle={tw.style("")}
                             onPress={navigateToLetsGetStartedScr}
                         />
-                        <AppText style={apptw`self-center mt-4 text-lg`}>
-                            Have an account?{" "}
-                            <Button color={"#BC4B52"} title="Sign In" onPress={()=>{navigation.navigate('SignIn')}}/>{" "}
+                        <AppText style={apptw`left-[19] mt-4 text-lg`}>
+                        Have an account?{" "}
                         </AppText>
+
+                        <PressAppText
+                            style={tw`text-green-500 text-center left-[30]  bottom-[8]`}
+                            onPress={navigatetoLogin}
+                        >
+                            Login
+                        </PressAppText>
                     </View>
                 </View>
             </View>
