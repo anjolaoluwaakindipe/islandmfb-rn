@@ -1,6 +1,5 @@
 import axios, { Axios } from "axios";
 
-
 import {
     BASE_URL,
     REALM,
@@ -40,7 +39,7 @@ const authRequest = {
         const body = xformurlencoder(adminTokenInfo);
 
         // response data format
-        let res: { status: number; data: any, code: string } = {
+        let res: { status: number; data: { access_token: string } | Record<string, any>, code: string } = {
             status: 0,
             data: {},
             code: ""
@@ -111,6 +110,8 @@ const authRequest = {
             attributes: {
                 customer_no: customer_no,
             },
+
+
         }
         // convert login information to urlencoded form
         const body = xformurlencoder(createInfo);
@@ -229,7 +230,7 @@ const authRequest = {
         };
 
 
-        const body= xformurlencoder(logOut)
+        const body = xformurlencoder(logOut)
         return await axios
             .post(
                 BASE_URL +
@@ -242,9 +243,9 @@ const authRequest = {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     method: "POST"
-                    
+
                 }
-        )
+            )
             .then((response) => {
                 res.status = response.status;
                 res.data = response.data;
@@ -258,8 +259,183 @@ const authRequest = {
                 return res
             });
 
-    }
+    },
 
+
+
+    // get user details from keycloak 
+
+    getUserKeyCloak: async (token: string) => {
+
+
+
+
+        // response data format
+        let res: {
+            status: null | number; data: {
+                sub: string,
+                customer_no: string,
+                email_verified: boolean,
+                name: string,
+                preferred_username: string,
+                given_name: string,
+                family_name: string,
+                email: any
+            } | Record<string, any>, code: string
+        } = {
+            status: null,
+            data: {},
+            code: ""
+        };
+
+        return await axios
+            .get(
+                BASE_URL +
+                "/auth/realms/" +
+                REALM +
+                "/protocol/openid-connect/userinfo",
+                {
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    },
+                    method: "GET",
+                }
+
+            )
+
+
+            .then((response) => {
+                res.status = response.status;
+                res.data = {
+                    customer_no: response.data.customer_no,
+                    name: response.data.name,
+                    email: response.data.email,
+                    preferred_username: response.data.preferred_username,
+                    given_name: response.data.given_name,
+                    family_name: response.data.family_name,
+                    sub: response.data.sub,
+                    email_verified: response.data.email_verified
+                };
+                console.log(res);
+
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+    },
+
+    //get user details and account details 
+    getUserFull: async (
+        CustomerNo: string
+    ) => {
+
+        // response data format
+        let res: {
+            status: number; data:
+
+                {
+                    primaryAccountNo: {
+                        _type: string,
+                        _number: string
+                    };
+                    accountNos: [
+                        {
+                            _type: string,
+                            _number: string
+                        },
+                        {
+                            _type: string,
+                            _number: string
+                        },
+                    ] | null;
+
+                    customerNo: string | null;
+                    customerName: string | null;
+                    accountName: string | null;
+                    productCode: string | null;
+                    product: string | null;
+                    ledgerCode: string | null;
+                    ledger: string | null;
+                    ccy: string | null;
+                    ccyCode: null;
+                    ccyName: string | null;
+                    lastMovementDate: string | null;
+                    availableBalance: number | null;
+                    clearedBalance: number | null;
+                    bookBalance: number | null
+                }[]
+
+
+
+                | Record<string, any>[],
+            code: string
+        } = {
+            status: 0,
+            data: [{}],
+            code: ""
+        };
+
+        return await axios
+            .get(
+                "http://api.issl.ng:7777/ibank/api/v1/getCustomerAccounts?",
+                {
+                    params: {
+                        CustomerNo: CustomerNo
+                    },
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+
+    },
+
+    //get user details 
+    getUserApp: async (
+        CustomerNo: string
+    ) => {
+
+        // response data format
+        let res: { status: number; data: Record<string, any>, code: string } = {
+            status: 0,
+            data: {},
+            code: ""
+        };
+
+        return await axios
+            .get(
+                "http://api.issl.ng:7777/ibank/api/v1/getCustomerDetails?",
+                {
+                    params: {
+                        CustomerNo: CustomerNo
+                    },
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+
+    },
 
 
 }
@@ -267,15 +443,15 @@ const authRequest = {
 
 export default authRequest
 
-async function prLude() {
-    console.log(await authRequest.getAdminToken())
-}
 
-async function myfunc() {
-   console.log(await authRequest.logOutUser())
-}
+// async function myfunc() {
+//     console.log(await authRequest.getUserFull("6758"));
+// }
 
-myfunc()
+// myfunc()
+
+
+
 
 // to test run
 // ts-node ./authReq.ts

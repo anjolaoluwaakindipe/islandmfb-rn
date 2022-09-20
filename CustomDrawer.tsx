@@ -4,12 +4,20 @@ import AppButtonWIcon from "./components/shared/AppButtonWIcon";
 import AppText from "./components/shared/Apptext";
 import apptw from "./utils/lib/tailwind";
 import { Ionicons } from '@expo/vector-icons';
+import { authSelector } from "./state/authSlice";
+import { useSelector } from "react-redux";
 
 
 
 
 
 function CustomDrawer(props: any) {
+    const { user } = useSelector(authSelector)
+
+
+
+    let fName = (user?.name)?.split(/\s+/)
+
     return (
 
         <DrawerContentScrollView
@@ -48,7 +56,7 @@ function CustomDrawer(props: any) {
                     <AppText
                         style={apptw`font-bold text-[4] text-left`}
                     >
-                        Akinloluwa Adeleye
+                       {fName?.[0]} {fName?.[2]}
 
                     </AppText>
                     <AppText

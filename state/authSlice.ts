@@ -2,23 +2,36 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { string } from "zod"
 import authRequest from "../utils/requests/authReq"
 import { SecureStorage } from "../services/Singleton/secureStorage"
+import { RootState } from "./store"
 // import { RootState } from "./store"
 
 const initialState: AuthState = {
     accessToken: "",
     refreshToken: "",
+
+    user: {
+accountNo:"",
+product:"",
+        name: "",
+        currency:"",
+
+        customerNo: "",
+        availableBalance: 0,
+        bookBalance:0,
+
+    },
     errorMessage: "",
     isError: false,
     isLoading: false,
     isSuccess: false,
     requestStatus: 0,
-
+    loginErrorMessage: "",
 }
 
 
 
 
-
+//logging in a user 
 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
@@ -38,9 +51,45 @@ export const loginUser = createAsyncThunk(
                     
                     
                 )
+                console.log("connect successful ")
 
+                //use access token to get user info 
+                // const token = await SecureStorage.getInst().getValueFor("access_token")
+                const userResponse = await authRequest.getUserKeyCloak(tokenResponse.data.access_token)
+                console.log(userResponse.status)
 
-                console.log("success ")
+                console.log("response success")
+                if (userResponse.status === 200) {
+                    const userInfoFullAppResponse = await authRequest.getUserFull(userResponse.data["customer_no"])
+
+                    if (userInfoFullAppResponse.status === 200) {
+
+                        let userInfo: UserFull = userInfoFullAppResponse.data as UserFull;
+                        console.log(userInfoFullAppResponse.data[0].product)
+
+                        return {
+                            allUserInformation: userInfo,
+product:userInfoFullAppResponse.data[0].product ,
+                            name: userInfoFullAppResponse.data[0].customerName,
+                            accountNo: userInfoFullAppResponse.data[0].primaryAccountNo["_number"],
+                            accesToken: tokenResponse.data.access_token,
+
+                        }
+
+                    }
+                    else {
+                        return thunkApi.rejectWithValue(
+                            "Something went wrong while getting your account"
+                        );
+                    }
+
+                }
+                else {
+                    return thunkApi.rejectWithValue(
+                        "Something went wrong while getting your account with token"
+                    );
+                }
+
             } else {
                 switch (tokenResponse.status) {
                     case 0:
@@ -75,6 +124,23 @@ export const loginUser = createAsyncThunk(
 );
 
 
+const UserInformation = (
+
+    state: AuthState,
+    allUserInformation: UserFull
+) => {
+
+    state.user.name = allUserInformation[0].customerName;
+    state.user.accountNo = allUserInformation[0].primaryAccountNo["_number"];
+state.user.product = allUserInformation[0].product;
+state.user.availableBalance = allUserInformation[0].availableBalance;
+state.user.currency= allUserInformation[0].ccy;
+state.user.bookBalance = allUserInformation[0].bookBalance;
+    return state;
+};
+
+
+
 
 const authSlice = createSlice({
     name: "auth",
@@ -100,15 +166,16 @@ const authSlice = createSlice({
                 state.isLoading = true;
                 state.isSuccess = false;
                 state.isError = false;
+                state.loginErrorMessage = ""
                 return state;
             })
 
-            .addCase(loginUser.rejected, (state, action) => {
+            .addCase(loginUser.rejected, (state: AuthState, action) => {
                 // when login is unsuccessful
                 state.isLoading = false;
                 state.isError = true;
                 state.isSuccess = false;
-                state.errorMessage = action.payload as string;
+                state.loginErrorMessage = action.payload as string;
                 return state;
             })
             .addCase(loginUser.fulfilled, (state, action) => {
@@ -116,8 +183,11 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isError = false;
                 state.isSuccess = true;
+                state.loginErrorMessage = ""
                 console.log(action.payload);
-                return state;
+                const allUserInformation = action.payload
+                    ?.allUserInformation as UserFull;
+                return UserInformation(state, allUserInformation);
             });
 
     },
@@ -127,6 +197,7 @@ const authSlice = createSlice({
 export const { setAuthStateTokens, clearAuthState } =
     authSlice.actions;
 
+export const authSelector = (state: RootState) => state.auth;
 
 
 

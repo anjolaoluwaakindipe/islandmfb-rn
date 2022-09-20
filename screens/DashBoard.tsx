@@ -24,8 +24,13 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
+<<<<<<< HEAD
 import ChangeAccountDrawer from "../components/dashboard/ChangeAccountDrawer";
 import Notifications from "../components/dashboard/Notifications";
+=======
+import { useSelector } from "react-redux";
+import { authSelector } from "../state/authSlice";
+>>>>>>> origin/master
 
 
 
@@ -35,6 +40,8 @@ type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
 
 
 const DashBoard = ({ navigation }: DashBoardProps) => {
+    const { user } = useSelector(authSelector)
+
 
     const navigatetoTransferPage = () => {
         navigation.navigate("Transfer")
@@ -47,7 +54,16 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
     const navigatetoBillsPage = () => {
         navigation.navigate("BillPayment")
     }
+<<<<<<< HEAD
     
+=======
+
+    let fName = (user?.name)?.split(/\s+/)
+
+
+
+
+>>>>>>> origin/master
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -64,12 +80,12 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
 
                     <View
-                        style={tw`flex-row justify-between mt-5`}
+                        style={tw`flex-row justify-between mt-5 text-[3]`}
                     >
                         <AppText
                             style={tw``}
                         >
-                            HI USERR
+                            HI {fName?.[0]}
                         </AppText>
 
 
@@ -89,10 +105,10 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                         <AppText
                             style={apptw`font-base `}
                         >
-                            Savings Account: {"   "}
+                            {user.product + ":" + " "}
                             <AppText
                                 style={apptw`font-bold`}>
-                                1099394
+                                {user.accountNo}
                             </AppText>
                         </AppText>
 
@@ -100,7 +116,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                         <AppText
                             style={apptw`text-primCol text-xl`}
                         >
-                            N 234,45455
+                            {user.currency} {user.availableBalance}
                         </AppText>
                         <AppText>
                             Available Balance
@@ -109,7 +125,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                         <AppText>
                             Book Balance: {"  "}
                             <AppText>
-                                N239344455
+                                {user.currency} {user.bookBalance}
                             </AppText>
                         </AppText>
 
@@ -126,7 +142,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                     <ScrollView
                         style={tw``}
                         horizontal={true}
-                        contentContainerStyle={tw.style(` justify-between`, {
+                        contentContainerStyle={tw.style(`justify-between`, {
                             flexGrow: 1,
                         })}
                     >

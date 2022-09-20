@@ -9,11 +9,20 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { Ionicons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../allroutes";
+import { authSelector } from "../../state/authSlice";
+import { useSelector } from "react-redux";
 
 
 type ProfileProps = NativeStackScreenProps<RootStackParamList, "Profile">;
 
 const ProfileScreen = ({navigation}: ProfileProps) => {
+
+
+    const { user } = useSelector(authSelector)
+
+
+
+    let fName = (user?.name)?.split(/\s+/)
 
     const navigatetoEditPersonalInfo =()=> {
     navigation.navigate("EditPersonalInfo")
@@ -71,7 +80,7 @@ const navigatetoEditNextofKin =()=>{
                     <AppText
                         style={apptw`font-bold text-2xl text-center`}
                     >
-                        Akinloluwa Adeleye
+                       {fName?.[0]} {fName?.[2]}
 
                     </AppText>
                     <AppText

@@ -265,7 +265,7 @@ function App() {
                 <Stack.Navigator
                     screenOptions={{ headerShown: false }}
 
-                    initialRouteName="SignIn"
+                    initialRouteName="GettingStarted"
                 >
 
                     <Stack.Screen
@@ -369,7 +369,8 @@ function App() {
                         name='LoanTransaction'
                         component={LoanTransaction}
                     />
-                    <Stack.Screen name="Success" component={SuccessScreen} />
+                    <Stack.Screen name="Success" 
+                    component={SuccessScreen} />
                     <Stack.Screen
                         name='LoanRepayment'
                         component={LoanRepayment}
@@ -400,6 +401,16 @@ function App() {
                     <Stack.Screen name="Utility" component={Utility} />
                     <Stack.Screen name="Insurance" component={Insurance} />
                     <Stack.Screen name="PaymentPage" component={PaymentPage} />
+                    <Stack.Screen
+                    name='LinkBvn'
+                    component={LinkBvn}
+                    
+                    />
+
+                    <Stack.Screen
+                    name="StatementofAccount"
+                    component={StatementofAccount}
+                    />
 
 
                 </Stack.Navigator>
