@@ -86,12 +86,11 @@ const authRequest = {
         lastName: string,
         username: string,
         _enabled: boolean,
-       password: string,
+        password: string,
         type: string,
-        
-       temporary: boolean,
-            customer_no: number,
-        
+        temporary: boolean,
+        customer_no: number,
+
 
     ) => {
 
@@ -106,13 +105,12 @@ const authRequest = {
             credentials: [{
                 type: "password",
                 value: password,
-                temporary: false,  }
+                temporary: false,
+            }
             ],
             attributes: {
-               customer_no:customer_no,
-           },      
-
-
+                customer_no: customer_no,
+            },
         }
         // convert login information to urlencoded form
         const body = xformurlencoder(createInfo);
@@ -135,7 +133,6 @@ const authRequest = {
                 body, //define later
                 {
                     headers: {
-
                     },
                     method: "POST"
                 }
@@ -214,6 +211,53 @@ const authRequest = {
                 res.code = err.code
                 return res
             });
+    },
+
+
+    logOutUser: async (
+        refresh_token: { refresh_token: string, }
+
+    ) => {
+        let logOut = {
+            client_id: "newclient1",
+            refresh_token: refresh_token,
+        }
+        let res: { status: number; data: any, code: string } = {
+            status: 0,
+            data: {},
+            code: ""
+        };
+
+
+        const body= xformurlencoder(logOut)
+        return await axios
+            .post(
+                BASE_URL +
+                "/auth/realms/" +
+                REALM +
+                "/protocol/openid-refresh/token",
+                body,
+                {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    method: "POST"
+                    
+                }
+        )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+
     }
 
 
@@ -223,13 +267,12 @@ const authRequest = {
 
 export default authRequest
 
-async function prLude(){
+async function prLude() {
     console.log(await authRequest.getAdminToken())
 }
 
 async function myfunc() {
-    await prLude();
-    console.log(await authRequest.createUser("akinlabi@gmail.com",true, "simiii","akin","akinsimi",true,"password","iiiii",false,7843 ));
+   console.log(await authRequest.logOutUser())
 }
 
 myfunc()

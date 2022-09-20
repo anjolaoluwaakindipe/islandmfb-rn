@@ -24,6 +24,8 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
+import ChangeAccountDrawer from "../components/dashboard/ChangeAccountDrawer";
+import Notifications from "../components/dashboard/Notifications";
 
 
 
@@ -45,7 +47,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
     const navigatetoBillsPage = () => {
         navigation.navigate("BillPayment")
     }
-
+    
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -73,6 +75,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
                         <PressAppText
                             style={tw`text-green-500`}
+                            onPress={()=>toggleDrawer(ChangeAccountDrawer)}
                         >
                             Change Account
                         </PressAppText>

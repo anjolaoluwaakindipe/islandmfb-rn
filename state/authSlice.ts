@@ -33,7 +33,10 @@ export const loginUser = createAsyncThunk(
             if (tokenResponse.status === 200) {
                 await Promise.all(
                     [SecureStorage.getInst().save("access_token", tokenResponse.data.access_token),
-                    SecureStorage.getInst().save("refresh_token", tokenResponse.data.refresh_token)]
+                        SecureStorage.getInst().save("refresh_token", tokenResponse.data.refresh_token),
+                    SecureStorage.getInst()]
+                    
+                    
                 )
 
 
