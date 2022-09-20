@@ -401,6 +401,16 @@ function App() {
                     <Stack.Screen name="Utility" component={Utility} />
                     <Stack.Screen name="Insurance" component={Insurance} />
                     <Stack.Screen name="PaymentPage" component={PaymentPage} />
+                    <Stack.Screen
+                    name='LinkBvn'
+                    component={LinkBvn}
+                    
+                    />
+
+                    <Stack.Screen
+                    name="StatementofAccount"
+                    component={StatementofAccount}
+                    />
 
 
                 </Stack.Navigator>

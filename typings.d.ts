@@ -26,11 +26,25 @@ interface UserInfoAppResponse {
     address: string | null;
 }
 
-interface UserFull {
+type UserFull =  
    
-       0: {
-        primaryAccountNo: [Object]| null;
-        accountNos: [Array]|null;
+       
+    {
+        primaryAccountNo: {
+            _type: string,
+            _number: string
+        };
+        accountNos: [
+            {
+                _type: string,
+                _number: string
+            },
+            {
+                _type: string,
+                _number: string
+            },
+        ]|null;
+
         customerNo: string | null;
         customerName: string | null;
         accountName: string | null;
@@ -45,46 +59,10 @@ interface UserFull {
         availableBalance: number | null;
         clearedBalance: number | null;
         bookBalance: number | null
-    },
-       1: {
-            primaryAccountNo: [Object]|null;
-            accountNos: [Array]|null;
-            customerNo: string | null;
-            customerName: string | null;
-            accountName: string | null;
-            productCode: string | null;
-            product: string | null;
-            ledgerCode: string | null;
-            ledger: string | null;
-            ccy: string | null;
-            ccyCode: null;
-            ccyName: string | null;
-            lastMovementDate: string | null;
-            availableBalance: number | null;
-            clearedBalance: number | null;
-            bookBalance: number | null
-        },
+    }[]
+   
+      
 
-       2: {
-            primaryAccountNo: [Object]|null;
-            accountNos: [Array]|null;
-            customerNo: string | null;
-            customerName: string | null;
-            accountName: string | null;
-            productCode: string | null;
-            product: string | null;
-            ledgerCode: string | null;
-            ledger: string | null;
-            ccy: string | null;
-            ccyCode: null;
-            ccyName: string | null;
-            lastMovementDate: string | null;
-            availableBalance:number | null;
-            clearedBalance: number | null;
-            bookBalance: number | null
-        }
-    
-}
 
 
 
@@ -93,6 +71,11 @@ interface AuthState {
     accessToken: string | null;
     refreshToken: string | null;
     user: {
+        bookBalance: number | null;
+        currency: string | null;
+        availableBalance: number | null;
+        product: string|null;
+        accountNo: string;
         name: string | null;
         customerNo: string | null;
     } ;

@@ -46,7 +46,12 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
 
   const navigateToLetsGetStartedScr = () => {
     navigation.navigate("LetsGetStarted");
-};
+  };
+
+
+  const navigatetoForgotPassword = () => {
+    navigation.navigate("ForgotPassword")
+  }
 
   const [isButtonLoading, setButtonLoading] = useState(false)
   const dispatch = useDispatch<AppDispatch>();
@@ -138,7 +143,12 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
               />
 
 
-
+              <PressAppText 
+              onPress={navigatetoForgotPassword}
+              style={apptw`text-green-500 `}
+              >
+                Forgot Password?
+              </PressAppText>
 
             </View>
 
@@ -151,12 +161,14 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
 
               />
 
+
+
               <AppText style={apptw`self-center text-zinc-400 text-[4]`}>
                 Don't have an account?{' '}
 
-                <PressAppText 
-                onPress={navigateToLetsGetStartedScr}
-                style={apptw`text-green-500 top-[2]  `}>
+                <PressAppText
+                  onPress={navigateToLetsGetStartedScr}
+                  style={apptw`text-green-500 top-[2]  `}>
                   Get Started
                 </PressAppText>
 

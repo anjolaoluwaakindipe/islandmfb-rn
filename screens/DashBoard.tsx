@@ -35,7 +35,7 @@ type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
 
 
 const DashBoard = ({ navigation }: DashBoardProps) => {
-const {user} = useSelector(authSelector)
+    const { user } = useSelector(authSelector)
 
 
     const navigatetoTransferPage = () => {
@@ -49,6 +49,9 @@ const {user} = useSelector(authSelector)
     const navigatetoBillsPage = () => {
         navigation.navigate("BillPayment")
     }
+
+    let fName = (user?.name)?.split(/\s+/)
+
 
 
 
@@ -73,7 +76,7 @@ const {user} = useSelector(authSelector)
                         <AppText
                             style={tw``}
                         >
-                            HI {user?.name}
+                            HI {fName?.[0]}
                         </AppText>
 
 
@@ -92,10 +95,10 @@ const {user} = useSelector(authSelector)
                         <AppText
                             style={apptw`font-base `}
                         >
-                            Savings Account: {"   "}
+                            {user.product + ":" + " "}
                             <AppText
                                 style={apptw`font-bold`}>
-                                {user!.customerNo}
+                                {user.accountNo}
                             </AppText>
                         </AppText>
 
@@ -103,7 +106,7 @@ const {user} = useSelector(authSelector)
                         <AppText
                             style={apptw`text-primCol text-xl`}
                         >
-                            N 234,45455
+                            {user.currency} {user.availableBalance}
                         </AppText>
                         <AppText>
                             Available Balance
@@ -112,7 +115,7 @@ const {user} = useSelector(authSelector)
                         <AppText>
                             Book Balance: {"  "}
                             <AppText>
-                                N239344455
+                                {user.currency} {user.bookBalance}
                             </AppText>
                         </AppText>
 
@@ -129,7 +132,7 @@ const {user} = useSelector(authSelector)
                     <ScrollView
                         style={tw``}
                         horizontal={true}
-                        contentContainerStyle={tw.style(` justify-between`, {
+                        contentContainerStyle={tw.style(`justify-between`, {
                             flexGrow: 1,
                         })}
                     >

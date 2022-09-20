@@ -10,11 +10,14 @@ const initialState: AuthState = {
     refreshToken: "",
 
     user: {
-
-
+accountNo:"",
+product:"",
         name: "",
+        currency:"",
 
         customerNo: "",
+        availableBalance: 0,
+        bookBalance:0,
 
     },
     errorMessage: "",
@@ -56,17 +59,16 @@ export const loginUser = createAsyncThunk(
                 if (userResponse.status === 200) {
                     const userInfoFullAppResponse = await authRequest.getUserFull(userResponse.data["customer_no"])
 
-                    if (userInfoFullAppResponse.status === 200 && userInfoFullAppResponse.data[0] !== 'undefined') {
+                    if (userInfoFullAppResponse.status === 200) {
 
-                        let userInfo: UserFull =
-                            userInfoFullAppResponse.data as UserFull;
-                        console.log(userInfoFullAppResponse.data["0"].customerName)
+                        let userInfo: UserFull = userInfoFullAppResponse.data as UserFull;
+                        console.log(userInfoFullAppResponse.data[0].product)
 
                         return {
                             allUserInformation: userInfo,
-
-                            name: userInfoFullAppResponse.data["0"].customerName,
-                            customerNo: userInfoFullAppResponse.data["0"].customerNo,
+product:userInfoFullAppResponse.data[0].product ,
+                            name: userInfoFullAppResponse.data[0].customerName,
+                            accountNo: userInfoFullAppResponse.data[0].primaryAccountNo["_number"],
                             accesToken: tokenResponse.data.access_token,
 
                         }
@@ -125,10 +127,12 @@ const UserInformation = (
     allUserInformation: UserFull
 ) => {
 
-    state.user.name =  allUserInformation[0].customerName;
-    state.user.customerNo = allUserInformation["0"].customerNo;
-
-
+    state.user.name = allUserInformation[0].customerName;
+    state.user.accountNo = allUserInformation[0].primaryAccountNo["_number"];
+state.user.product = allUserInformation[0].product;
+state.user.availableBalance = allUserInformation[0].availableBalance;
+state.user.currency= allUserInformation[0].ccy;
+state.user.bookBalance = allUserInformation[0].bookBalance;
     return state;
 };
 

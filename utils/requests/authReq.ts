@@ -289,18 +289,21 @@ const authRequest = {
     ) => {
 
         // response data format
-        let res: { status: number; data:{
-           "0":
-                {
-                primaryAccountNo: [Object]|null;
+        let res: { status: number; data:
+         
+               {
+                primaryAccountNo: {
+                    _type: string,
+                    _number: string
+                };
                 accountNos: [
                     {
-                        "_type": "Internal",
-                        "_number": "3067581"
+                        _type: string,
+                        _number: string
                     },
                     {
-                        "_type": "Internal",
-                        "_number": "3067581"
+                        _type: string,
+                        _number: string
                     },
                 ]|null;
 
@@ -318,68 +321,14 @@ const authRequest = {
                 availableBalance: number | null;
                 clearedBalance: number | null;
                 bookBalance: number | null
-            },
-               '1': {
-                    primaryAccountNo: [Object]|null;
-                    accountNos: [
-                        {
-                            "_type": "Internal",
-                            "_number": "3067581"
-                        },
-                        {
-                            "_type": "Internal",
-                            "_number": "3067581"
-                        },
-                    ]|null;
-                    customerNo: string | null;
-                    customerName: string | null;
-                    accountName: string | null;
-                    productCode: string | null;
-                    product: string | null;
-                    ledgerCode: string | null;
-                    ledger: string | null;
-                    ccy: string | null;
-                    ccyCode: null;
-                    ccyName: string | null;
-                    lastMovementDate: string | null;
-                    availableBalance: number | null;
-                    clearedBalance: number | null;
-                    bookBalance: number | null
-                },
+            }[]
         
-               '2': {
-                    primaryAccountNo: [Object]|null;
-                    accountNos: [
-                        {
-                            "_type": "Internal",
-                            "_number": "3067581"
-                        },
-                        {
-                            "_type": "Internal",
-                            "_number": "3067581"
-                        },
-                    ]|null;
-                    customerNo: string | null;
-                    customerName: string | null;
-                    accountName: string | null;
-                    productCode: string | null;
-                    product: string | null;
-                    ledgerCode: string | null;
-                    ledger: string | null;
-                    ccy: string | null;
-                    ccyCode: null;
-                    ccyName: string | null;
-                    lastMovementDate: string | null;
-                    availableBalance:number | null;
-                    clearedBalance: number | null;
-                    bookBalance: number | null
-                },
             
 
-        }| Record<string, any>, 
+        | Record<string, any>[], 
         code: string } = {
             status: 0,
-            data: {},
+            data: [{}],
             code: ""
         };
 
@@ -394,59 +343,7 @@ const authRequest = {
             )
             .then((response) => {
                 res.status = response.status;
-                res.data = {
-                    
-                  "0":{
-                    accountName: response.data[0].accountName,
-                    availableBalance: response.data[0].availableBalance,
-                    bookBalance: response.data[0].bookBalance,
-                    ccy: response.data[0].ccy,
-                    ccyName: response.data[0].ccyName,
-                    ledger: response.data[0].ledger,
-                    ccyCode: response.data[0].ccyCode,
-                    customerName: response.data[0].customerName,
-                    customerNo: response.data[0].customerNo,
-                    ledgerCode: response.data[0].ledgerCode,
-                    clearedBalance: response.data[0].clearedBalance,
-                    lastMovementDate: response.data[0].lastMovementDate,
-                    product: response.data[0].product,
-                    productCode: response.data[0].productCode
-
-                  },
-                  "1":{
-                    accountName: response.data[1].accountName,
-                    availableBalance: response.data[1].availableBalance,
-                    bookBalance: response.data[1].bookBalance,
-                    ccy: response.data[1].ccy,
-                    ccyName: response.data[1].ccyName,
-                    ledger: response.data[1].ledger,
-                    ccyCode: response.data[1].ccyCode,
-                    customerName: response.data[1].customerName,
-                    customerNo: response.data[1].customerNo,
-                    ledgerCode: response.data[1].ledgerCode,
-                    clearedBalance: response.data[1].clearedBalance,
-                    lastMovementDate: response.data[1].lastMovementDate,
-                    product: response.data[1].product,
-                    productCode: response.data[1].productCode
-                  },
-"2":{
-    accountName: response.data[2].accountName,
-    availableBalance: response.data[2].availableBalance,
-    bookBalance: response.data[2].bookBalance,
-    ccy: response.data[2].ccy,
-    ccyName: response.data[2].ccyName,
-    ledger: response.data[2].ledger,
-    ccyCode: response.data[2].ccyCode,
-    customerName: response.data[2].customerName,
-    customerNo: response.data[2].customerNo,
-    ledgerCode: response.data[2].ledgerCode,
-    clearedBalance: response.data[2].clearedBalance,
-    lastMovementDate: response.data[2].lastMovementDate,
-    product: response.data[2].product,
-    productCode: response.data[2].productCode
-
-}
-                };
+                res.data = response.data;
 
                 return res;
             })
