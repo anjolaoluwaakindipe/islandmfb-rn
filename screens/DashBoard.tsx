@@ -24,13 +24,9 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
-<<<<<<< HEAD
-import ChangeAccountDrawer from "../components/dashboard/ChangeAccountDrawer";
 import Notifications from "../components/dashboard/Notifications";
-=======
 import { useSelector } from "react-redux";
 import { authSelector } from "../state/authSlice";
->>>>>>> origin/master
 
 
 
@@ -54,16 +50,16 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
     const navigatetoBillsPage = () => {
         navigation.navigate("BillPayment")
     }
-<<<<<<< HEAD
+    const navigateToViewAll = () => {
+        navigation.navigate("ViewAllScreen")
+    }
     
-=======
 
     let fName = (user?.name)?.split(/\s+/)
 
 
 
 
->>>>>>> origin/master
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -91,7 +87,6 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
                         <PressAppText
                             style={tw`text-green-500`}
-                            onPress={()=>toggleDrawer(ChangeAccountDrawer)}
                         >
                             Change Account
                         </PressAppText>
@@ -235,6 +230,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
                         <PressAppText
                             style={tw`text-green-500`}
+                            onPress={navigateToViewAll}
                         >
                             view all
                         </PressAppText>

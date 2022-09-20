@@ -1,18 +1,19 @@
-import { createDrawerNavigator, DrawerContent } from "@react-navigation/drawer";
 import { View } from "react-native";
 import AppText from "../shared/Apptext";
 import apptw from "../../utils/lib/tailwind";
+import BasicBackButtonLayout from "../layouts/BasicBackButtonLayout";
 
-const Drawer = createDrawerNavigator();
- function Notifications( props:any) {
+
+const Notifications = () => {
  return (
-  <Drawer.Navigator >
-   <DrawerContent {...props} >
-    <View>
-     <AppText>You have no new notifications.</AppText>
-    </View>
-   </DrawerContent>
-  </Drawer.Navigator>
+  <BasicBackButtonLayout>
+   <View >
+    <AppText style={apptw`left-32 bottom-10`}>Notifications</AppText>
+   </View>
+   <View style={apptw`mx-5`}>
+    <AppText>You have no new notifications.</AppText>
+   </View>
+  </BasicBackButtonLayout>
  );
 };
 export default Notifications;

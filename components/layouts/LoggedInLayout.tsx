@@ -21,8 +21,8 @@ type LoggedInLayoutProp = {
 const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
     const navigation = useNavigation();
 
-    const toggleNotifications = () => {
-        navigation.toggleDrawer("Notifications")
+    const navigateToNotifications = () => {
+        navigation.navigate("Notifications")
     }
 
     return (
@@ -46,7 +46,7 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
                     />
                 </Pressable>
 
-                <Pressable onPress={toggleNotifications} style={tw.style("", )}>
+                <Pressable onPress={navigateToNotifications} style={tw.style("", )}>
                     <AntDesign
                         name="bells"
                         size={20}
