@@ -337,41 +337,41 @@ const authRequest = {
         let res: {
             status: number; data:
 
-                {
-                    primaryAccountNo: {
+            {
+                primaryAccountNo: {
+                    _type: string,
+                    _number: string
+                };
+                accountNos: [
+                    {
                         _type: string,
                         _number: string
-                    };
-                    accountNos: [
-                        {
-                            _type: string,
-                            _number: string
-                        },
-                        {
-                            _type: string,
-                            _number: string
-                        },
-                    ] | null;
+                    },
+                    {
+                        _type: string,
+                        _number: string
+                    },
+                ] | null;
 
-                    customerNo: string | null;
-                    customerName: string | null;
-                    accountName: string | null;
-                    productCode: string | null;
-                    product: string | null;
-                    ledgerCode: string | null;
-                    ledger: string | null;
-                    ccy: string | null;
-                    ccyCode: null;
-                    ccyName: string | null;
-                    lastMovementDate: string | null;
-                    availableBalance: number | null;
-                    clearedBalance: number | null;
-                    bookBalance: number | null
-                }[]
+                customerNo: string | null;
+                customerName: string | null;
+                accountName: string | null;
+                productCode: string | null;
+                product: string | null;
+                ledgerCode: string | null;
+                ledger: string | null;
+                ccy: string | null;
+                ccyCode: null;
+                ccyName: string | null;
+                lastMovementDate: string | null;
+                availableBalance: number | null;
+                clearedBalance: number | null;
+                bookBalance: number | null
+            }[]
 
 
 
-                | Record<string, any>[],
+            | Record<string, any>[],
             code: string
         } = {
             status: 0,
@@ -436,6 +436,67 @@ const authRequest = {
             });
 
     },
+    // get transaction history
+    getUserHistory: async (AccountNo: string,
+        fromDate: string,
+        toDate: string,
+        page: number,
+        size: number,
+    sort: string) => {
+        let res: {
+            status: number;
+            data: {
+                content: {
+                    id: number,
+                    channel: string,
+                    postDate: string,
+                    narrative: string,
+                    reference: string,
+                    valueDate: string,
+                    ccy: string,
+                    ccyName: string | null,
+                    amount: number,
+                    balanceCF: number,
+                    status: string |null ,
+                    ownNarrative: string | null,
+                    category: string | null,
+                    subCategory: string | null,
+                    tags: string | null 
+                }[]
+            } | Record<string, any>[]
+            code: string
+        } = {
+            status: 0,
+            data: [{}],
+            code: ""
+        };
+        return await axios
+            .get(
+                "http://api.issl.ng:7777/ibank/api/v1/getAccountTransactionsPaged?accountno=1000021&fromdate=19500201&todate=20220831&page=0&size=2&sort=descending",
+                {
+                    params: {
+                        AccountNo: AccountNo,
+                        fromDate: fromDate,
+                        toDate: toDate,
+                        page: 0,
+                        size: 2,
+                        sort: "descending"
+                    },
+                    method: "GET",
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = {...response.data};
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+    }
 
 
 }
@@ -447,8 +508,11 @@ export default authRequest
 // async function myfunc() {
 //     console.log(await authRequest.getUserFull("6758"));
 // }
+async function myfunc() {
+    console.log(await authRequest.getUserHistory("1000021","19500201","20220831", 0,3,"descending"));
+}
 
-// myfunc()
+myfunc()
 
 
 
