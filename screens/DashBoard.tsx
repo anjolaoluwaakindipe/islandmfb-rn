@@ -6,7 +6,7 @@ import {
     Platform,
     Button,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout";
 import tw from "twrnc";
 import AppText from "../components/shared/Apptext";
@@ -24,6 +24,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
+import Notifications from "../components/dashboard/Notifications";
 import { useSelector } from "react-redux";
 import { authSelector } from "../state/authSlice";
 
@@ -33,7 +34,22 @@ import { authSelector } from "../state/authSlice";
 
 type DashBoardProps = NativeStackScreenProps<RootStackParamList, "DashBoard">
 
-
+type TransActs = {
+    id: number,
+    channel: string,
+    postDate: string,
+    narrative: string,
+    reference: string,
+    valueDate: string,
+    ccy: string,
+    ccyName: string | null,
+    amount: number,
+    status: string | null,
+    ownNarrative: string | null,
+    category: string | null,
+    subCategory: string | null,
+    tags: string | null
+}
 const DashBoard = ({ navigation }: DashBoardProps) => {
     const { user } = useSelector(authSelector)
 
@@ -49,9 +65,30 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
     const navigatetoBillsPage = () => {
         navigation.navigate("BillPayment")
     }
+    const navigateToViewAll = () => {
+        navigation.navigate("ViewAllScreen")
+    }
+
 
     let fName = (user?.name)?.split(/\s+/)
 
+
+    const [transActs, setTransActs] = useState<TransActs[]>([])
+
+    const getTrans = async () => {
+
+        const AccNo = user.accountNo
+
+
+        const response = await fetch("http://api.issl.ng:7777/ibank/api/v1/getAccountRecentTxns?AccountNo=" + AccNo, { method: "GET", })
+            .then(res => res.json()) as TransActs[]
+
+        setTransActs(response)
+    }
+
+    useEffect(() => {
+        getTrans()
+    }, [])
 
 
 
@@ -226,6 +263,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
                         <PressAppText
                             style={tw`text-green-500`}
+                            onPress={navigateToViewAll}
                         >
                             view all
                         </PressAppText>
@@ -241,29 +279,22 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                     />
 
 
+                    {transActs.map((transAct) => (
+                        <View
+                            key={transAct.id}
+                        >
+                            <TransHistory
+                                amount={transAct.amount}
+                                date={transAct.postDate}
+                                details={transAct.narrative}
+                                name={user.name}
+                            />
+                        </View>
+
+                    ))}
 
 
-                    <TransHistory
-                        amount="N 500000002"
-                        date="Tuesday,12th july,2021 "
-                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
-                        name="Akinjoke Gboluga"
-                    />
 
-
-                    <TransHistory
-                        amount="N 500000002"
-                        date="Tuesday,12th july,2021 "
-                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
-                        name="Akinjoke Gboluga"
-                    />
-
-                    <TransHistory
-                        amount="N 500000002"
-                        date="Tuesday,12th july,2021 "
-                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
-                        name="Akinjoke Gboluga"
-                    />
 
 
 

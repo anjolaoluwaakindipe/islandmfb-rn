@@ -65,10 +65,7 @@ function CustomDrawer(props: any) {
 
                 </View>
             </View>
-
-
             <View
-            
             >
                 <DrawerItemList {...props} />
             </View>

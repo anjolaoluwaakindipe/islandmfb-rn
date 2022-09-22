@@ -87,7 +87,6 @@ const authRequest = {
         _enabled: boolean,
         password: string,
         type: string,
-
         temporary: boolean,
         customer_no: number,
 
@@ -135,7 +134,6 @@ const authRequest = {
                 body, //define later
                 {
                     headers: {
-
                     },
                     method: "POST"
                 }
@@ -217,6 +215,53 @@ const authRequest = {
     },
 
 
+    logOutUser: async (
+        refresh_token: { refresh_token: string, }
+
+    ) => {
+        let logOut = {
+            client_id: "newclient1",
+            refresh_token: refresh_token,
+        }
+        let res: { status: number; data: any, code: string } = {
+            status: 0,
+            data: {},
+            code: ""
+        };
+
+
+        const body = xformurlencoder(logOut)
+        return await axios
+            .post(
+                BASE_URL +
+                "/auth/realms/" +
+                REALM +
+                "/protocol/openid-refresh/token",
+                body,
+                {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    method: "POST"
+
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+
+    },
+
+
 
     // get user details from keycloak 
 
@@ -289,9 +334,10 @@ const authRequest = {
     ) => {
 
         // response data format
-        let res: { status: number; data:
-         
-               {
+        let res: {
+            status: number; data:
+
+            {
                 primaryAccountNo: {
                     _type: string,
                     _number: string
@@ -305,7 +351,7 @@ const authRequest = {
                         _type: string,
                         _number: string
                     },
-                ]|null;
+                ] | null;
 
                 customerNo: string | null;
                 customerName: string | null;
@@ -322,11 +368,12 @@ const authRequest = {
                 clearedBalance: number | null;
                 bookBalance: number | null
             }[]
-        
-            
 
-        | Record<string, any>[], 
-        code: string } = {
+
+
+            | Record<string, any>[],
+            code: string
+        } = {
             status: 0,
             data: [{}],
             code: ""
@@ -389,6 +436,67 @@ const authRequest = {
             });
 
     },
+    // get transaction history
+    getUserHistory: async (AccountNo: string,
+        fromDate: string,
+        toDate: string,
+        page: number,
+        size: number,
+    sort: string) => {
+        let res: {
+            status: number;
+            data: {
+                content: {
+                    id: number,
+                    channel: string,
+                    postDate: string,
+                    narrative: string,
+                    reference: string,
+                    valueDate: string,
+                    ccy: string,
+                    ccyName: string | null,
+                    amount: number,
+                    balanceCF: number,
+                    status: string |null ,
+                    ownNarrative: string | null,
+                    category: string | null,
+                    subCategory: string | null,
+                    tags: string | null 
+                }[]
+            } | Record<string, any>[]
+            code: string
+        } = {
+            status: 0,
+            data: [{}],
+            code: ""
+        };
+        return await axios
+            .get(
+                "http://api.issl.ng:7777/ibank/api/v1/getAccountTransactionsPaged?accountno=1000021&fromdate=19500201&todate=20220831&page=0&size=2&sort=descending",
+                {
+                    params: {
+                        AccountNo: AccountNo,
+                        fromDate: fromDate,
+                        toDate: toDate,
+                        page: 0,
+                        size: 2,
+                        sort: "descending"
+                    },
+                    method: "GET",
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = {...response.data};
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+    }
 
 
 }
@@ -397,13 +505,14 @@ const authRequest = {
 export default authRequest
 
 
-
 // async function myfunc() {
 //     console.log(await authRequest.getUserFull("6758"));
-   
 // }
+async function myfunc() {
+    console.log(await authRequest.getUserFull("6758"));
+}
 
-// myfunc()
+myfunc()
 
 
 

@@ -22,7 +22,8 @@ export type RootStackParamList = {
     LoanRepaymentDet: undefined;
     LoanProducts: undefined;
     LoanApplication: undefined;
-
+    Notifications: undefined;
+    ViewAllScreen: undefined;
 
 
     SelfService: undefined;

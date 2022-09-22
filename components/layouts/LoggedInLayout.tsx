@@ -12,13 +12,18 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "twrnc";
-import {AntDesign} from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons';
+import Notifications from "../../components/dashboard/Notifications";
 type LoggedInLayoutProp = {
     children: React.ReactNode;
 };
 
 const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
     const navigation = useNavigation();
+
+    const navigateToNotifications = () => {
+        navigation.navigate("Notifications")
+    }
 
     return (
         <TouchableWithoutFeedback
@@ -41,7 +46,7 @@ const LoggedInLayout = ({ children }: LoggedInLayoutProp) => {
                     />
                 </Pressable>
 
-                <Pressable onPress={() => navigation.toggleDrawer()} style={tw.style("", )}>
+                <Pressable onPress={navigateToNotifications} style={tw.style("", )}>
                     <AntDesign
                         name="bells"
                         size={20}

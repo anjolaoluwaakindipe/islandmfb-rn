@@ -83,6 +83,8 @@ import {
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
 import TransferScreen from './screens/TransferScreen';
+import Notifications from './components/dashboard/Notifications';
+import ViewAllScreen from './components/dashboard/ViewAllScreen';
 
 
 
@@ -319,6 +321,14 @@ function App() {
                     <Stack.Screen
                         name="DashBoard"
                         component={ProfileDrawer}
+                    />
+                    <Stack.Screen
+                        name="Notifications"
+                        component={Notifications}
+                    />
+                    <Stack.Screen
+                        name="ViewAllScreen"
+                        component={ViewAllScreen}
                     />
 
                     <Stack.Screen
