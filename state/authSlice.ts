@@ -10,14 +10,14 @@ const initialState: AuthState = {
     refreshToken: "",
 
     user: {
-accountNo:"",
-product:"",
+        accountNo: "",
+        product: "",
         name: "",
-        currency:"",
+        currency: "",
 
         customerNo: "",
         availableBalance: 0,
-        bookBalance:0,
+        bookBalance: 0,
 
     },
     errorMessage: "",
@@ -52,6 +52,7 @@ export const loginUser = createAsyncThunk(
 
                 //use access token to get user info 
                 // const token = await SecureStorage.getInst().getValueFor("access_token")
+                
                 const userResponse = await authRequest.getUserKeyCloak(tokenResponse.data.access_token)
                 console.log(userResponse.status)
 
@@ -66,7 +67,7 @@ export const loginUser = createAsyncThunk(
 
                         return {
                             allUserInformation: userInfo,
-product:userInfoFullAppResponse.data[0].product ,
+                            product: userInfoFullAppResponse.data[0].product,
                             name: userInfoFullAppResponse.data[0].customerName,
                             accountNo: userInfoFullAppResponse.data[0].primaryAccountNo["_number"],
                             accesToken: tokenResponse.data.access_token,
@@ -129,10 +130,10 @@ const UserInformation = (
 
     state.user.name = allUserInformation[0].customerName;
     state.user.accountNo = allUserInformation[0].primaryAccountNo["_number"];
-state.user.product = allUserInformation[0].product;
-state.user.availableBalance = allUserInformation[0].availableBalance;
-state.user.currency= allUserInformation[0].ccy;
-state.user.bookBalance = allUserInformation[0].bookBalance;
+    state.user.product = allUserInformation[0].product;
+    state.user.availableBalance = allUserInformation[0].availableBalance;
+    state.user.currency = allUserInformation[0].ccy;
+    state.user.bookBalance = allUserInformation[0].bookBalance;
     return state;
 };
 

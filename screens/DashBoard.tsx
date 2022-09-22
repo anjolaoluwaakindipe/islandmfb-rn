@@ -82,6 +82,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
                         <PressAppText
                             style={tw`text-green-500`}
+                            
                         >
                             Change Account
                         </PressAppText>
