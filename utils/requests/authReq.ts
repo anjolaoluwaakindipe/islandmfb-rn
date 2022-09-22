@@ -505,14 +505,12 @@ const authRequest = {
 export default authRequest
 
 
+
 // async function myfunc() {
 //     console.log(await authRequest.getUserFull("6758"));
 // }
-async function myfunc() {
-    console.log(await authRequest.getUserFull("6758"));
-}
 
-myfunc()
+// myfunc()
 
 
 

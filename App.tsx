@@ -83,8 +83,8 @@ import {
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
 import TransferScreen from './screens/TransferScreen';
-import Notifications from './components/dashboard/Notifications';
-import ViewAllScreen from './components/dashboard/ViewAllScreen';
+import Notifications from './screens/DashBoard/Notifications';
+import ViewAllScreen from './screens/DashBoard/ViewAllScreen';
 
 
 

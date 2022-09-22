@@ -1,7 +1,7 @@
 import { View } from "react-native";
-import AppText from "../shared/Apptext";
+import AppText from "../../components/shared/Apptext";
 import apptw from "../../utils/lib/tailwind";
-import BasicBackButtonLayout from "../layouts/BasicBackButtonLayout";
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout";
 
 
 const Notifications = () => {

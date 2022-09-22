@@ -24,7 +24,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import TransHistory from "../components/dashboard/TransHistory";
-import Notifications from "../components/dashboard/Notifications";
+import Notifications from "./DashBoard/Notifications";
 import { useSelector } from "react-redux";
 import { authSelector } from "../state/authSlice";
 
@@ -91,7 +91,6 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
     }, [])
 
 
-
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -135,7 +134,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
                         >
                             {user.product + ":" + " "}
                             <AppText
-                                style={apptw`font-bold`}>
+                                style={apptw``} fontFamily={"poppins-semibdI"}>
                                 {user.accountNo}
                             </AppText>
                         </AppText>
@@ -271,13 +270,7 @@ const DashBoard = ({ navigation }: DashBoardProps) => {
 
 
 
-                    <TransHistory
-                        amount="N 500000002"
-                        date="Tuesday,12th july,2021 "
-                        details="TRF/FRM Akinloluwa Adeleye Gbenga "
-                        name="Akinjoke Gboluga"
-                    />
-
+                   
 
                     {transActs.map((transAct) => (
                         <View

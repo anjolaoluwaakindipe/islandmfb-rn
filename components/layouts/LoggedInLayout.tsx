@@ -13,7 +13,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import tw from "twrnc";
 import { AntDesign } from '@expo/vector-icons';
-import Notifications from "../../components/dashboard/Notifications";
+import Notifications from "../../screens/DashBoard/Notifications";
 type LoggedInLayoutProp = {
     children: React.ReactNode;
 };

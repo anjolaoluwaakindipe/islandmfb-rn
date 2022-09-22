@@ -1,9 +1,9 @@
 import React from "react";
 import {  View } from "react-native";
 import apptw from "../../utils/lib/tailwind";
-import AppText from '../shared/Apptext';
-import BasicBackButtonLayout from "../layouts/BasicBackButtonLayout";
-import TransHistory from "./TransHistory";
+import AppText from '../../components/shared/Apptext';
+import BasicBackButtonLayout from "../../components/layouts/BasicBackButtonLayout"
+import TransHistory from "../../components/dashboard/TransHistory";
 
 const ViewAllScreen = () => {
  return (
