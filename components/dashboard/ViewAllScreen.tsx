@@ -9,7 +9,7 @@ const ViewAllScreen = () => {
  return (
   <BasicBackButtonLayout>
    <View>
-    <AppText style={apptw`left-32 bottom-10`}>Transaction History</AppText>
+       <AppText style={apptw`left-28 bottom-10 text-2xl`}>Transaction History</AppText>
    </View>
    <View style={apptw`mx-5`}>
     <TransHistory amount="N 500000002"

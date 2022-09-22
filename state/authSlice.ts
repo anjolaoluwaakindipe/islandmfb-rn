@@ -10,14 +10,14 @@ const initialState: AuthState = {
     refreshToken: "",
 
     user: {
-accountNo:"",
-product:"",
+        accountNo: "",
+        product: "",
         name: "",
-        currency:"",
+        currency: "",
 
         customerNo: "",
         availableBalance: 0,
-        bookBalance:0,
+        bookBalance: 0,
 
     },
     errorMessage: "",
@@ -46,10 +46,10 @@ export const loginUser = createAsyncThunk(
             if (tokenResponse.status === 200) {
                 await Promise.all(
                     [SecureStorage.getInst().save("access_token", tokenResponse.data.access_token),
-                        SecureStorage.getInst().save("refresh_token", tokenResponse.data.refresh_token),
+                    SecureStorage.getInst().save("refresh_token", tokenResponse.data.refresh_token),
                     SecureStorage.getInst()]
-                    
-                    
+
+
                 )
                 console.log("connect successful ")
 
@@ -69,7 +69,7 @@ export const loginUser = createAsyncThunk(
 
                         return {
                             allUserInformation: userInfo,
-product:userInfoFullAppResponse.data[0].product ,
+                            product: userInfoFullAppResponse.data[0].product,
                             name: userInfoFullAppResponse.data[0].customerName,
                             accountNo: userInfoFullAppResponse.data[0].primaryAccountNo["_number"],
                             accesToken: tokenResponse.data.access_token,
@@ -124,6 +124,8 @@ product:userInfoFullAppResponse.data[0].product ,
 );
 
 
+
+
 const UserInformation = (
 
     state: AuthState,
@@ -132,10 +134,10 @@ const UserInformation = (
 
     state.user.name = allUserInformation[0].customerName;
     state.user.accountNo = allUserInformation[0].primaryAccountNo["_number"];
-state.user.product = allUserInformation[0].product;
-state.user.availableBalance = allUserInformation[0].availableBalance;
-state.user.currency= allUserInformation[0].ccy;
-state.user.bookBalance = allUserInformation[0].bookBalance;
+    state.user.product = allUserInformation[0].product;
+    state.user.availableBalance = allUserInformation[0].availableBalance;
+    state.user.currency = allUserInformation[0].ccy;
+    state.user.bookBalance = allUserInformation[0].bookBalance;
     return state;
 };
 

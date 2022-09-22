@@ -10,9 +10,9 @@ import AppText from '../shared/Apptext'
 
 type TransHistoryProp = {
     date: string;
-    amount: string;
+    amount: string | any;
     details: string;
-    name: string
+    name: string | null
 
 }
 

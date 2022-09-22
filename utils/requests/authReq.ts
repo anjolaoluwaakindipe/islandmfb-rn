@@ -509,7 +509,7 @@ export default authRequest
 //     console.log(await authRequest.getUserFull("6758"));
 // }
 async function myfunc() {
-    console.log(await authRequest.getUserHistory("1000021","19500201","20220831", 0,3,"descending"));
+    console.log(await authRequest.getUserFull("6758"));
 }
 
 myfunc()

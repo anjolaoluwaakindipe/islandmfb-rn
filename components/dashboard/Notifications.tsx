@@ -8,7 +8,7 @@ const Notifications = () => {
  return (
   <BasicBackButtonLayout>
    <View >
-    <AppText style={apptw`left-32 bottom-10`}>Notifications</AppText>
+    <AppText style={apptw`left-32 bottom-10 text-2xl`}>Notifications</AppText>
    </View>
    <View style={apptw`mx-5`}>
     <AppText>You have no new notifications.</AppText>
