@@ -10,5 +10,11 @@ npm-debug.*
 *.orig.*
 web-build/
 
+yarn.lock
+
 # macOS
 .DS_Store
+
+
+#environment variables
+envvar.ts
