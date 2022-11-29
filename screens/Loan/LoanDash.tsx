@@ -11,12 +11,17 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../allroutes"
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useSelector } from "react-redux";
+import { authSelector } from "../../state/authSlice";
 
 type LoanDashProps =NativeStackScreenProps<RootStackParamList,"LoanDash">
 
 
 const LoanDash = ({navigation}: LoanDashProps) => {
 
+    const { user } = useSelector(authSelector)
+
+    let fName = (user?.name)?.split(/\s+/)
 
 const navigatetoLoanTransactions=()=>{
     navigation.navigate("LoanTransaction")
@@ -50,7 +55,7 @@ const navigatetoLoanProducts=()=>{
                     <AppText
                         style={tw``}
                     >
-                        HI USERR
+                        HI {fName?.[0]}
                     </AppText>
 
 

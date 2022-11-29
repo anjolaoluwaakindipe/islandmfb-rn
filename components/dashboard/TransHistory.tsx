@@ -1,26 +1,20 @@
 import React from "react";
-import { GestureResponderEvent, Pressable, View } from "react-native";
+import { View } from "react-native";
 import tw from "twrnc";
-import { Style } from "twrnc/dist/esm/types";
 import apptw from "../../utils/lib/tailwind";
-import AppText from '../shared/Apptext'
-
-
+import AppText from '../shared/Apptext';
 
 
 type TransHistoryProp = {
-    date: string;
+    date: string | any;
     amount: string | any;
     details: string;
     name: string | null
-
 }
 
 
 
 const TransHistory = (props: TransHistoryProp) => {
-
-
     return (
         <View
             style={apptw`bg-textField px-2 py-1 mt-2 mb-5`}
@@ -46,10 +40,6 @@ const TransHistory = (props: TransHistoryProp) => {
                     {props.amount}
                 </AppText>
             </View>
-
-
-
-
 
             <AppText
                 style={tw`text-[3]`}

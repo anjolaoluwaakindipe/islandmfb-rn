@@ -20,14 +20,12 @@ const LetsGetStartedScreen = ({ navigation }: LetsGetStartedScreen) => {
     const navigateToSetProfile = () =>{
         navigation.navigate("SetProfile");
     }
-    const navigateToCreateYourAccount = () => {
-        navigation.navigate("CreateYourAccount")
+    const navigateToCAccLandingPage = () => {
+        navigation.navigate("CAccLandingPage")
     }
     return (
         <BasicBackButtonLayout>
-
             <View style={tw`flex-1 justify-center items-center px-6`}>
-                
                 <LetsGetStarted style={tw``} />
 
                 <AppText style={tw`text-3xl mt-10`}>Let’s get started</AppText>
@@ -40,7 +38,7 @@ const LetsGetStartedScreen = ({ navigation }: LetsGetStartedScreen) => {
                 </AppText>
 
                 <AppButton text="Set Up Profile" buttonStyle={tw`mt-10`} onPress={navigateToSetProfile} />
-                <PressAppText style={tw`text-base mt-2`} onPress={navigateToCreateYourAccount}>Create an account </PressAppText>
+                <PressAppText style={tw`text-base mt-2`} onPress={navigateToCAccLandingPage}>Create an account </PressAppText>
             </View>
         </BasicBackButtonLayout>
     );

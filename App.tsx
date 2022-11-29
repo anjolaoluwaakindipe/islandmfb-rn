@@ -60,6 +60,7 @@ import PaymentPage from './screens/BillPayment/PaymentPage';
 import { store } from './state/store';
 import {Provider} from "react-redux"
 import CustomDrawer from './CustomDrawer';
+import LowerDrawer from './LowerDrawer';
 
 import {
     useFonts,
@@ -82,9 +83,14 @@ import {
     Poppins_900Black,
     Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
-import TransferScreen from './screens/TransferScreen';
+import TransferType from './screens/Transfer/TransferType';
+import TransferScreen from './screens/Transfer/TransferScreen';
 import Notifications from './components/dashboard/Notifications';
 import ViewAllScreen from './components/dashboard/ViewAllScreen';
+import CAccLandingPage from './screens/CAccLandingPage';
+import AccountTypeCategory from "./screens/AccountTypeCategory";
+import AccountServices from "./screens/AccountServices"
+import ChooseBeneficiary from './screens/Transfer/ChooseBeneficiary';
 
 
 
@@ -155,8 +161,8 @@ function ProfileDrawer() {
                 />
 
                 <Drawer.Screen
-                    name="Transfer"
-                    component={TransferScreen}
+                    name="TransferType"
+                    component={TransferType}
                     options={{
                         headerShown: false,
                         drawerIcon: () =>
@@ -288,6 +294,10 @@ function App() {
                         component={SetProfileScreen}
                     />
                     <Stack.Screen
+                        name="CAccLandingPage"
+                        component={CAccLandingPage}
+                    />
+                    <Stack.Screen
                         name="CreateYourAccount"
                         component={CreateYourAccount}
                     />
@@ -298,6 +308,14 @@ function App() {
                     <Stack.Screen
                         name="AccountTypeSetup"
                         component={AccountTypeSetup}
+                    />
+                    <Stack.Screen
+                        name="AccountTypeCategory"
+                        component={AccountTypeCategory}
+                    />
+                    <Stack.Screen
+                            name="AccountServices"
+                            component={AccountServices}
                     />
                     <Stack.Screen
                         name="ForgotPassword"
@@ -368,8 +386,16 @@ function App() {
 
 
                     <Stack.Screen
+                        name="TransferType"
+                        component={TransferType}
+                    />
+                    <Stack.Screen
                         name="Transfer"
                         component={TransferScreen}
+                    />
+                    <Stack.Screen
+                        name="ChooseBeneficiary"
+                        component={ChooseBeneficiary}
                     />
                     <Stack.Screen
                         name="LoanDash"

@@ -11,10 +11,8 @@ type AppButtonWIconProp = {
     text?: string;
     buttonStyle?: Style;
     textStyle?:Style;
-
     icon?:any;
     iconL?:any;
-   
     iconR?: any;
     onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
 };

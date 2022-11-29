@@ -4,8 +4,6 @@ import AppButton from "../../components/shared/AppButton"
 import AppText from "../../components/shared/Apptext"
 import AppTextField from "../../components/shared/AppTextField"
 import apptw from "../../utils/lib/tailwind"
-
-
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../allroutes"
 

@@ -33,9 +33,6 @@ const CableTv = ({ navigation }: CableTvProps) => {
   const navigateToPaymentPage = () => {
     navigation.navigate("PaymentPage")
   }
-  const handleScroll = (event: Object) => {
-    console.log(event.nativeEvent.contentOffset.y)
-  }
   return (
     <BasicBackButtonLayout>
       <View>
@@ -44,7 +41,7 @@ const CableTv = ({ navigation }: CableTvProps) => {
         </AppText>
       </View>
       <SafeAreaView >
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.content} onScroll={handleScroll} >
+        <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}  >
           <DropdownField title="Biller" data={cableBiller} />
           <DropdownField title="Product" data={cableProduct} />
           <AppText style={apptw`text-base`} fontFamily="poppins-semibd">Amount</AppText>

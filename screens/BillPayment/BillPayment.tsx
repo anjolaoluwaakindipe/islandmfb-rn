@@ -17,6 +17,9 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
     const navigateToBillPayment = () => {
         navigation.navigate("BillPayment")
     }
+    const navigateToAirtime = () => {
+        navigation.navigate("Airtime")
+    }
     const navigateToCableTv = () => {
         navigation.navigate("CableTv")
     }
@@ -39,6 +42,20 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
                     </AppText>
                 </View>
                 <View style={apptw`mx-5`}>
+                    {/* Airtime */}
+                    <AppButtonWIcon text="          Airtime"
+                        buttonStyle={apptw`my-4`}
+                        onPress={navigateToAirtime}
+                        iconL={
+                            <MaterialIcons name="smartphone" color="#BC4B52" size={26} />
+                        }
+                        iconR={
+                            <MaterialIcons
+                                name="keyboard-arrow-right"
+                                color="black"
+                                size={24}
+                            />
+                        } />
                     {/* Cable Tv */}
                     <AppButtonWIcon text="          Cable TV"
                         buttonStyle={apptw`my-4`}
@@ -89,9 +106,6 @@ const BillPaymentScreen = ({ navigation }: BillPaymentScreen) => {
                                 size={24}
                             />
                         } />
-
-
-
                     {/* Insurance */}
                     <AppButtonWIcon text="         Insurance"
                         buttonStyle={apptw`my-5`}

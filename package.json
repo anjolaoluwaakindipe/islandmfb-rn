@@ -10,9 +10,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@expo-google-fonts/poppins": "^0.2.2",
+    "@expo/ngrok": "^2.5.0",
     "@expo/vector-icons": "^13.0.0",
     "@hookform/resolvers": "^2.9.7",
+    "@mui/material": "^5.10.8",
+    "@react-native-community/checkbox": "^0.5.12",
     "@react-native-community/datetimepicker": "6.1.2",
     "@react-navigation/drawer": "^6.4.4",
     "@react-navigation/native": "^6.0.11",

@@ -1,6 +1,5 @@
 import { View, Text } from "react-native";
 import React from "react";
-
 import { Style } from "twrnc/dist/esm/types";
 import tw from "twrnc";
 

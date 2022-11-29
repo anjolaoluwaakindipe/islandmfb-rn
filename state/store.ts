@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import authReducer from './authSlice'
+import airtimeReducer from "./airtimeSlice";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
         },
         authReducer
     ),
+    airtime:airtimeReducer
 })
 
 

@@ -6,8 +6,6 @@ export class SecureStorage {
 
     private static instance: SecureStorage;
 
-
-
     private constructor() { }
 
     public static getInst(): SecureStorage {

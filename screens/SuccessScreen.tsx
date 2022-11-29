@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
     Dimensions,
     KeyboardAvoidingView,
@@ -18,7 +18,6 @@ import EmptyLayout from "../components/layouts/EmptyLayout";
 import AppButton from "../components/shared/AppButton";
 import AppText from "../components/shared/Apptext";
 import { RootStackParamList } from "./allroutes";
-import { useRef } from "react";
 import Explosion from "react-native-confetti-cannon";
 
 type SuccessScreenProps = NativeStackScreenProps<RootStackParamList, "Success">;

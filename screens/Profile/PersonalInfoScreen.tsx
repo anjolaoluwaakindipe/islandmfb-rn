@@ -44,8 +44,9 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
     const onSubmit = handleSubmit((data) => {
         navigation.navigate("Verification");
     });
-
-
+    const navigateToAccType = () => {
+        navigation.navigate("AccountTypeSetup")
+    }
     return (
         <KeyboardAvoidingView
             style={tw` flex-1`}
@@ -107,23 +108,12 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                                 data={genderOptions}
                                 errorMessage={errors.gender?.message}
                             />
-
-
-
                             <DateInputFiled
-
                                 validationName="dob"
                                 control={control}
                                 errorMessage={errors.dob?.message}
                                 title="Date of Birth"
-
                             />
-
-
-
-
-
-
                         </View>
                     </View>
 
@@ -132,7 +122,7 @@ const PersonalInfoScreen = ({ navigation }: PersonalInfoProps) => {
                         <AppButton
                             text="Continue"
                             buttonStyle={tw`my-10`}
-
+                            onPress={navigateToAccType}
                         />
                     </View>
                 </ScrollView>

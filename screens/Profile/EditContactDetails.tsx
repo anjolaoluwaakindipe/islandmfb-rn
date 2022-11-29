@@ -37,7 +37,6 @@ const EditContactDetails = () => {
             >
                 <AppTextField
                     title="Street Number"
-                   
                 />
 
                 <AppTextField

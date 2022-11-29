@@ -37,12 +37,6 @@ const CreateYourAccount = ({navigation}: CreateYourAccountProps) => {
         navigation.navigate("Verification");
     });
 
-   
-
-   
-
-
-
 
 
     return (
@@ -68,7 +62,7 @@ const CreateYourAccount = ({navigation}: CreateYourAccountProps) => {
                             style={tw`text-lg mt-1 text-center`}
                             fontFamily="poppins-light"
                         >
-                            Create an account by provideing the details needed
+                            Create an account by providing the details needed
                             below
                         </AppText>
 

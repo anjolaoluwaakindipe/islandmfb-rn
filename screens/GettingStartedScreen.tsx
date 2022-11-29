@@ -1,6 +1,4 @@
-
 import { View, Text, StyleSheet, Image, Button, Linking } from "react-native";
-
 import React from "react";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -56,7 +54,7 @@ const GettingStartedScreen = ({
                         </AppText>
 
                         <PressAppText
-                            style={tw`text-green-500 text-center left-[30]  bottom-[8]`}
+                            style={tw`text-green-500 text-center left-[20]  bottom-[6]`}
                             onPress={navigatetoLogin}
                         >
                             Login

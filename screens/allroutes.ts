@@ -7,7 +7,9 @@ export type RootStackParamList = {
     CreateYourAccount: undefined;
     PersonalInfo: undefined;
     AccountTypeSetup: undefined;
+    TransferType: undefined;
     Transfer: undefined;
+    ChooseBeneficiary: undefined;
     DashBoard: undefined;
     Profile: undefined;
     EditPersonalInfo: undefined;
@@ -24,8 +26,6 @@ export type RootStackParamList = {
     LoanApplication: undefined;
     Notifications: undefined;
     ViewAllScreen: undefined;
-
-
     SelfService: undefined;
     LinkBvn: undefined;
     StatementofAccount: undefined;
@@ -40,6 +40,9 @@ export type RootStackParamList = {
     Utility: undefined;
     Insurance: undefined;
     PaymentPage: undefined;
+    CAccLandingPage: undefined;
+    AccountTypeCategory: undefined;
+    AccountServices: undefined;
 
 
 

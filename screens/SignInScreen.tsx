@@ -11,7 +11,6 @@ import AppTextField from "../components/shared/AppTextField";
 import { primCol } from "../utils/lib/colors";
 import apptw from "../utils/lib/tailwind";
 import Companylogo1 from "../assets/svg/companylogo1.svg";
-
 import {
   loginwithEmailFormType,
   loginwithEmailSchema
@@ -22,7 +21,6 @@ import { loginUser, authSelector } from "../state/authSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch } from "../state/store"
 import * as SecureStore from 'expo-secure-store';
-
 import { SecureStorage } from "../services/Singleton/secureStorage"
 import PressAppText from "../components/shared/PressAppText";
 
@@ -31,11 +29,6 @@ type SignInScreen = NativeStackScreenProps<
   RootStackParamList,
   "SignIn"
 >;
-
-
-
-
-
 
 const SignInScreen = ({ navigation }: SignInScreen) => {
   const { isError, isLoading, isSuccess, loginErrorMessage } = useSelector(authSelector);
@@ -168,7 +161,7 @@ const SignInScreen = ({ navigation }: SignInScreen) => {
 
                 <PressAppText
                   onPress={navigateToLetsGetStartedScr}
-                  style={apptw`text-green-500 top-[2]  `}>
+                  style={apptw`text-green-500 top-[1]  `}>
                   Get Started
                 </PressAppText>
 

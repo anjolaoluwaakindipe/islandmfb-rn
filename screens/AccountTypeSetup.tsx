@@ -2,7 +2,6 @@ import { View, Text, Pressable, ScrollView, KeyboardAvoidingView, Platform, Butt
 import React, { useState } from "react";
 import tw from "twrnc";
 import AppText from "../components/shared/Apptext";
-import AppButton from "../components/shared/AppButton";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./allroutes";
@@ -30,6 +29,9 @@ const AccountTypeSetup = ({ navigation }: AccountTypeSetupProps) => {
     const onSubmit = handleSubmit((data) => {
         navigation.navigate("Verification");
     });
+    const navigateToAccCategory = () => {
+        navigation.navigate("AccountTypeCategory")
+    }
 
 
     return (
@@ -57,43 +59,120 @@ const AccountTypeSetup = ({ navigation }: AccountTypeSetupProps) => {
                         </AppText>
 
                         {/* options */}
-                        <View style={tw`mt-10 `}>
+                        <View style={tw`mt-2 `}>
 
 
-
-                            <View style= {tw.style(`mt-10`)}>
+{/* Savings Account */}
+                            <View style={tw.style(`mt-10`)}>
 
                                 <AppButtonWIcon
-                                    text="Savings Account"
+                                    iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="         Savings Account"
+                                    onPress={navigateToAccCategory}
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
                                 />
 
                             </View>
 
 
-                            
-                            <View style= {tw.style(`mt-10`)}>
+{/* Current Account */}
+                            <View style={tw.style(`mt-10`)}>
 
                                 <AppButtonWIcon
-                                    text="Current Account"
+                                    iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="        Current Account"
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
                                 />
-
                             </View>
+{/* Esusu */}
+                            <View style={tw.style(`mt-10`)}>
 
+                                <AppButtonWIcon
+                                    iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="        Esusu"
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
+                                />
+                            </View>
+{/* Terms Loan */}
+                            <View style={tw.style(`mt-10`)}>
 
+                                <AppButtonWIcon
+                                iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="       Terms Loan"
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
+                                />
+                            </View>
+{/* Staff Loan */}
+                            <View style={tw.style(`mt-10`)}>
 
+                                <AppButtonWIcon
+                                iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="       Staff Loan"
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
+                                />
+                            </View>
+{/* Mortgage Loan */}
+                            <View style={tw.style(`mt-10`)}>
 
+                                <AppButtonWIcon
+                                iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="       Mortgage Loan"
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
+                                />
+                            </View>
+{/* Call Deposit */}
+                            <View style={tw.style(`mt-10`)}>
 
-
-
-
-
-
-
+                                <AppButtonWIcon
+                                    iconL={<MaterialIcons name="account-balance" color="#BC4B52" size={24} />}
+                                    text="       Call Deposit"
+                                    iconR={
+                                        <MaterialIcons
+                                            name="keyboard-arrow-right"
+                                            color="black"
+                                            size={24}
+                                        />
+                                    }
+                                />
+                            </View>
                         </View>
                     </View>
-
-
-
 
                 </ScrollView>
             </BasicBackButtonLayout>

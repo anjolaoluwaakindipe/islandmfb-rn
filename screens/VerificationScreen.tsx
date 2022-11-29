@@ -48,6 +48,9 @@ const VerificationScreen = ({ navigation }: VerificationScreenProps) => {
             nextPageParams: undefined,
         });
     });
+    const navigateToPersonalInfo = () => {
+        navigation.navigate("PersonalInfo")
+    };
 
     return (
         <KeyboardAvoidingView
@@ -99,7 +102,7 @@ const VerificationScreen = ({ navigation }: VerificationScreenProps) => {
                         <AppButton
                             text="Continue"
                             buttonStyle={tw`my-10`}
-                            onPress={onSubmit}
+                            onPress={navigateToPersonalInfo}
                         />
                     </View>
                 </ScrollView>

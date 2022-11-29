@@ -1,7 +1,9 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
+import { setAuthStateTokens } from "../../state/authSlice";
 
 import {
     BASE_URL,
+    ISSL_BASE_URL,
     REALM,
     CUS_CLIENT_ID,
     CLIENT_SECRET,
@@ -27,9 +29,10 @@ const xformurlencoder = (bodyFields: Record<string, any>): string => {
 
 const authRequest = {
 
+
     getAdminToken: async () => {
 
-        //required information to genereate access token
+        //required information to generate access token
         const adminTokenInfo = {
             client_secret: CLIENT_SECRET,
             client_id: ADMIN_CLIENT_ID,
@@ -85,15 +88,16 @@ const authRequest = {
         lastName: string,
         username: string,
         _enabled: boolean,
+        // credentials: [{
+        //     type: string,
+        //     value: any,
+        //     temporary:boolean
+        // }],
         password: string,
-        type: string,
-        temporary: boolean,
+        // type: string,
+        // temporary: boolean,
         customer_no: number,
-
-
     ) => {
-
-
         let createInfo = {
             email: email,
             emailVerfied: true,
@@ -115,10 +119,11 @@ const authRequest = {
         }
         // convert login information to urlencoded form
         const body = xformurlencoder(createInfo);
+        
 
         let res: {
             status: number;
-            data: any;
+            data: { access_token: string, refresh_token: string } | Record<string, any>;
             code: string
         } = {
             status: 0,
@@ -134,6 +139,8 @@ const authRequest = {
                 body, //define later
                 {
                     headers: {
+                        "Authorization": `Bearer ` ,
+                        "Content-Type": "application/json"
                     },
                     method: "POST"
                 }
@@ -163,8 +170,6 @@ const authRequest = {
         password: string
 
     ) => {
-
-
         //information needed to login
 
         let loginInfo = {
@@ -216,11 +221,11 @@ const authRequest = {
 
 
     logOutUser: async (
+        // await fetch(setAuthStateTokens)
         refresh_token: { refresh_token: string, }
 
     ) => {
         let logOut = {
-            client_id: "newclient1",
             refresh_token: refresh_token,
         }
         let res: { status: number; data: any, code: string } = {
@@ -236,7 +241,7 @@ const authRequest = {
                 BASE_URL +
                 "/auth/realms/" +
                 REALM +
-                "/protocol/openid-refresh/token",
+                "/protocol/openid-connect/logout",
                 body,
                 {
                     headers: {
@@ -369,8 +374,6 @@ const authRequest = {
                 bookBalance: number | null
             }[]
 
-
-
             | Record<string, any>[],
             code: string
         } = {
@@ -381,7 +384,8 @@ const authRequest = {
 
         return await axios
             .get(
-                "http://api.issl.ng:7777/ibank/api/v1/getCustomerAccounts?",
+                ISSL_BASE_URL +
+                "getCustomerAccounts?",
                 {
                     params: {
                         CustomerNo: CustomerNo
@@ -416,7 +420,8 @@ const authRequest = {
 
         return await axios
             .get(
-                "http://api.issl.ng:7777/ibank/api/v1/getCustomerDetails?",
+                ISSL_BASE_URL +
+                "getCustomerDetails?",
                 {
                     params: {
                         CustomerNo: CustomerNo
@@ -442,7 +447,7 @@ const authRequest = {
         toDate: string,
         page: number,
         size: number,
-    sort: string) => {
+        sort: string) => {
         let res: {
             status: number;
             data: {
@@ -457,11 +462,11 @@ const authRequest = {
                     ccyName: string | null,
                     amount: number,
                     balanceCF: number,
-                    status: string |null ,
+                    status: string | null,
                     ownNarrative: string | null,
                     category: string | null,
                     subCategory: string | null,
-                    tags: string | null 
+                    tags: string | null
                 }[]
             } | Record<string, any>[]
             code: string
@@ -472,7 +477,19 @@ const authRequest = {
         };
         return await axios
             .get(
-                "http://api.issl.ng:7777/ibank/api/v1/getAccountTransactionsPaged?accountno=1000021&fromdate=19500201&todate=20220831&page=0&size=2&sort=descending",
+                ISSL_BASE_URL +
+                "getAccountTransactionsPaged?accountno="
+                + AccountNo +
+                "&fromdate=" +
+                fromDate +
+                "&todate=" +
+                toDate +
+                "&page="
+                + page
+                + "&size="
+                + size
+                + "&sort="
+                + sort,
                 {
                     params: {
                         AccountNo: AccountNo,
@@ -487,7 +504,7 @@ const authRequest = {
             )
             .then((response) => {
                 res.status = response.status;
-                res.data = {...response.data};
+                res.data = { ...response.data };
 
                 return res;
             })
@@ -496,8 +513,177 @@ const authRequest = {
                 res.code = error.code;
                 return res;
             });
-    }
+    },
 
+    // Airtime Payment
+    airtimePayment: async () => {
+
+        // response data format
+        let res: {
+            status: number;
+            data:
+            {
+                content: {
+                    id: string,
+                    customerNo: string,
+                    name: string,
+                    firstName: null,
+                    lastName: null,
+                    otherName: null,
+                    maritalStatus: null,
+                    dob: string,
+                    sex: string,
+                    gender: string,
+                    bvn: string,
+                    phoneRef: null,
+                    email: null,
+                    customerType: string,
+                    region: null,
+                    relationShipDept: null,
+                    relationshipMan: string,
+                    altRelationshipMan: string,
+                    status: null,
+                    branch: string,
+                    rcno: string,
+                }
+            }[]
+
+            | Record<string, any>[],
+            code: string
+        } = {
+            status: 0,
+            data: [{}],
+            code: ""
+        };
+        return await axios
+            .get(
+                ISSL_BASE_URL +
+                "getCustomersLitePaged",
+                // {
+                //     method: "GET",
+                // }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = { ...response.data };
+
+                return res;
+            })
+            .catch((error) => {
+                res.status = error.response.status;
+                res.code = error.code;
+                return res;
+            });
+    },
+
+    //intraBank Transfer
+    intraBankTransfer: async (
+        amount: number,
+        fromAccountNo: String,
+        narrative: string,
+        reference: string,
+        toAccountNo: string,
+        user: {
+            fullName: String,
+            ipAddress: string,
+            screenName: string
+        },
+        valueDate: string,
+    ) => {
+        let details = {
+            amount: amount,
+            fromAccountNo: fromAccountNo,
+            narrative: narrative,
+            reference: reference,
+            toAccountNo: toAccountNo,
+            user: user,
+            valueDate: valueDate
+        }
+        let res: { status: number; data: {} | Record<string, any>, code: string } = {
+            status: 0,
+            data: { details },
+            code: ""
+        };
+
+
+        return await axios
+            .post(
+                ISSL_BASE_URL +
+                "/intrabanktransfer",
+                {
+                    method: "POST",
+                    headers: {
+                        'X-TENANTID': 'islandbankpoc',
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+    },
+    // Transfer Own Account
+    transOwnAcct: async (
+        amount: number,
+        fromAccountNo: string,
+        narrative: string,
+        reference: string,
+        toAccountNo: string,
+        user: {
+            fullName: string,
+            ipAddress: string,
+            screenName: string
+        },
+        valueDate: string,
+    ) => {
+        let res: {
+            status: number; data:
+            {
+                postedOK: boolean,
+                statusCode: string,
+                statusMessage: string,
+                entryType: string,
+                entrySerial:string
+            }
+            | Record<string, any>[],
+            code: string
+        } = {
+            status: 0,
+            data: [],
+            code: ""
+        };
+        return await axios
+            .post(
+                ISSL_BASE_URL+
+                "ownaccounttransfer",
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
+            .then((response) => {
+                res.status = response.status;
+                res.data = response.data;
+                return res;
+            })
+            .catch((err) => {
+                res.status = err.response.status;
+                res.data = err.response.data;
+                res.code = err.code
+                return res
+            });
+
+    }
 
 }
 
@@ -509,10 +695,11 @@ export default authRequest
 //     console.log(await authRequest.getUserFull("6758"));
 // }
 async function myfunc() {
-    console.log(await authRequest.getUserFull("6758"));
+    console.log(await authRequest.transOwnAcct(10, "", "string", "string", "", { "fullName": "string", "ipAddress": "string", "screenName" : "string" },"2022-03-28T12:02:41.948Z"));
 }
 
 myfunc()
+
 
 
 

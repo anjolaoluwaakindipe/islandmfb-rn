@@ -8,3 +8,4 @@ exports.CLIENT_SECRET = "1648edf6-4934-4f84-a05b-7d04ccb7719f";
 exports.CUS_CLIENT_ID = "testclient";
 exports.ADMIN_CLIENT_ID = "admin-cli";
 exports.GRANT_TYPE = "client-credentials";
+exports.ISSL_BASE_URL = "http://api.issl.ng:7777/ibank/api/v1/";

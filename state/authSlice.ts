@@ -1,9 +1,11 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { string } from "zod"
-import authRequest from "../utils/requests/authReq"
-import { SecureStorage } from "../services/Singleton/secureStorage"
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { string } from "zod";
+import authRequest from "../utils/requests/authReq";
+import { SecureStorage } from "../services/Singleton/secureStorage";
 import { RootState } from "./store"
-// import { RootState } from "./store"
+
+
 
 const initialState: AuthState = {
     accessToken: "",
@@ -14,11 +16,9 @@ const initialState: AuthState = {
         product: "",
         name: "",
         currency: "",
-
         customerNo: "",
         availableBalance: 0,
         bookBalance: 0,
-
     },
     errorMessage: "",
     isError: false,
@@ -27,6 +27,7 @@ const initialState: AuthState = {
     requestStatus: 0,
     loginErrorMessage: "",
 }
+
 
 
 
@@ -42,7 +43,6 @@ export const loginUser = createAsyncThunk(
         try {
 
             const tokenResponse = await authRequest.loginwithEmail(userName, password)
-
             if (tokenResponse.status === 200) {
                 await Promise.all(
                     [SecureStorage.getInst().save("access_token", tokenResponse.data.access_token),
@@ -52,7 +52,12 @@ export const loginUser = createAsyncThunk(
 
                 )
                 console.log("connect successful ")
-
+                
+                // const getRefreshToken = await authRequest.getUserKeyCloak(tokenResponse.data.refresh_token);
+                
+                // dispatch({ type:"auth/loginUser", refresh_token:{getRefreshToken}})
+                
+                // console.log(getRefreshToken.status)
                 //use access token to get user info 
                 // const token = await SecureStorage.getInst().getValueFor("access_token")
                 const userResponse = await authRequest.getUserKeyCloak(tokenResponse.data.access_token)
@@ -73,7 +78,6 @@ export const loginUser = createAsyncThunk(
                             name: userInfoFullAppResponse.data[0].customerName,
                             accountNo: userInfoFullAppResponse.data[0].primaryAccountNo["_number"],
                             accesToken: tokenResponse.data.access_token,
-
                         }
 
                     }
@@ -89,7 +93,6 @@ export const loginUser = createAsyncThunk(
                         "Something went wrong while getting your account with token"
                     );
                 }
-
             } else {
                 switch (tokenResponse.status) {
                     case 0:
@@ -131,7 +134,7 @@ const UserInformation = (
     state: AuthState,
     allUserInformation: UserFull
 ) => {
-
+    
     state.user.name = allUserInformation[0].customerName;
     state.user.accountNo = allUserInformation[0].primaryAccountNo["_number"];
     state.user.product = allUserInformation[0].product;
@@ -140,6 +143,8 @@ const UserInformation = (
     state.user.bookBalance = allUserInformation[0].bookBalance;
     return state;
 };
+// Logging out a user
+
 
 
 
@@ -158,6 +163,11 @@ const authSlice = createSlice({
         clearAuthState(state: AuthState) {
             return initialState;
         },
+        logOut(state: AuthState, action: PayloadAction<{accessToken:string}>) {
+            state.accessToken = null
+            localStorage.clear()
+        }
+
 
     },
 
@@ -190,13 +200,14 @@ const authSlice = createSlice({
                 const allUserInformation = action.payload
                     ?.allUserInformation as UserFull;
                 return UserInformation(state, allUserInformation);
-            });
+            })
+            // .addCase(loginUser.fulfilled, (state:AuthState, action: PayloadAction<{ refreshToken: string }>)=>{})
 
     },
 
 });
 
-export const { setAuthStateTokens, clearAuthState } =
+export const { setAuthStateTokens, clearAuthState, logOut } =
     authSlice.actions;
 
 export const authSelector = (state: RootState) => state.auth;
