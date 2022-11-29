@@ -12,13 +12,32 @@ import AppText from "../components/shared/Apptext";
 import AppButton from "../components/shared/AppButton";
 import AppTextField from "../components/shared/AppTextField";
 import { useForm } from "react-hook-form";
-import { CreateYourAccountFormType } from "../services/validation/createYourAccountVal";
+import { CreateYourAccountFormType,
+    createYourAccountSchema } from "../services/validation/createYourAccountVal";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "./allroutes";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const CreateYourAccount = () => {
+
+type CreateYourAccountProps =  NativeStackScreenProps<RootStackParamList, "CreateYourAccount">;
+
+const CreateYourAccount = ({navigation}: CreateYourAccountProps) => {
+      
+  
     const {
         control,
         formState: { errors },
-    } = useForm<CreateYourAccountFormType>();
+        handleSubmit,
+    } = useForm<CreateYourAccountFormType>({
+        resolver: zodResolver(createYourAccountSchema)
+    });
+
+
+    const onSubmit = handleSubmit((data) => {
+        navigation.navigate("Verification");
+    });
+
+
 
     return (
         <KeyboardAvoidingView
@@ -43,7 +62,7 @@ const CreateYourAccount = () => {
                             style={tw`text-lg mt-1 text-center`}
                             fontFamily="poppins-light"
                         >
-                            Create an account by provideing the details needed
+                            Create an account by providing the details needed
                             below
                         </AppText>
 
@@ -56,19 +75,23 @@ const CreateYourAccount = () => {
                                 control={control}
                                 errorMessage={errors.bvn?.message}
                             />
+
+
                             <AppTextField
                                 title="Phone Number"
                                 validationName="phoneNumber"
                                 containerStyle={tw`mt-3`}
-                                isPassword={true}
+                                keyboardType="phone-pad"
                                 control={control}
                                 errorMessage={errors.phoneNumber?.message}
                             />
+
+
                             <AppTextField
                                 title="Email"
                                 validationName="email"
                                 containerStyle={tw`mt-3`}
-                                isPassword={true}
+                                keyboardType="email-address"
                                 control={control}
                                 errorMessage={errors.email?.message}
                             />
@@ -77,8 +100,9 @@ const CreateYourAccount = () => {
 
                     <View>
                         <AppButton
-                            text="Set Up Profile"
+                            text="Continue"
                             buttonStyle={tw`mt-10`}
+                            onPress={onSubmit}
                         />
                     </View>
                 </ScrollView>

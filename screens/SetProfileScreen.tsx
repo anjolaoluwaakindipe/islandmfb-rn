@@ -6,14 +6,13 @@ import {
     Platform,
     ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import BasicBackButtonLayout from "../components/layouts/BasicBackButtonLayout";
 import AppText from "../components/shared/Apptext";
 import tw from "twrnc";
 import apptw from "../utils/lib/tailwind";
 import AppTextField from "../components/shared/AppTextField";
 import AppButton from "../components/shared/AppButton";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
     SetProfileFormType,

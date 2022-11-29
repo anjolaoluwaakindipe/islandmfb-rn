@@ -14,7 +14,6 @@ type AppButtonProp = {
 };
 
 const AppButton = (props: AppButtonProp) => {
-     
     return (
         <Pressable
             style={({ pressed }) =>
